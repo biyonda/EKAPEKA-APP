@@ -1,10 +1,12 @@
-package com.example.ekpkdisnaker;
+package com.example.ekpkdisnaker.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.example.ekpkdisnaker.R;
 
 public class KartuAK1Activity extends AppCompatActivity {
 

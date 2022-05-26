@@ -1,4 +1,4 @@
-package com.example.ekpkdisnaker;
+package com.example.ekpkdisnaker.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.fragment.NavHostFragment;
@@ -6,6 +6,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
 
+import com.example.ekpkdisnaker.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".KartuAK1Activity">
+    tools:context=".activity.KartuAK1Activity">
 
     <!-- HEADER START -->
     <LinearLayout
