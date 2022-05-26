@@ -114,6 +114,7 @@
                                     android:textSize="11sp">
                                 </TextView>
                                 <TextView
+                                    android:id="@+id/foto_ktp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Belum"
@@ -145,6 +146,7 @@
                                     android:textSize="11sp">
                                 </TextView>
                                 <TextView
+                                    android:id="@+id/pas_foto"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Upload"
@@ -173,6 +175,7 @@
                                     android:text="Ijazah"
                                     android:textSize="11sp"></TextView>
                                 <TextView
+                                    android:id="@+id/ijazah"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Upload"

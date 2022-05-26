@@ -31,7 +31,7 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    Spinner jenis_kelamin, kawin, kd_pendidikan;
+    Spinner jenis_kelamin, kawin, kd_pendidikan, agama;
     LinearLayout select_tgl_lahir;
     TextView tgl_lahir, username, nama_lengkap, tmp_lahir, email, alamat, no_telp, nama_pendidikan, password;
     AppCompatButton btn_register;
@@ -45,6 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
     Session session;
     Api api;
     Call<RegisterResponse> register;
+    String tmp_kd_pendidikan = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
         jenis_kelamin = findViewById(R.id.jenis_kelamin);
         kawin = findViewById(R.id.kawin);
         kd_pendidikan = findViewById(R.id.kd_pendidikan);
+        agama = findViewById(R.id.agama);
         select_tgl_lahir = findViewById(R.id.select_tgl_lahir);
         tgl_lahir = findViewById(R.id.tgl_lahir);
         btn_register = findViewById(R.id.btn_daftar);
@@ -70,11 +72,15 @@ public class RegisterActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> bulan_spinner = ArrayAdapter.createFromResource(this, R.array.jk_array, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> kawin_spinner = ArrayAdapter.createFromResource(this, R.array.kawin_array, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> pendidikan_spinner = ArrayAdapter.createFromResource(this, R.array.pendidikan_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> agama_spinner = ArrayAdapter.createFromResource(this, R.array.agama_array, android.R.layout.simple_spinner_item);
         bulan_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         kawin_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        pendidikan_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        agama_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         jenis_kelamin.setAdapter(bulan_spinner);
         kawin.setAdapter(kawin_spinner);
         kd_pendidikan.setAdapter(pendidikan_spinner);
+        agama.setAdapter(agama_spinner);
 
         session = new Session(this);
         api = RetrofitClient.createService(Api.class);
@@ -96,7 +102,8 @@ public class RegisterActivity extends AppCompatActivity {
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String tmp_kd_pendidikan = "";
+                System.out.println(kd_pendidikan.getSelectedItemPosition());
+
                 if (kd_pendidikan.getSelectedItemPosition() == 0){
                     tmp_kd_pendidikan = "1A";
                 } else if (kd_pendidikan.getSelectedItemPosition() == 1){
@@ -109,14 +116,17 @@ public class RegisterActivity extends AppCompatActivity {
                     tmp_kd_pendidikan = "5E";
                 } else if (kd_pendidikan.getSelectedItemPosition() == 5){
                     tmp_kd_pendidikan = "6F";
-                } else if (kd_pendidikan.getSelectedItemPosition() == 5){
+                } else if (kd_pendidikan.getSelectedItemPosition() == 6){
                     tmp_kd_pendidikan = "7G";
                 }
 
+                System.out.println(tmp_kd_pendidikan);
+
                 register = api.register(username.getText().toString(), nama_lengkap.getText().toString(),
                         tmp_lahir.getText().toString(), (jenis_kelamin.getSelectedItemPosition()+1)+"", tgl_lahir.getText().toString(),
-                        kawin.getSelectedItemPosition()+"", tmp_kd_pendidikan, nama_pendidikan.getText().toString(),
-                        alamat.getText().toString(), no_telp.getText().toString(), email.getText().toString(), password.getText().toString());
+                        kawin.getSelectedItemPosition()+"", tmp_kd_pendidikan+"", nama_pendidikan.getText().toString(),
+                        alamat.getText().toString(), no_telp.getText().toString(), email.getText().toString(), password.getText().toString(),
+                        agama.getSelectedItem().toString());
 
                 register.enqueue(new Callback<RegisterResponse>() {
                     @Override

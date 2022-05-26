@@ -52,20 +52,18 @@
                         android:background="@color/primary">
                     </ImageView>
                     <TextView
-                        android:id="@+id/nama"
+                        android:id="@+id/nama_lengkap"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Nama Pengguna"
                         android:textColor="@color/primary"
                         android:textSize="16sp"
                         android:textStyle="bold">
                     </TextView>
                     <TextView
-                        android:id="@+id/nik"
+                        android:id="@+id/username"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="123456789101112"
                         android:textSize="14sp">
                     </TextView>
 
@@ -95,7 +93,6 @@
                                 android:id="@+id/tmp_lahir"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Jember"
                                 android:textColor="@color/primary"
                                 android:textStyle="bold">
                             </TextView>
@@ -103,7 +100,6 @@
                                 android:id="@+id/tgl_lahir"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text=", 26 April 1995"
                                 android:textColor="@color/primary"
                                 android:textStyle="bold">
                             </TextView>
@@ -135,7 +131,6 @@
                                 android:id="@+id/jenis_kelamin"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Laki-Laki"
                                 android:textColor="@color/primary"
                                 android:textStyle="bold">
                             </TextView>
@@ -167,7 +162,6 @@
                                 android:id="@+id/sts_kawin"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Kawin"
                                 android:textColor="@color/primary"
                                 android:textStyle="bold">
                             </TextView>
@@ -199,7 +193,6 @@
                                 android:id="@+id/agama"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Islam"
                                 android:textColor="@color/primary"
                                 android:textStyle="bold">
                             </TextView>
@@ -228,10 +221,9 @@
                             android:layout_weight="5"
                             android:gravity="center_vertical|end">
                             <TextView
-                                android:id="@+id/jenjang_pendidikan"
+                                android:id="@+id/kd_pendidikan"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="S1/S2/S3"
                                 android:textColor="@color/primary"
                                 android:textStyle="bold">
                             </TextView>
@@ -263,7 +255,6 @@
                                 android:id="@+id/nama_pendidikan"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Universitas Jember"
                                 android:textColor="@color/primary"
                                 android:textStyle="bold">
                             </TextView>
@@ -296,7 +287,6 @@
                                 android:id="@+id/no_telp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="085259107690"
                                 android:textColor="@color/primary"
                                 android:textStyle="bold">
                             </TextView>
@@ -326,7 +316,6 @@
                             android:id="@+id/alamat"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Jl. Kalimantan IV/89 Jember"
                             android:textColor="@color/primary"
                             android:textStyle="bold">
                         </TextView>

@@ -33,7 +33,10 @@ public interface Api {
             @Field("alamat") String alamat,
             @Field("telepon") String telepon,
             @Field("email") String email,
-            @Field("password") String password
+            @Field("password") String password,
+            @Field("agama") String agama
     );
 
+    @GET("getUser")
+    Call<UserResponse> getUser();
 }
