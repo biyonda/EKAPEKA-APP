@@ -145,15 +145,15 @@
                                     android:text="Pas Foto"
                                     android:textSize="11sp">
                                 </TextView>
+
                                 <TextView
                                     android:id="@+id/pas_foto"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Upload"
+                                    android:textColor="#008E3E"
                                     android:textSize="11sp"
-                                    android:textStyle="bold"
-                                    android:textColor="#008E3E">
-                                </TextView>
+                                    android:textStyle="bold"></TextView>
                             </LinearLayout>
                         </LinearLayout>
                         <LinearLayout

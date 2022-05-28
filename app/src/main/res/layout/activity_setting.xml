@@ -147,7 +147,7 @@
 
     </RelativeLayout>
     <RelativeLayout
-        android:id="@+id/btn"
+        android:id="@+id/btn_ijazah"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginHorizontal="16dp"

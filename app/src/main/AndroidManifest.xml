@@ -15,9 +15,18 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
+        android:theme="@style/Theme.EKPKDISNAKER"
         android:usesCleartextTraffic="true"
-        tools:replace="android:allowBackup"
-        android:theme="@style/Theme.EKPKDISNAKER">
+        tools:replace="android:allowBackup">
+        <activity
+            android:name=".activity.IjazahActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.KTPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.PasFotoActivity"
+            android:exported="false" />
         <activity
             android:name=".activity.KartuAK1Activity"
             android:exported="false" />
@@ -39,11 +48,10 @@
         <activity
             android:name=".activity.RegisterActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize"
-            />
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".activity.MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
     </application>
 
 </manifest>
