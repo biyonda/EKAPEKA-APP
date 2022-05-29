@@ -46,7 +46,8 @@
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="16dp"
-                    android:background="#FFB20F"></ImageView>
+                    android:background="@drawable/profile_ic_data">
+                </ImageView>
                 <TextView
                     android:id="@+id/ly_section_title"
                     android:layout_width="wrap_content"

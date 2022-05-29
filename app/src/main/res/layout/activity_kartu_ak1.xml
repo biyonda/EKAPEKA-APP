@@ -82,7 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="Kartu AK1 yang dibuat akan tampil dibawah ini. Bagi yang ingin mengajaukan Kartu AK1 baru, silahkan klik tombol Buat Kartu AK1"
+                    android:text="Kartu AK1 yang dibuat akan tampil dibawah ini. Bagi yang ingin mengajaukan Kartu AK1 baru, silahkan klik tombol Buat Kartu AK1 dan tunggu verifikasi dari Dsinaker Jember"
                     android:textSize="11sp"></TextView>
             </LinearLayout>
 

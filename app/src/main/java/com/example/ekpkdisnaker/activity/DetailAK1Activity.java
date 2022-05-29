@@ -64,7 +64,7 @@ public class DetailAK1Activity extends AppCompatActivity {
             sts_kartu.setText("DIVERIFIKASI");
             sts_kartu.setTextColor(Color.parseColor("#00B04E"));
         } else if (getIntent().getStringExtra("status").equals("2")) {
-            sts_kartu.setText("DITANGANI");
+            sts_kartu.setText("DITANDATANGANI");
             sts_kartu.setTextColor(Color.parseColor("#81ecec"));
         } else if (getIntent().getStringExtra("status").equals("3")) {
             sts_kartu.setText("PENEMPATAN");
@@ -93,7 +93,7 @@ public class DetailAK1Activity extends AppCompatActivity {
         lapor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Toast.makeText(DetailAK1Activity.this, "Sedang Maintenance", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -144,5 +144,8 @@ public class DetailAK1Activity extends AppCompatActivity {
         request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, no_register.getText().toString()+".pdf");
 //        request.setDestinationUri(Uri.parse("file://Download/"+no_register.getText().toString()+".pdf"));
         downloadmanager.enqueue(request);
+
+        Toast.makeText(DetailAK1Activity.this, "Sedang Maintenance", Toast.LENGTH_SHORT).show();
+
     }
 }
