@@ -5,28 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FAFAFA"
+    android:background="@drawable/bg_abstract"
     tools:context=".activity.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="250dp"
         android:orientation="vertical"
-        android:background="@color/primary">
-        <ImageView
-            android:layout_width="180dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="30dp"
-            android:layout_gravity="center"
-            android:background="@color/secondary">
-        </ImageView>
+        android:background="@drawable/login_bg_top">
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="32dp"
-        android:layout_marginTop="-60dp"
+        android:layout_marginTop="-200dp"
         app:cardCornerRadius="10dp"
         app:cardElevation="4dp">
 
@@ -37,18 +30,20 @@
             android:paddingHorizontal="16dp">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Selamat datang,"
+                android:text="Login"
+                android:layout_gravity="center"
                 android:textColor="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold">
             </TextView>
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_gravity="center"
+
                 android:text="Silahkan masuk untuk melanjutkan">
             </TextView>
 
@@ -56,9 +51,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Username"
+                android:text="NIK"
                 android:textColor="@color/black"
-                android:textStyle="bold"></TextView>
+                android:textStyle="bold">
+            </TextView>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -73,8 +69,8 @@
                     android:layout_height="match_parent"
                     android:layout_marginVertical="2dp"
                     android:background="@color/white"
-                    android:hint="Masukkan username anda"
-                    android:inputType="text"
+                    android:hint="Masukkan NIK anda"
+                    android:inputType="number"
                     android:imeOptions="actionNext"
                     android:textSize="14sp"></EditText>
             </LinearLayout>
@@ -82,7 +78,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:text="Password"
                 android:textColor="@color/black"
                 android:textStyle="bold"></TextView>
@@ -91,6 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
                 android:background="@drawable/bt_white_round"
                 android:orientation="horizontal"
                 android:paddingHorizontal="12dp"
@@ -131,7 +128,7 @@
         android:layout_height="52dp"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/bt_red_round"
+        android:background="@drawable/bt_primary_round"
         android:text="Masuk"
         android:textAllCaps="false"
         android:textColor="#FFF"
@@ -178,7 +175,7 @@
         android:layout_height="52dp"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/bt_primary_round"
+        android:background="@drawable/bt_red_round"
         android:gravity="center">
 
         <TextView
@@ -198,7 +195,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:visibility="invisible"></ProgressBar>
+            android:visibility="invisible">
+        </ProgressBar>
     </RelativeLayout>
 
 </LinearLayout>
