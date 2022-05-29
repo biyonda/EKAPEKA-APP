@@ -52,4 +52,10 @@ public interface Api {
     Call<BaseResponse> uploadKTP(
             @Field("foto") String foto
     );
+
+    @FormUrlEncoded
+    @POST("uploadIjazah")
+    Call<BaseResponse> uploadIjazah(
+            @Field("ijazah") String ijazah
+    );
 }
