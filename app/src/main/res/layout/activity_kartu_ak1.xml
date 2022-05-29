@@ -60,47 +60,50 @@
 <!--       </TextView>-->
 <!--   </LinearLayout>-->
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/ly_header"
-        android:layout_above="@id/ly_footer">
+        android:layout_above="@id/ly_footer"
+        android:layout_below="@id/ly_header">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginHorizontal="16dp">
+                android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="11sp"
                     android:gravity="center"
-                    android:text="Kartu AK1 yang dibuat akan tampil dibawah ini. Bagi yang ingin mengajaukan Kartu AK1 baru, silahkan klik tombol Buat Kartu AK1">
-                </TextView>
+                    android:text="Kartu AK1 yang dibuat akan tampil dibawah ini. Bagi yang ingin mengajaukan Kartu AK1 baru, silahkan klik tombol Buat Kartu AK1"
+                    android:textSize="11sp"></TextView>
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginHorizontal="16dp"
-                android:background="#FAFAFA">
-            </View>
+                android:layout_marginTop="8dp"
+                android:background="#FAFAFA"></View>
+
             <ListView
+                android:id="@+id/list_data"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="16dp"
                 android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
                 android:divider="#00FFFFFF"
                 android:dividerHeight="5dp"
-                tools:listitem="@layout/adapter_ak1">
-            </ListView>
+                tools:listitem="@layout/adapter_ak1"></ListView>
         </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/ly_footer"

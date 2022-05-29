@@ -3,6 +3,7 @@ package com.example.ekpkdisnaker.api;
 import com.example.ekpkdisnaker.response.BaseResponse;
 import com.example.ekpkdisnaker.response.RegisterResponse;
 import com.example.ekpkdisnaker.response.UserResponse;
+import com.example.ekpkdisnaker.table.ak1;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -58,4 +59,10 @@ public interface Api {
     Call<BaseResponse> uploadIjazah(
             @Field("ijazah") String ijazah
     );
+
+    @GET("getKartuAK1")
+    Call<BaseResponse> getKartuAK1();
+
+    @GET("getDataAK1")
+    Call<BaseResponse<ak1>> getDataAK1();
 }

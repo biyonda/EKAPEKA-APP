@@ -9,10 +9,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.signature.ObjectKey;
 import com.example.ekpkdisnaker.R;
 import com.example.ekpkdisnaker.api.Api;
 import com.example.ekpkdisnaker.api.RetrofitClient;
@@ -30,6 +34,7 @@ public class ProfilFragment extends Fragment {
     RelativeLayout btn_setting;
     RelativeLayout btn_logout;
 
+    ImageView img_profil;
     TextView nama_lengkap, username, tmp_lahir, tgl_lahir, jenis_kelamin;
     TextView sts_kawin, agama, kd_pendidikan, nama_pendidikan;
     TextView no_telp, alamat;
@@ -56,6 +61,7 @@ public class ProfilFragment extends Fragment {
         alamat = view.findViewById(R.id.alamat);
         btn_setting = view.findViewById(R.id.btn_setting);
         btn_logout = view.findViewById(R.id.btn_logout);
+        img_profil = view.findViewById(R.id.img_profil);
 
         session = new Session(getContext());
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
@@ -126,6 +132,17 @@ public class ProfilFragment extends Fragment {
                     nama_pendidikan.setText(response.body().getUser().getNamaPendidikan());
                     no_telp.setText(response.body().getUser().getTelepon());
                     alamat.setText(response.body().getUser().getAlamat());
+
+                    if (response.body().getUser().getPasFoto() != null) {
+                        RequestOptions requestOptions = new RequestOptions();
+                        requestOptions.centerCrop().signature(
+                                new ObjectKey(String.valueOf(System.currentTimeMillis())));
+                        Glide.with(getActivity())
+                                .setDefaultRequestOptions(requestOptions)
+                                .load(session.getBaseUrl()
+                                        + response.body().getUser().getPasFoto().replace("public/", "storage/"))
+                                .into(img_profil);
+                    }
                 } else {
                     ApiError apiError = ErrorUtils.parseError(response);
                     Toast.makeText(getContext(), apiError.getMessage(), Toast.LENGTH_SHORT).show();

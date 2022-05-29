@@ -117,7 +117,6 @@
                                     android:id="@+id/foto_ktp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Belum"
                                     android:textSize="11sp"
                                     android:textStyle="bold"
                                     android:textColor="#CE3032">
@@ -150,7 +149,6 @@
                                     android:id="@+id/pas_foto"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Upload"
                                     android:textColor="#008E3E"
                                     android:textSize="11sp"
                                     android:textStyle="bold"></TextView>
@@ -178,7 +176,6 @@
                                     android:id="@+id/ijazah"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Upload"
                                     android:textSize="11sp"
                                     android:textStyle="bold"
                                     android:textColor="#008E3E">

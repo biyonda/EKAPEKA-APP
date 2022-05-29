@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_marginTop="4dp">
+    android:layout_margin="4dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -12,14 +12,24 @@
         android:orientation="vertical"
         android:background="@drawable/bt_white_round">
 
-        <ImageView
+        <RelativeLayout
             android:id="@+id/img_ak1"
             android:layout_width="46dp"
             android:layout_height="46dp"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:background="@color/primary">
-        </ImageView>
+
+            <TextView
+                android:id="@+id/number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="1"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -60,7 +70,7 @@
                 android:textSize="11sp">
             </TextView>
             <TextView
-                android:id="@+id/nik"
+                android:id="@+id/nama_peserta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Fiska Noermardiningrum Agustin"
@@ -134,6 +144,7 @@
             android:layout_marginBottom="8dp"
             android:background="#FEBC09"
             android:gravity="center">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
