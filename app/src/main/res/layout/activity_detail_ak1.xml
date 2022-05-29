@@ -112,7 +112,7 @@
             android:layout_weight="5"
             android:gravity="center_vertical|end">
             <TextView
-                android:id="@+id/nama_pengguna"
+                android:id="@+id/nama_peserta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold">
@@ -174,7 +174,7 @@
             android:layout_weight="5"
             android:gravity="center_vertical|end">
             <TextView
-                android:id="@+id/jk"
+                android:id="@+id/jenis_kelamin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold">

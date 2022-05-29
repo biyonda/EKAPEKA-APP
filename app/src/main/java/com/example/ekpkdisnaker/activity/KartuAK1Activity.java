@@ -46,9 +46,14 @@ public class KartuAK1Activity extends AppCompatActivity {
 
     private ArrayList<String> number = new ArrayList<>();
     private ArrayList<String> no_register = new ArrayList<>();
+    private ArrayList<String> nik = new ArrayList<>();
     private ArrayList<String> nama_peserta = new ArrayList<>();
+    private ArrayList<String> tgl_lahir = new ArrayList<>();
+    private ArrayList<String> jenis_kelamin = new ArrayList<>();
+    private ArrayList<String> pendidikan = new ArrayList<>();
     private ArrayList<String> masa_berlaku = new ArrayList<>();
     private ArrayList<String> status = new ArrayList<>();
+    private ArrayList<String> file_ak1 = new ArrayList<>();
 
     AdapterAK1 adapterAK1;
 
@@ -143,20 +148,70 @@ public class KartuAK1Activity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     number.clear();
                     no_register.clear();
+                    nik.clear();
                     nama_peserta.clear();
+                    tgl_lahir.clear();
+                    jenis_kelamin.clear();
+                    pendidikan.clear();
                     masa_berlaku.clear();
                     status.clear();
+                    file_ak1.clear();
 
                     for (int i = 0; i < response.body().getData().size(); i++) {
-                        number.add((i+1)+"");
+                        number.add((i + 1) + "");
                         no_register.add(response.body().getData().get(i).getNoRegister());
+                        nik.add(response.body().getData().get(i).getNikUser());
                         nama_peserta.add(response.body().getData().get(i).getPeserta().getNamaLengkap());
+                        tgl_lahir.add(response.body().getData().get(i).getPeserta().getTglLahir());
+                        if (response.body().getData().get(i).getPeserta().getJnsKelamin() == 1) {
+                            jenis_kelamin.add("Laki-laki");
+                        } else if (response.body().getData().get(i).getPeserta().getJnsKelamin() == 2) {
+                            jenis_kelamin.add("Perempuan");
+                        }
+
+                        if (response.body().getData().get(i).getPeserta().getKdPendidikan().equals("1A")) {
+                            pendidikan.add("SD / SEDERAJAT");
+                        } else if (response.body().getData().get(i).getPeserta().getKdPendidikan().equals("2B")) {
+                            pendidikan.add("SLTP / SEDERAJAT");
+                        } else if (response.body().getData().get(i).getPeserta().getKdPendidikan().equals("3C")) {
+                            pendidikan.add("SMA / SLTA");
+                        } else if (response.body().getData().get(i).getPeserta().getKdPendidikan().equals("4D")) {
+                            pendidikan.add("MAN");
+                        } else if (response.body().getData().get(i).getPeserta().getKdPendidikan().equals("5E")) {
+                            pendidikan.add("SMK");
+                        } else if (response.body().getData().get(i).getPeserta().getKdPendidikan().equals("6F")) {
+                            pendidikan.add("DI / DII / DIII / DIV");
+                        } else if (response.body().getData().get(i).getPeserta().getKdPendidikan().equals("7G")) {
+                            pendidikan.add("S1 / S2 / S3");
+                        }
+
+                        if (response.body().getData().get(i).getFileAk1() == null) {
+                            file_ak1.add("kosong");
+                        } else {
+                            file_ak1.add(response.body().getData().get(i).getFileAk1());
+                        }
+
                         masa_berlaku.add(response.body().getData().get(i).getMasaBerlaku());
                         status.add(response.body().getData().get(i).getStsAk1().toString());
                     }
 
                     adapterAK1 = new AdapterAK1(KartuAK1Activity.this, number, no_register, nama_peserta,
-                            masa_berlaku, status);
+                            masa_berlaku, status, new AdapterAK1.OnEditLocationListener() {
+                        @Override
+                        public void onClickAdapter(int position) {
+                            Intent intent = new Intent(KartuAK1Activity.this, DetailAK1Activity.class);
+                            intent.putExtra("no_register", no_register.get(position));
+                            intent.putExtra("nik", nik.get(position));
+                            intent.putExtra("nama_peserta", nama_peserta.get(position));
+                            intent.putExtra("tgl_lahir", tgl_lahir.get(position));
+                            intent.putExtra("jenis_kelamin", jenis_kelamin.get(position));
+                            intent.putExtra("pendidikan", pendidikan.get(position));
+                            intent.putExtra("status", status.get(position));
+                            intent.putExtra("masa_berlaku", masa_berlaku.get(position));
+                            intent.putExtra("file_ak1", file_ak1.get(position));
+                            startActivity(intent);
+                        }
+                    });
                     adapterAK1.notifyDataSetChanged();
                     list_data.setAdapter(adapterAK1);
                 } else {

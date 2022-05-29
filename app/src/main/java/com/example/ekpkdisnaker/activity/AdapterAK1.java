@@ -29,10 +29,11 @@ public class AdapterAK1 extends ArrayAdapter<String> {
     private ArrayList<String> nama_peserta = new ArrayList<>();
     private ArrayList<String> masa_berlaku = new ArrayList<>();
     private ArrayList<String> status = new ArrayList<>();
+    private OnEditLocationListener detail;
 
     public AdapterAK1(Activity context, ArrayList<String> number,
                       ArrayList<String> no_register, ArrayList<String> nama_peserta,
-                      ArrayList<String> masa_berlaku, ArrayList<String> status) {
+                      ArrayList<String> masa_berlaku, ArrayList<String> status, OnEditLocationListener detail) {
         super(context, R.layout.adapter_ak1, no_register);
 
         this.context = context;
@@ -42,6 +43,7 @@ public class AdapterAK1 extends ArrayAdapter<String> {
         this.nama_peserta = nama_peserta;
         this.masa_berlaku = masa_berlaku;
         this.status = status;
+        this.detail = detail;
     }
 
     @SuppressLint("ResourceAsColor")
@@ -76,6 +78,15 @@ public class AdapterAK1 extends ArrayAdapter<String> {
             viewHolder.sts_kartu.setText("PENEMPATAN");
             viewHolder.sts_kartu.setTextColor(Color.parseColor("#00cec9"));
         }
+
+        viewHolder.btn_detail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (detail != null) {
+                    detail.onClickAdapter(position);
+                }
+            }
+        });
 
         return v;
     }
