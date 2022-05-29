@@ -34,14 +34,38 @@
     </LinearLayout>
     <!-- HEADER END -->
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:textSize="11sp"
+        android:gravity="center"
+        android:text="Tambahkan keterampilan anda dengan klik tombol dibawah ini :">
+    </TextView>
+    <Button
+        android:id="@+id/btn_tambah"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="16dp"
+        android:text="Tambah Data Keterampilan"
+        android:textAllCaps="false">
+    </Button>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
+            android:layout_marginTop="8dp">
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="16dp"
+                tools:listitem="@layout/adapter_keterampilan">
+            </ListView>
         </LinearLayout>
     </ScrollView>
 
