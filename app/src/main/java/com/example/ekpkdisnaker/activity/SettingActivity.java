@@ -37,7 +37,6 @@ public class SettingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(SettingActivity.this, PasFotoActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -46,7 +45,6 @@ public class SettingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(SettingActivity.this, KTPActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -55,7 +53,6 @@ public class SettingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(SettingActivity.this, IjazahActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
     }

@@ -25,7 +25,7 @@ public class Session {
     }
 
     public String getBaseUrl() {
-        return preferences.getString("baseUrl", "api.pdesoebandi.id");
+        return preferences.getString("baseUrl", "http://192.168.1.26/");
     }
 
     public boolean getUserLoggedIn() {

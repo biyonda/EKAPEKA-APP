@@ -1,5 +1,6 @@
 package com.example.ekpkdisnaker.api;
 
+import com.example.ekpkdisnaker.response.BaseResponse;
 import com.example.ekpkdisnaker.response.RegisterResponse;
 import com.example.ekpkdisnaker.response.UserResponse;
 
@@ -39,4 +40,16 @@ public interface Api {
 
     @GET("getUser")
     Call<UserResponse> getUser();
+
+    @FormUrlEncoded
+    @POST("uploadPasFoto")
+    Call<BaseResponse> uploadPasFoto(
+            @Field("foto") String foto
+    );
+
+    @FormUrlEncoded
+    @POST("uploadKTP")
+    Call<BaseResponse> uploadKTP(
+            @Field("foto") String foto
+    );
 }

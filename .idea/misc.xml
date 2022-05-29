@@ -3,12 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/activity_ijazah.xml" value="0.1793478260869565" />
-        <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/activity_ktpactivity.xml" value="0.1793478260869565" />
-        <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/activity_pas_foto.xml" value="0.1793478260869565" />
-        <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/activity_register.xml" value="0.1793478260869565" />
-        <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/activity_setting.xml" value="0.1793478260869565" />
-        <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/fragment_beranda.xml" value="0.1793478260869565" />
         <entry key="..\:/AndroidStudioProjects/EKPKDISNAKER/app/src/main/res/drawable/bt_primary_round.xml" value="0.21203703703703702" />
         <entry key="..\:/AndroidStudioProjects/EKPKDISNAKER/app/src/main/res/drawable/bt_red_round.xml" value="0.26614583333333336" />
         <entry key="..\:/AndroidStudioProjects/EKPKDISNAKER/app/src/main/res/drawable/bt_white_round.xml" value="0.26614583333333336" />
@@ -33,7 +27,10 @@
         <entry key="..\:/AndroidStudioProjects/EKPKDISNAKER/app/src/main/res/menu/bottom_menu.xml" value="0.25" />
         <entry key="..\:/Kantor/Intersisi/Android/EKAPEKA-APP/app/src/main/res/drawable/bt_primary_round.xml" value="0.290625" />
         <entry key="..\:/Kantor/Intersisi/Android/EKAPEKA-APP/app/src/main/res/drawable/bt_red_round.xml" value="0.290625" />
+        <entry key="..\:/Kantor/Intersisi/Android/EKAPEKA-APP/app/src/main/res/layout/activity_ijazah.xml" value="0.18169398907103826" />
+        <entry key="..\:/Kantor/Intersisi/Android/EKAPEKA-APP/app/src/main/res/layout/activity_ktpactivity.xml" value="0.18169398907103826" />
         <entry key="..\:/Kantor/Intersisi/Android/EKAPEKA-APP/app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="..\:/Kantor/Intersisi/Android/EKAPEKA-APP/app/src/main/res/layout/activity_pas_foto.xml" value="0.18169398907103826" />
         <entry key="..\:/Kantor/Intersisi/Android/EKAPEKA-APP/app/src/main/res/layout/activity_register.xml" value="0.23731728288907997" />
         <entry key="..\:/Kantor/Intersisi/Android/EKAPEKA-APP/app/src/main/res/layout/activity_splash.xml" value="0.14375" />
         <entry key="..\:/Kantor/Intersisi/Android/EKAPEKA-APP/app/src/main/res/layout/fragment_beranda.xml" value="0.264" />

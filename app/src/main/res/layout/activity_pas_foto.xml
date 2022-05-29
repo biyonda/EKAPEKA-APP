@@ -43,7 +43,7 @@
             android:id="@+id/img_pas_foto"
             android:layout_width="150dp"
             android:layout_height="match_parent"
-            android:background="#bababa">
+            android:background="#00BABABA">
         </ImageView>
         <LinearLayout
             android:layout_width="match_parent"
@@ -71,9 +71,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Status :">
+                    android:text="Status : ">
                 </TextView>
                 <TextView
+                    android:id="@+id/status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Belum"
@@ -84,6 +85,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/btn_upload"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginTop="16dp"
@@ -91,5 +93,18 @@
         android:text="Upload / Perbaharui Foto"
         android:textAllCaps="false">
     </Button>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <ProgressBar
+            android:id="@+id/SHOW_PROGRESS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:visibility="invisible"></ProgressBar>
+    </RelativeLayout>
 
 </LinearLayout>
