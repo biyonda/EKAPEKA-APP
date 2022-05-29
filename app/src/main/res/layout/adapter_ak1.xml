@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_marginTop="4dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:orientation="vertical"
+        android:background="@drawable/bt_white_round">
+
+        <ImageView
+            android:id="@+id/img_ak1"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/primary">
+        </ImageView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="8dp"
+            android:orientation="vertical"
+            android:layout_toRightOf="@+id/img_ak1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No. Register :"
+                android:textSize="11sp">
+            </TextView>
+            <TextView
+                android:id="@+id/no_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="35097GT278394260495"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ly_txt1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_ak1"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama Peserta :"
+                android:textSize="11sp">
+            </TextView>
+            <TextView
+                android:id="@+id/nik"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fiska Noermardiningrum Agustin"
+                android:textStyle="bold"
+                android:textColor="@color/black">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ly_txt3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ly_txt1"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Berlaku Hingga :"
+                android:textSize="11sp">
+            </TextView>
+            <TextView
+                android:id="@+id/masa_berlaku"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="2024-12-04"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="#E50A12"
+                android:paddingHorizontal="6dp"
+                android:paddingVertical="3dp"
+                android:background="@drawable/bt_yellow_round">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ly_txt4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/ly_txt1"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="Status Kartu :"
+                android:textSize="11sp">
+            </TextView>
+            <TextView
+                android:id="@+id/sts_kartu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Diverifikasi"
+
+                android:textStyle="bold"
+                android:textColor="#00B04E">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_detail"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="#FEBC09"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lihat Detail"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold"></TextView>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
