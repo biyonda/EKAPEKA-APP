@@ -13,7 +13,7 @@ import com.example.ekpkdisnaker.R;
 public class SettingActivity extends AppCompatActivity {
 
     ImageView btn_back;
-    RelativeLayout btn_pas,btn_ktp, btn_ijazah;
+    RelativeLayout btn_ubah, btn_pas,btn_ktp, btn_ijazah, btn_skill;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,14 +21,23 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
 
         btn_back = findViewById(R.id.btn_back);
+        btn_ubah = findViewById(R.id.btn_ubah);
         btn_pas = findViewById(R.id.btn_pas);
         btn_ktp = findViewById(R.id.btn_ktp);
         btn_ijazah = findViewById(R.id.btn_ijazah);
+        btn_skill = findViewById(R.id.btn_skill);
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        btn_ubah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
 
@@ -52,6 +61,14 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SettingActivity.this, IjazahActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_skill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingActivity.this, KeterampilanActivity.class);
                 startActivity(intent);
             }
         });
