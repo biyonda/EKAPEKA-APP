@@ -31,6 +31,9 @@
             android:name=".activity.KeterampilanActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.TambahKeterampilanActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.IjazahActivity"
             android:exported="false" />
         <activity

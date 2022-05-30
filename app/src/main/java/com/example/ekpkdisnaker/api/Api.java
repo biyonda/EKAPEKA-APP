@@ -3,6 +3,7 @@ package com.example.ekpkdisnaker.api;
 import com.example.ekpkdisnaker.response.BaseResponse;
 import com.example.ekpkdisnaker.response.RegisterResponse;
 import com.example.ekpkdisnaker.response.UserResponse;
+import com.example.ekpkdisnaker.table.Keterampilan;
 import com.example.ekpkdisnaker.table.Pengumuman;
 import com.example.ekpkdisnaker.table.ak1;
 
@@ -75,4 +76,37 @@ public interface Api {
 
     @GET("getPengumuman")
     Call<BaseResponse<Pengumuman>> getPengumuman();
+
+    @GET("getKeterampilan")
+    Call<BaseResponse<Keterampilan>> getKeterampilan();
+
+    @FormUrlEncoded
+    @POST("tambahKeterampilan")
+    Call<BaseResponse> tambahKeterampilan(
+            @Field("keterangan") String keterangan,
+            @Field("tahun") String tahun
+    );
+
+    @FormUrlEncoded
+    @POST("hapusKeterampilan")
+    Call<BaseResponse> hapusKeterampilan(
+            @Field("id") String id
+    );
+
+    @FormUrlEncoded
+    @POST("ubahProfile")
+    Call<BaseResponse> ubahProfile(
+            @Field("nama_lengkap") String nama_lengkap,
+            @Field("tmp_lahir") String tmp_lahir,
+            @Field("jns_kelamin") String jns_kelamin,
+            @Field("tgl_lahir") String tgl_lahir,
+            @Field("sts_nikah") String sts_nikah,
+            @Field("kd_pendidikan") String kd_pendidikan,
+            @Field("nama_pendidikan") String nama_pendidikan,
+            @Field("alamat") String alamat,
+            @Field("telepon") String telepon,
+            @Field("email") String email,
+            @Field("password") String password,
+            @Field("agama") String agama
+    );
 }

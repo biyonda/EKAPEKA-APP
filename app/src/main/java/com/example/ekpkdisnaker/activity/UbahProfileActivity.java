@@ -6,26 +6,38 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.signature.ObjectKey;
 import com.example.ekpkdisnaker.R;
 import com.example.ekpkdisnaker.api.Api;
 import com.example.ekpkdisnaker.api.RetrofitClient;
+import com.example.ekpkdisnaker.helpers.ApiError;
+import com.example.ekpkdisnaker.helpers.ErrorUtils;
+import com.example.ekpkdisnaker.response.BaseResponse;
 import com.example.ekpkdisnaker.response.RegisterResponse;
+import com.example.ekpkdisnaker.response.UserResponse;
 import com.example.ekpkdisnaker.session.Session;
 
 import java.util.Calendar;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UbahProfileActivity extends AppCompatActivity {
 
-    Spinner jenis_kelamin, kawin, kd_pendidikan, agama;
+    Spinner jenis_kelamin, sts_kawin, kd_pendidikan, agama;
     LinearLayout select_tgl_lahir;
     ImageView btn_back;
     AppCompatButton btn_simpan;
@@ -39,7 +51,8 @@ public class UbahProfileActivity extends AppCompatActivity {
 
     Session session;
     Api api;
-    Call<RegisterResponse> register;
+    Call<UserResponse> getUser;
+    Call<BaseResponse> ubahProfile;
     String tmp_kd_pendidikan = "";
 
     @Override
@@ -49,7 +62,7 @@ public class UbahProfileActivity extends AppCompatActivity {
 
         btn_back = findViewById(R.id.btn_back);
         jenis_kelamin = findViewById(R.id.jenis_kelamin);
-        kawin = findViewById(R.id.kawin);
+        sts_kawin = findViewById(R.id.kawin);
         kd_pendidikan = findViewById(R.id.kd_pendidikan);
         agama = findViewById(R.id.agama);
         select_tgl_lahir = findViewById(R.id.select_tgl_lahir);
@@ -65,7 +78,7 @@ public class UbahProfileActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
 
         session = new Session(this);
-        api = RetrofitClient.createService(Api.class);
+        api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
 
         select_tgl_lahir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,13 +86,26 @@ public class UbahProfileActivity extends AppCompatActivity {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(UbahProfileActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        String tglAwal = String.valueOf(year) +"-"+String.valueOf(month + 1) + "-" + String.valueOf(dayOfMonth);
+                        String tglAwal = String.valueOf(year) + "-" + String.valueOf(month + 1) + "-" + String.valueOf(dayOfMonth);
                         tgl_lahir.setText(tglAwal);
                     }
                 }, yy, mm, dd);
                 datePickerDialog.show();
             }
         });
+
+        ArrayAdapter<CharSequence> bulan_spinner = ArrayAdapter.createFromResource(this, R.array.jk_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> kawin_spinner = ArrayAdapter.createFromResource(this, R.array.kawin_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> pendidikan_spinner = ArrayAdapter.createFromResource(this, R.array.pendidikan_array, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> agama_spinner = ArrayAdapter.createFromResource(this, R.array.agama_array, android.R.layout.simple_spinner_item);
+        bulan_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        kawin_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        pendidikan_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        agama_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        jenis_kelamin.setAdapter(bulan_spinner);
+        sts_kawin.setAdapter(kawin_spinner);
+        kd_pendidikan.setAdapter(pendidikan_spinner);
+        agama.setAdapter(agama_spinner);
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,5 +114,165 @@ public class UbahProfileActivity extends AppCompatActivity {
             }
         });
 
+        btn_simpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new SweetAlertDialog(UbahProfileActivity.this, SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Perhatian")
+                        .setContentText("Apakah Anda yakin akan merubah data Anda ?")
+                        .setConfirmText("Lanjutkan").setCancelButtonBackgroundColor(R.color.tetriary)
+                        .setCancelButtonTextColor(R.color.main_blue_color).setCancelText("Batal")
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                if (kd_pendidikan.getSelectedItemPosition() == 0){
+                                    tmp_kd_pendidikan = "1A";
+                                } else if (kd_pendidikan.getSelectedItemPosition() == 1){
+                                    tmp_kd_pendidikan = "2B";
+                                } else if (kd_pendidikan.getSelectedItemPosition() == 2){
+                                    tmp_kd_pendidikan = "3C";
+                                } else if (kd_pendidikan.getSelectedItemPosition() == 3){
+                                    tmp_kd_pendidikan = "4D";
+                                } else if (kd_pendidikan.getSelectedItemPosition() == 4){
+                                    tmp_kd_pendidikan = "5E";
+                                } else if (kd_pendidikan.getSelectedItemPosition() == 5){
+                                    tmp_kd_pendidikan = "6F";
+                                } else if (kd_pendidikan.getSelectedItemPosition() == 6){
+                                    tmp_kd_pendidikan = "7G";
+                                }
+
+                                ubahProfile = api.ubahProfile(nama_lengkap.getText().toString(),
+                                        tmp_lahir.getText().toString(), (jenis_kelamin.getSelectedItemPosition()+1)+"", tgl_lahir.getText().toString(),
+                                        sts_kawin.getSelectedItemPosition()+"", tmp_kd_pendidikan+"", nama_pendidikan.getText().toString(),
+                                        alamat.getText().toString(), no_telp.getText().toString(), email.getText().toString(), password.getText().toString(),
+                                        agama.getSelectedItem().toString());
+
+                                ubahProfile.enqueue(new Callback<BaseResponse>() {
+                                    @Override
+                                    public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                                        if (response.isSuccessful()) {
+                                            sDialog
+                                                    .setTitleText("Sukses")
+                                                    .setContentText(response.body().getMessage())
+                                                    .setConfirmText("OK")
+                                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                        @Override
+                                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                            getUser();
+                                                            sweetAlertDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                                        } else {
+                                            ApiError apiError = ErrorUtils.parseError(response);
+                                            sDialog
+                                                    .setTitleText("Gagal !!!")
+                                                    .setContentText(apiError.getMessage() + "")
+                                                    .setConfirmText("OK")
+                                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                        @Override
+                                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                            getUser();
+                                                            sweetAlertDialog.dismiss();
+                                                        }
+                                                    })
+                                                    .changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<BaseResponse> call, Throwable t) {
+                                        sDialog
+                                                .setTitleText("Gagal !!")
+                                                .setContentText(t.getMessage())
+                                                .setConfirmText("OK")
+                                                .setConfirmClickListener(null)
+                                                .changeAlertType(SweetAlertDialog.ERROR_TYPE);
+                                    }
+                                });
+
+                            }
+                        })
+                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                sweetAlertDialog.dismissWithAnimation();
+                            }
+                        })
+                        .show();
+            }
+        });
+
+        getUser();
+    }
+
+    public void getUser() {
+        getUser = api.getUser();
+        getUser.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if (response.isSuccessful()) {
+                    nama_lengkap.setText(response.body().getUser().getNamaLengkap());
+                    tmp_lahir.setText(response.body().getUser().getTmpLahir() + ", ");
+                    tgl_lahir.setText(response.body().getUser().getTglLahir());
+
+                    if (response.body().getUser().getJnsKelamin() == 1) {
+                        jenis_kelamin.setSelection(0);
+                    } else if (response.body().getUser().getJnsKelamin() == 2) {
+                        jenis_kelamin.setSelection(1);
+                    }
+
+                    if (response.body().getUser().getStsNikah().equals("0")) {
+                        sts_kawin.setSelection(0);
+                    } else if (response.body().getUser().getStsNikah().equals("1")) {
+                        sts_kawin.setSelection(1);
+                    }
+
+                    if (response.body().getUser().getAgama().equals("ISLAM")) {
+                        agama.setSelection(0);
+                    } else if (response.body().getUser().getAgama().equals("KRISTEN")) {
+                        agama.setSelection(1);
+                    } else if (response.body().getUser().getAgama().equals("KATOLIK")) {
+                        agama.setSelection(2);
+                    } else if (response.body().getUser().getAgama().equals("HINDU")) {
+                        agama.setSelection(3);
+                    } else if (response.body().getUser().getAgama().equals("BUDHA")) {
+                        agama.setSelection(4);
+                    } else if (response.body().getUser().getAgama().equals("KONGHUCU")) {
+                        agama.setSelection(5);
+                    }
+
+                    if (response.body().getUser().getKdPendidikan().equals("1A")) {
+                        kd_pendidikan.setSelection(0);
+                    } else if (response.body().getUser().getKdPendidikan().equals("2B")) {
+                        kd_pendidikan.setSelection(1);
+                    } else if (response.body().getUser().getKdPendidikan().equals("3C")) {
+                        kd_pendidikan.setSelection(2);
+                    } else if (response.body().getUser().getKdPendidikan().equals("4D")) {
+                        kd_pendidikan.setSelection(3);
+                    } else if (response.body().getUser().getKdPendidikan().equals("5E")) {
+                        kd_pendidikan.setSelection(4);
+                    } else if (response.body().getUser().getKdPendidikan().equals("6F")) {
+                        kd_pendidikan.setSelection(5);
+                    } else if (response.body().getUser().getKdPendidikan().equals("7G")) {
+                        kd_pendidikan.setSelection(6);
+                    }
+
+                    nama_pendidikan.setText(response.body().getUser().getNamaPendidikan());
+                    no_telp.setText(response.body().getUser().getTelepon());
+                    alamat.setText(response.body().getUser().getAlamat());
+                    email.setText(response.body().getUser().getEmail());
+                    nama_pendidikan.setText(response.body().getUser().getNamaPendidikan());
+                } else {
+                    ApiError apiError = ErrorUtils.parseError(response);
+                    Toast.makeText(UbahProfileActivity.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                Toast.makeText(UbahProfileActivity.this, "Error, " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
