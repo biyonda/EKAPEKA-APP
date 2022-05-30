@@ -145,7 +145,7 @@ public class DetailAK1Activity extends AppCompatActivity {
 //        request.setDestinationUri(Uri.parse("file://Download/"+no_register.getText().toString()+".pdf"));
         downloadmanager.enqueue(request);
 
-        Toast.makeText(DetailAK1Activity.this, "Sedang Maintenance", Toast.LENGTH_SHORT).show();
+        Toast.makeText(DetailAK1Activity.this, "Download Dokumen", Toast.LENGTH_SHORT).show();
 
     }
 }
