@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "811391064445",
+    "project_id": "ekpk-disnaker",
+    "storage_bucket": "ekpk-disnaker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811391064445:android:9ba2babacb8ad6b2f19414",
+        "android_client_info": {
+          "package_name": "com.example.ekpkdisnaker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "811391064445-3ltm0etlik39c6fo7787rc1isbfhq29v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDn6Nr1jl8E7mnVOZWoWEQcswWKcpekeuI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "811391064445-3ltm0etlik39c6fo7787rc1isbfhq29v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

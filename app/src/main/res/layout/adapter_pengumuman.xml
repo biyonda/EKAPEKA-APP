@@ -16,6 +16,7 @@
             android:layout_weight="2"
             android:gravity="center">
             <ImageView
+                android:id="@+id/gambar"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/notif_ic_loker">
@@ -27,6 +28,7 @@
             android:layout_weight="8"
             android:orientation="vertical">
             <TextView
+                android:id="@+id/judul"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="LOWONGAN PEKERJAAN PT. INDOMARCO"
@@ -35,12 +37,14 @@
                 android:textSize="14sp">
             </TextView>
             <TextView
+                android:id="@+id/jenis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Lowongan Pekerajaan"
                 android:textSize="11sp">
             </TextView>
             <TextView
+                android:id="@+id/pengumuman"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="italic"
@@ -59,6 +63,7 @@
                     android:textSize="11sp">
                 </TextView>
                 <TextView
+                    android:id="@+id/link"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="bit.ly/46MPXA6GP"
@@ -69,130 +74,130 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="10">
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center">
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/notif_ic_info">
-            </ImageView>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="8"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="DISNAKER BUKA PUKUL 07.00"
-                android:textStyle="bold"
-                android:textColor="#0d6efd"
-                android:textSize="14sp">
-            </TextView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pengumuman"
-                android:textSize="11sp">
-            </TextView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="italic"
-                android:textSize="13sp"
-                android:layout_marginTop="8dp"
-                android:text="but also the leap into electronic typesetting, remaining essentially unchanged">
-            </TextView>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Link : "
-                    android:textSize="11sp">
-                </TextView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="-"
-                    android:textSize="11sp"
-                    android:textColor="#AFE4DE"
-                    android:textStyle="bold|italic">
-                </TextView>
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="10">
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="center">
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/notif_ic_system">
-            </ImageView>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="8"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="MOHON UPDATE KE VERSI YANG TERBARU"
-                android:textColor="#F9871B"
-                android:textStyle="bold"
-                android:textSize="14sp">
-            </TextView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Dari Sistem"
-                android:textSize="11sp">
-            </TextView>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="italic"
-                android:textSize="13sp"
-                android:layout_marginTop="8dp"
-                android:text="but also the leap into electronic typesetting, remaining essentially unchanged">
-            </TextView>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Link : "
-                    android:textSize="11sp">
-                </TextView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="-"
-                    android:textSize="11sp"
-                    android:textStyle="bold|italic">
-                </TextView>
-            </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:weightSum="10">-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="2"-->
+<!--            android:gravity="center">-->
+<!--            <ImageView-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:background="@drawable/notif_ic_info">-->
+<!--            </ImageView>-->
+<!--        </LinearLayout>-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="8"-->
+<!--            android:orientation="vertical">-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="DISNAKER BUKA PUKUL 07.00"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textColor="#0d6efd"-->
+<!--                android:textSize="14sp">-->
+<!--            </TextView>-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Pengumuman"-->
+<!--                android:textSize="11sp">-->
+<!--            </TextView>-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textStyle="italic"-->
+<!--                android:textSize="13sp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:text="but also the leap into electronic typesetting, remaining essentially unchanged">-->
+<!--            </TextView>-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="8dp">-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Link : "-->
+<!--                    android:textSize="11sp">-->
+<!--                </TextView>-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="-"-->
+<!--                    android:textSize="11sp"-->
+<!--                    android:textColor="#AFE4DE"-->
+<!--                    android:textStyle="bold|italic">-->
+<!--                </TextView>-->
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+<!--    </LinearLayout>-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:weightSum="10">-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="2"-->
+<!--            android:gravity="center">-->
+<!--            <ImageView-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:background="@drawable/notif_ic_system">-->
+<!--            </ImageView>-->
+<!--        </LinearLayout>-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="8"-->
+<!--            android:orientation="vertical">-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="MOHON UPDATE KE VERSI YANG TERBARU"-->
+<!--                android:textColor="#F9871B"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="14sp">-->
+<!--            </TextView>-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Dari Sistem"-->
+<!--                android:textSize="11sp">-->
+<!--            </TextView>-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textStyle="italic"-->
+<!--                android:textSize="13sp"-->
+<!--                android:layout_marginTop="8dp"-->
+<!--                android:text="but also the leap into electronic typesetting, remaining essentially unchanged">-->
+<!--            </TextView>-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="8dp">-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Link : "-->
+<!--                    android:textSize="11sp">-->
+<!--                </TextView>-->
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="-"-->
+<!--                    android:textSize="11sp"-->
+<!--                    android:textStyle="bold|italic">-->
+<!--                </TextView>-->
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+<!--    </LinearLayout>-->
 
 </LinearLayout>

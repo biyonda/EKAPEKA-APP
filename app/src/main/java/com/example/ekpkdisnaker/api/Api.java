@@ -3,6 +3,7 @@ package com.example.ekpkdisnaker.api;
 import com.example.ekpkdisnaker.response.BaseResponse;
 import com.example.ekpkdisnaker.response.RegisterResponse;
 import com.example.ekpkdisnaker.response.UserResponse;
+import com.example.ekpkdisnaker.table.Pengumuman;
 import com.example.ekpkdisnaker.table.ak1;
 
 import retrofit2.Call;
@@ -19,6 +20,12 @@ public interface Api {
     Call<UserResponse> login(
             @Field("username") String username,
             @Field("password") String password
+    );
+
+    @FormUrlEncoded
+    @POST("updateToken")
+    Call<BaseResponse> updateToken(
+            @Field("token") String token
     );
 
     @FormUrlEncoded
@@ -65,4 +72,7 @@ public interface Api {
 
     @GET("getDataAK1")
     Call<BaseResponse<ak1>> getDataAK1();
+
+    @GET("getPengumuman")
+    Call<BaseResponse<Pengumuman>> getPengumuman();
 }
