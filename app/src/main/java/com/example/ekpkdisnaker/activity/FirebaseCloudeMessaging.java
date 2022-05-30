@@ -14,9 +14,8 @@ public class FirebaseCloudeMessaging extends FirebaseMessagingService {
         if (remoteMessage.getNotification() != null) {
             String title = remoteMessage.getNotification().getTitle();
             String body = remoteMessage.getNotification().getBody();
-            String ClickAction = remoteMessage.getNotification().getClickAction();
 
-            com.example.ekpkdisnaker.activity.NotificationHelper.displatNotification(getApplicationContext(), title, body, ClickAction);
+            com.example.ekpkdisnaker.activity.NotificationHelper.displatNotification(getApplicationContext(), title, body);
         }
     }
 }

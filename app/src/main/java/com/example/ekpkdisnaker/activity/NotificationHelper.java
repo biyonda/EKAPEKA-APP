@@ -12,20 +12,19 @@ import com.example.ekpkdisnaker.R;
 
 public class NotificationHelper {
 
-    public static void displatNotification(Context context, String title, String body, String action) {
+    public static void displatNotification(Context context, String title, String body) {
 
-        Intent intent;
-        intent = new Intent(context, MainActivity.class);
+        Intent intent = new Intent(context, MainActivity.class);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(
                 context,
                 100,
                 intent,
-                PendingIntent.FLAG_CANCEL_CURRENT
+                0
         );
 
         NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(context, "QurirQ")
+                new NotificationCompat.Builder(context, "EKPK_DISNAKER")
                         .setSmallIcon(R.drawable.logo_jember)
                         .setContentTitle(title)
                         .setContentText(body)
