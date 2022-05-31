@@ -53,20 +53,19 @@
         android:textAllCaps="false">
     </Button>
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp">
+        <ListView
+            android:id="@+id/list_data"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="8dp">
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="16dp"
-                tools:listitem="@layout/adapter_keterampilan">
-            </ListView>
-        </LinearLayout>
-    </ScrollView>
+            android:layout_marginHorizontal="16dp"
+            android:dividerHeight="5dp"
+            android:divider="#00ffffff"
+            tools:listitem="@layout/adapter_keterampilan">
+        </ListView>
+    </LinearLayout>
 
 </LinearLayout>

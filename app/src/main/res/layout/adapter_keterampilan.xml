@@ -24,6 +24,7 @@
                 android:textSize="11sp">
             </TextView>
             <TextView
+                android:id="@+id/keterangan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Desain Grafis"
@@ -38,6 +39,7 @@
                 android:textSize="11sp">
             </TextView>
             <TextView
+                android:id="@+id/tahun"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2020"
@@ -51,6 +53,7 @@
             android:layout_weight="2"
             android:gravity="center">
             <TextView
+                android:id="@+id/btn_hapus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
