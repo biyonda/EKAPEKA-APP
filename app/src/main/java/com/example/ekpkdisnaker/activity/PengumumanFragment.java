@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +32,7 @@ import retrofit2.Response;
 public class PengumumanFragment extends Fragment {
 
     ListView list_data;
+    SwipeRefreshLayout swipe_refresh_layout;
 
     private ArrayList<String> judul = new ArrayList<>();
     private ArrayList<String> jenis = new ArrayList<>();
@@ -48,9 +51,22 @@ public class PengumumanFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_pengumuman, container, false);
 
         list_data = view.findViewById(R.id.list_data);
+        swipe_refresh_layout = view.findViewById(R.id.swipe_refresh_layout);
 
         session = new Session(getContext());
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
+
+        swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipe_refresh_layout.setRefreshing(false);
+                    }
+                }, 1000);
+            }
+        });
 
         getPengumuman();
         return view;

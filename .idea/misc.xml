@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/adapter_pengumuman.xml" value="0.2" />
+        <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/fragment_beranda.xml" value="0.12158054711246201" />
+        <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/fragment_pengumuman.xml" value="0.25" />
+        <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/fragment_profil.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/EKPKDISNAKER/app/src/main/res/drawable/bt_primary_round.xml" value="0.21203703703703702" />
         <entry key="..\:/AndroidStudioProjects/EKPKDISNAKER/app/src/main/res/drawable/bt_red_round.xml" value="0.26614583333333336" />
         <entry key="..\:/AndroidStudioProjects/EKPKDISNAKER/app/src/main/res/drawable/bt_white_round.xml" value="0.26614583333333336" />

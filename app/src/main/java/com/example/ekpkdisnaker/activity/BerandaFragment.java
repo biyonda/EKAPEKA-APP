@@ -5,7 +5,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +33,7 @@ public class BerandaFragment extends Fragment {
     LinearLayout btn_setting;
     LinearLayout btn_ak1;
     TextView nama_pengguna, foto_ktp, pas_foto, ijazah;
+    SwipeRefreshLayout swipe_refresh_layout;
 
     Session session;
     Api api;
@@ -47,10 +50,23 @@ public class BerandaFragment extends Fragment {
         foto_ktp = view.findViewById(R.id.foto_ktp);
         pas_foto = view.findViewById(R.id.pas_foto);
         ijazah = view.findViewById(R.id.ijazah);
+        swipe_refresh_layout = view.findViewById(R.id.swipe_refresh_layout);
 
         session = new Session(getContext());
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
         nama_pengguna.setText(session.getNama());
+
+        swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipe_refresh_layout.setRefreshing(false);
+                    }
+                }, 1000);
+            }
+        });
 
         btn_ak1.setOnClickListener(new View.OnClickListener() {
             @Override

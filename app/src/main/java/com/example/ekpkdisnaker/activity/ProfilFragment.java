@@ -5,7 +5,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +35,7 @@ public class ProfilFragment extends Fragment {
 
     RelativeLayout btn_setting;
     RelativeLayout btn_logout;
+    SwipeRefreshLayout swipe_refresh_layout;
 
     ImageView img_profil;
     TextView nama_lengkap, username, tmp_lahir, tgl_lahir, jenis_kelamin;
@@ -62,9 +65,22 @@ public class ProfilFragment extends Fragment {
         btn_setting = view.findViewById(R.id.btn_setting);
         btn_logout = view.findViewById(R.id.btn_logout);
         img_profil = view.findViewById(R.id.img_profil);
+        swipe_refresh_layout = view.findViewById(R.id.swipe_refresh_layout);
 
         session = new Session(getContext());
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
+
+        swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipe_refresh_layout.setRefreshing(false);
+                    }
+                }, 1000);
+            }
+        });
 
         btn_setting.setOnClickListener(new View.OnClickListener() {
             @Override
