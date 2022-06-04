@@ -17,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    private static String BASE_URL = "http://192.168.1.10/api/";
+    private static String BASE_URL = "https://e-kapeka.jemberkab.go.id/api/";
 //    private static String BASE_URL = "http://api.pdesoebandi.id/api/";
     private final static OkHttpClient client = UnsafeOkHttpClient.getUnsafeOkHttpClient();
     private static RetrofitClient mInstance;

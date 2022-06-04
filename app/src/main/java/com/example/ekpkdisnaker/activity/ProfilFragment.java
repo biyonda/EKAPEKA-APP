@@ -114,18 +114,20 @@ public class ProfilFragment extends Fragment {
                     username.setText(response.body().getUser().getUsername());
                     tmp_lahir.setText(response.body().getUser().getTmpLahir()+", ");
                     tgl_lahir.setText(response.body().getUser().getTglLahir());
+                    jenis_kelamin.setText(response.body().getUser().getJnsKelamin());
+                    sts_kawin.setText(response.body().getUser().getStsNikah());
 
-                    if (response.body().getUser().getJnsKelamin() == 1) {
-                        jenis_kelamin.setText("Laki-laki");
-                    } else if (response.body().getUser().getJnsKelamin() == 2) {
-                        jenis_kelamin.setText("Perempuan");
-                    }
+//                    if (response.body().getUser().getJnsKelamin() == 1) {
+//                        jenis_kelamin.setText("Laki-laki");
+//                    } else if (response.body().getUser().getJnsKelamin() == 2) {
+//                        jenis_kelamin.setText("Perempuan");
+//                    }
 
-                    if (response.body().getUser().getStsNikah().equals("0")) {
-                        sts_kawin.setText("BELUM KAWIN");
-                    } else if (response.body().getUser().getStsNikah().equals("1")) {
-                        sts_kawin.setText("KAWIN");
-                    }
+//                    if (response.body().getUser().getStsNikah().equals("0")) {
+//                        sts_kawin.setText("BELUM KAWIN");
+//                    } else if (response.body().getUser().getStsNikah().equals("1")) {
+//                        sts_kawin.setText("KAWIN");
+//                    }
 
                     agama.setText(response.body().getUser().getAgama());
 
