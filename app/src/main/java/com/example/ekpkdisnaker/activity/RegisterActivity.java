@@ -7,8 +7,10 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -20,9 +22,13 @@ import com.example.ekpkdisnaker.api.Api;
 import com.example.ekpkdisnaker.api.RetrofitClient;
 import com.example.ekpkdisnaker.helpers.ApiError;
 import com.example.ekpkdisnaker.helpers.ErrorUtils;
+import com.example.ekpkdisnaker.response.BaseResponse;
 import com.example.ekpkdisnaker.response.RegisterResponse;
 import com.example.ekpkdisnaker.session.Session;
+import com.example.ekpkdisnaker.table.Desa;
+import com.example.ekpkdisnaker.table.Kecamatan;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import retrofit2.Call;
@@ -31,9 +37,10 @@ import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    Spinner jenis_kelamin, kawin, kd_pendidikan, agama;
+    Spinner jenis_kelamin, kawin, kd_pendidikan, agama, kecamatan, desa;
     LinearLayout select_tgl_lahir;
-    TextView tgl_lahir, username, nama_lengkap, tmp_lahir, email, alamat, no_telp, nama_pendidikan, password;
+    EditText username, nama_lengkap, tmp_lahir, email, alamat, no_telp, nama_pendidikan, password, jurusan;
+    TextView tgl_lahir;
     AppCompatButton btn_register;
     ProgressBar progress_register;
 
@@ -45,7 +52,15 @@ public class RegisterActivity extends AppCompatActivity {
     Session session;
     Api api;
     Call<RegisterResponse> register;
+    Call<BaseResponse<Kecamatan>> getKecamatan;
+    Call<BaseResponse<Desa>> getDesa;
     String tmp_kd_pendidikan = "";
+
+    ArrayList<String> list_kecamatan = new ArrayList<>();
+    ArrayList<String> list_id_kecamatan = new ArrayList<>();
+
+    ArrayList<String> list_desa = new ArrayList<>();
+    ArrayList<String> list_id_desa = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +71,8 @@ public class RegisterActivity extends AppCompatActivity {
         kawin = findViewById(R.id.kawin);
         kd_pendidikan = findViewById(R.id.kd_pendidikan);
         agama = findViewById(R.id.agama);
+        kecamatan = findViewById(R.id.kecamatan);
+        desa = findViewById(R.id.desa);
         select_tgl_lahir = findViewById(R.id.select_tgl_lahir);
         tgl_lahir = findViewById(R.id.tgl_lahir);
         btn_register = findViewById(R.id.btn_daftar);
@@ -67,16 +84,17 @@ public class RegisterActivity extends AppCompatActivity {
         alamat = findViewById(R.id.alamat);
         no_telp = findViewById(R.id.no_telp);
         nama_pendidikan = findViewById(R.id.nama_pendidikan);
+        jurusan = findViewById(R.id.jurusan);
         password = findViewById(R.id.password);
 
-        ArrayAdapter<CharSequence> bulan_spinner = ArrayAdapter.createFromResource(this, R.array.jk_array, android.R.layout.simple_spinner_item);
-        ArrayAdapter<CharSequence> kawin_spinner = ArrayAdapter.createFromResource(this, R.array.kawin_array, android.R.layout.simple_spinner_item);
-        ArrayAdapter<CharSequence> pendidikan_spinner = ArrayAdapter.createFromResource(this, R.array.pendidikan_array, android.R.layout.simple_spinner_item);
-        ArrayAdapter<CharSequence> agama_spinner = ArrayAdapter.createFromResource(this, R.array.agama_array, android.R.layout.simple_spinner_item);
-        bulan_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        kawin_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        pendidikan_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        agama_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> bulan_spinner = ArrayAdapter.createFromResource(this, R.array.jk_array, R.layout.spinner_kecamatan);
+        ArrayAdapter<CharSequence> kawin_spinner = ArrayAdapter.createFromResource(this, R.array.kawin_array, R.layout.spinner_kecamatan);
+        ArrayAdapter<CharSequence> pendidikan_spinner = ArrayAdapter.createFromResource(this, R.array.pendidikan_array, R.layout.spinner_kecamatan);
+        ArrayAdapter<CharSequence> agama_spinner = ArrayAdapter.createFromResource(this, R.array.agama_array, R.layout.spinner_kecamatan);
+        bulan_spinner.setDropDownViewResource(R.layout.spinner_kecamatan);
+        kawin_spinner.setDropDownViewResource(R.layout.spinner_kecamatan);
+        pendidikan_spinner.setDropDownViewResource(R.layout.spinner_kecamatan);
+        agama_spinner.setDropDownViewResource(R.layout.spinner_kecamatan);
         jenis_kelamin.setAdapter(bulan_spinner);
         kawin.setAdapter(kawin_spinner);
         kd_pendidikan.setAdapter(pendidikan_spinner);
@@ -120,13 +138,16 @@ public class RegisterActivity extends AppCompatActivity {
                     tmp_kd_pendidikan = "7G";
                 }
 
-                System.out.println(tmp_kd_pendidikan);
+//                System.out.println(tmp_kd_pendidikan);
+//                System.out.println(list_id_kecamatan.get(kecamatan.getSelectedItemPosition()));
+//                System.out.println(list_id_desa.get(desa.getSelectedItemPosition()));
 
                 register = api.register(username.getText().toString(), nama_lengkap.getText().toString(),
                         tmp_lahir.getText().toString(), (jenis_kelamin.getSelectedItemPosition()+1)+"", tgl_lahir.getText().toString(),
                         kawin.getSelectedItemPosition()+"", tmp_kd_pendidikan+"", nama_pendidikan.getText().toString(),
-                        alamat.getText().toString(), no_telp.getText().toString(), email.getText().toString(), password.getText().toString(),
-                        agama.getSelectedItem().toString());
+                        jurusan.getText().toString(), alamat.getText().toString(), list_id_kecamatan.get(kecamatan.getSelectedItemPosition()),
+                        list_id_desa.get(desa.getSelectedItemPosition()), no_telp.getText().toString(),
+                        email.getText().toString(), password.getText().toString(), agama.getSelectedItem().toString());
 
                 register.enqueue(new Callback<RegisterResponse>() {
                     @Override
@@ -151,6 +172,84 @@ public class RegisterActivity extends AppCompatActivity {
                         progress_register.setVisibility(View.GONE);
                     }
                 });
+            }
+        });
+
+        getKecamatan();
+
+        kecamatan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                getDesa(list_id_kecamatan.get(i));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void getKecamatan(){
+        getKecamatan = api.getKecamatan();
+        getKecamatan.enqueue(new Callback<BaseResponse<Kecamatan>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<Kecamatan>> call, Response<BaseResponse<Kecamatan>> response) {
+                if (response.isSuccessful()) {
+                    list_kecamatan.clear();
+                    list_id_kecamatan.clear();
+
+                    for (int i = 0; i < response.body().getData().size(); i++) {
+//                        list_kota.add(response.body().getData().get(i).getType()+" "+response.body().getData().get(i).getCityName());
+                        list_kecamatan.add(response.body().getData().get(i).getNama());
+                        list_id_kecamatan.add(response.body().getData().get(i).getIdKec());
+                    }
+
+                    //Ini buat ngisi Spinner
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(RegisterActivity.this, R.layout.spinner_kecamatan, list_kecamatan);
+                    arrayAdapter.setDropDownViewResource(R.layout.spinner_kecamatan);
+                    kecamatan.setAdapter(arrayAdapter);
+                } else {
+                    ApiError apiError = ErrorUtils.parseError(response);
+                    Toast.makeText(RegisterActivity.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<Kecamatan>> call, Throwable t) {
+                Toast.makeText(RegisterActivity.this, "Error, "+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void getDesa(String id_kec) {
+        getDesa = api.getDesa(id_kec);
+        getDesa.enqueue(new Callback<BaseResponse<Desa>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<Desa>> call, Response<BaseResponse<Desa>> response) {
+                if (response.isSuccessful()) {
+                    list_desa.clear();
+                    list_id_desa.clear();
+
+                    for (int i = 0; i < response.body().getData().size(); i++) {
+//                        list_kota.add(response.body().getData().get(i).getType()+" "+response.body().getData().get(i).getCityName());
+                        list_desa.add(response.body().getData().get(i).getNama());
+                        list_id_desa.add(response.body().getData().get(i).getIdKel());
+                    }
+
+                    //Ini buat ngisi Spinner
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(RegisterActivity.this, R.layout.spinner_kecamatan, list_desa);
+                    arrayAdapter.setDropDownViewResource(R.layout.spinner_kecamatan);
+                    desa.setAdapter(arrayAdapter);
+                } else {
+                    ApiError apiError = ErrorUtils.parseError(response);
+                    Toast.makeText(RegisterActivity.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<Desa>> call, Throwable t) {
+                Toast.makeText(RegisterActivity.this, "Error, "+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

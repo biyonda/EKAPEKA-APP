@@ -3,6 +3,8 @@ package com.example.ekpkdisnaker.api;
 import com.example.ekpkdisnaker.response.BaseResponse;
 import com.example.ekpkdisnaker.response.RegisterResponse;
 import com.example.ekpkdisnaker.response.UserResponse;
+import com.example.ekpkdisnaker.table.Desa;
+import com.example.ekpkdisnaker.table.Kecamatan;
 import com.example.ekpkdisnaker.table.Keterampilan;
 import com.example.ekpkdisnaker.table.Pengumuman;
 import com.example.ekpkdisnaker.table.ak1;
@@ -40,7 +42,10 @@ public interface Api {
             @Field("sts_nikah") String sts_nikah,
             @Field("kd_pendidikan") String kd_pendidikan,
             @Field("nama_pendidikan") String nama_pendidikan,
+            @Field("jurusan") String jurusan,
             @Field("alamat") String alamat,
+            @Field("kecamatan") String kecamatan,
+            @Field("desa") String desa,
             @Field("telepon") String telepon,
             @Field("email") String email,
             @Field("password") String password,
@@ -103,10 +108,22 @@ public interface Api {
             @Field("sts_nikah") String sts_nikah,
             @Field("kd_pendidikan") String kd_pendidikan,
             @Field("nama_pendidikan") String nama_pendidikan,
+            @Field("jurusan") String jurusan,
             @Field("alamat") String alamat,
+            @Field("kecamatan") String kecamatan,
+            @Field("desa") String desa,
             @Field("telepon") String telepon,
             @Field("email") String email,
             @Field("password") String password,
             @Field("agama") String agama
     );
+
+    @FormUrlEncoded
+    @POST("getDesa")
+    Call<BaseResponse<Desa>> getDesa(
+            @Field("id_kec") String id_kec
+    );
+
+    @GET("getKecamatan")
+    Call<BaseResponse<Kecamatan>> getKecamatan();
 }

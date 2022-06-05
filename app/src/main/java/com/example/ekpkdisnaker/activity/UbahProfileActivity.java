@@ -6,8 +6,10 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -27,7 +29,10 @@ import com.example.ekpkdisnaker.response.BaseResponse;
 import com.example.ekpkdisnaker.response.RegisterResponse;
 import com.example.ekpkdisnaker.response.UserResponse;
 import com.example.ekpkdisnaker.session.Session;
+import com.example.ekpkdisnaker.table.Desa;
+import com.example.ekpkdisnaker.table.Kecamatan;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -37,12 +42,13 @@ import retrofit2.Response;
 
 public class UbahProfileActivity extends AppCompatActivity {
 
-    Spinner jenis_kelamin, sts_kawin, kd_pendidikan, agama;
+    Spinner jenis_kelamin, sts_kawin, kd_pendidikan, agama, kecamatan, desa;
     LinearLayout select_tgl_lahir;
     ImageView btn_back;
     AppCompatButton btn_simpan;
     ProgressBar progress_register;
-    TextView tgl_lahir, nama_lengkap, tmp_lahir, email, alamat, no_telp, nama_pendidikan, password;
+    TextView tgl_lahir;
+    EditText nama_lengkap, tmp_lahir, email, alamat, no_telp, nama_pendidikan, password, jurusan;
 
     final Calendar calendar = Calendar.getInstance();
     int yy = calendar.get(Calendar.YEAR);
@@ -53,7 +59,15 @@ public class UbahProfileActivity extends AppCompatActivity {
     Api api;
     Call<UserResponse> getUser;
     Call<BaseResponse> ubahProfile;
+    Call<BaseResponse<Kecamatan>> getKecamatan;
+    Call<BaseResponse<Desa>> getDesa;
     String tmp_kd_pendidikan = "";
+
+    ArrayList<String> list_kecamatan = new ArrayList<>();
+    ArrayList<String> list_id_kecamatan = new ArrayList<>();
+
+    ArrayList<String> list_desa = new ArrayList<>();
+    ArrayList<String> list_id_desa = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +78,9 @@ public class UbahProfileActivity extends AppCompatActivity {
         jenis_kelamin = findViewById(R.id.jenis_kelamin);
         sts_kawin = findViewById(R.id.kawin);
         kd_pendidikan = findViewById(R.id.kd_pendidikan);
+        jurusan = findViewById(R.id.jurusan);
+        kecamatan = findViewById(R.id.kecamatan);
+        desa = findViewById(R.id.desa);
         agama = findViewById(R.id.agama);
         select_tgl_lahir = findViewById(R.id.select_tgl_lahir);
         tgl_lahir = findViewById(R.id.tgl_lahir);
@@ -144,8 +161,9 @@ public class UbahProfileActivity extends AppCompatActivity {
                                 ubahProfile = api.ubahProfile(nama_lengkap.getText().toString(),
                                         tmp_lahir.getText().toString(), (jenis_kelamin.getSelectedItemPosition()+1)+"", tgl_lahir.getText().toString(),
                                         sts_kawin.getSelectedItemPosition()+"", tmp_kd_pendidikan+"", nama_pendidikan.getText().toString(),
-                                        alamat.getText().toString(), no_telp.getText().toString(), email.getText().toString(), password.getText().toString(),
-                                        agama.getSelectedItem().toString());
+                                        jurusan.getText().toString(), alamat.getText().toString(), list_id_kecamatan.get(kecamatan.getSelectedItemPosition()),
+                                        list_id_desa.get(desa.getSelectedItemPosition()), no_telp.getText().toString(),
+                                        email.getText().toString(), password.getText().toString(), agama.getSelectedItem().toString());
 
                                 ubahProfile.enqueue(new Callback<BaseResponse>() {
                                     @Override
@@ -272,6 +290,84 @@ public class UbahProfileActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<UserResponse> call, Throwable t) {
                 Toast.makeText(UbahProfileActivity.this, "Error, " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        getKecamatan();
+
+        kecamatan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                getDesa(list_id_kecamatan.get(i));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    public void getKecamatan(){
+        getKecamatan = api.getKecamatan();
+        getKecamatan.enqueue(new Callback<BaseResponse<Kecamatan>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<Kecamatan>> call, Response<BaseResponse<Kecamatan>> response) {
+                if (response.isSuccessful()) {
+                    list_kecamatan.clear();
+                    list_id_kecamatan.clear();
+
+                    for (int i = 0; i < response.body().getData().size(); i++) {
+//                        list_kota.add(response.body().getData().get(i).getType()+" "+response.body().getData().get(i).getCityName());
+                        list_kecamatan.add(response.body().getData().get(i).getNama());
+                        list_id_kecamatan.add(response.body().getData().get(i).getIdKec());
+                    }
+
+                    //Ini buat ngisi Spinner
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(UbahProfileActivity.this, R.layout.spinner_kecamatan, list_kecamatan);
+                    arrayAdapter.setDropDownViewResource(R.layout.spinner_kecamatan);
+                    kecamatan.setAdapter(arrayAdapter);
+                } else {
+                    ApiError apiError = ErrorUtils.parseError(response);
+                    Toast.makeText(UbahProfileActivity.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<Kecamatan>> call, Throwable t) {
+                Toast.makeText(UbahProfileActivity.this, "Error, "+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void getDesa(String id_kec) {
+        getDesa = api.getDesa(id_kec);
+        getDesa.enqueue(new Callback<BaseResponse<Desa>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<Desa>> call, Response<BaseResponse<Desa>> response) {
+                if (response.isSuccessful()) {
+                    list_desa.clear();
+                    list_id_desa.clear();
+
+                    for (int i = 0; i < response.body().getData().size(); i++) {
+//                        list_kota.add(response.body().getData().get(i).getType()+" "+response.body().getData().get(i).getCityName());
+                        list_desa.add(response.body().getData().get(i).getNama());
+                        list_id_desa.add(response.body().getData().get(i).getIdKel());
+                    }
+
+                    //Ini buat ngisi Spinner
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(UbahProfileActivity.this, R.layout.spinner_kecamatan, list_desa);
+                    arrayAdapter.setDropDownViewResource(R.layout.spinner_kecamatan);
+                    desa.setAdapter(arrayAdapter);
+                } else {
+                    ApiError apiError = ErrorUtils.parseError(response);
+                    Toast.makeText(UbahProfileActivity.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<Desa>> call, Throwable t) {
+                Toast.makeText(UbahProfileActivity.this, "Error, "+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -38,7 +38,7 @@
         <entry key="..\:/Kantor/Intersisi/Android/EKAPEKA-APP/app/src/main/res/layout/activity_ktpactivity.xml" value="0.18169398907103826" />
         <entry key="..\:/Kantor/Intersisi/Android/EKAPEKA-APP/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Kantor/Intersisi/Android/EKAPEKA-APP/app/src/main/res/layout/activity_pas_foto.xml" value="0.18169398907103826" />
-        <entry key="..\:/Kantor/Intersisi/Android/EKAPEKA-APP/app/src/main/res/layout/activity_register.xml" value="0.23731728288907997" />
+        <entry key="..\:/Kantor/Intersisi/Android/EKAPEKA-APP/app/src/main/res/layout/activity_register.xml" value="0.20988593155893537" />
         <entry key="..\:/Kantor/Intersisi/Android/EKAPEKA-APP/app/src/main/res/layout/activity_setting.xml" value="0.18169398907103826" />
         <entry key="..\:/Kantor/Intersisi/Android/EKAPEKA-APP/app/src/main/res/layout/activity_splash.xml" value="0.14375" />
         <entry key="..\:/Kantor/Intersisi/Android/EKAPEKA-APP/app/src/main/res/layout/activity_tambah_keterampilan.xml" value="0.18169398907103826" />
@@ -49,6 +49,7 @@
         <entry key="..\:/Kantor/Intersisi/Android/EKAPEKA-APP/app/src/main/res/layout/fragment_beranda.xml" value="0.264" />
         <entry key="..\:/Kantor/Intersisi/Android/EKAPEKA-APP/app/src/main/res/layout/fragment_pengumuman.xml" value="0.18169398907103826" />
         <entry key="..\:/Kantor/Intersisi/Android/EKAPEKA-APP/app/src/main/res/layout/fragment_profil.xml" value="0.176" />
+        <entry key="..\:/Kantor/Intersisi/Android/EKAPEKA-APP/app/src/main/res/layout/spinner_kecamatan.xml" value="0.17827868852459017" />
       </map>
     </option>
   </component>
