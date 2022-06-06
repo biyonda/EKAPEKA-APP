@@ -22,7 +22,7 @@ public class Peserta {
     private String tglLahir;
     @SerializedName("jns_kelamin")
     @Expose
-    private Integer jnsKelamin;
+    private String jnsKelamin;
     @SerializedName("agama")
     @Expose
     private String agama;
@@ -44,6 +44,9 @@ public class Peserta {
     @SerializedName("nama_pendidikan")
     @Expose
     private String namaPendidikan;
+    @SerializedName("jurusan_pendidikan")
+    @Expose
+    private String jurusanPendidikan;
     @SerializedName("pas_foto")
     @Expose
     private String pasFoto;
@@ -109,11 +112,11 @@ public class Peserta {
         this.tglLahir = tglLahir;
     }
 
-    public Integer getJnsKelamin() {
+    public String getJnsKelamin() {
         return jnsKelamin;
     }
 
-    public void setJnsKelamin(Integer jnsKelamin) {
+    public void setJnsKelamin(String jnsKelamin) {
         this.jnsKelamin = jnsKelamin;
     }
 
@@ -171,6 +174,14 @@ public class Peserta {
 
     public void setNamaPendidikan(String namaPendidikan) {
         this.namaPendidikan = namaPendidikan;
+    }
+
+    public String getJurusanPendidikan() {
+        return jurusanPendidikan;
+    }
+
+    public void setJurusanPendidikan(String jurusanPendidikan) {
+        this.jurusanPendidikan = jurusanPendidikan;
     }
 
     public String getPasFoto() {

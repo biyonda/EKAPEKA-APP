@@ -117,6 +117,7 @@ public class ProfilFragment extends Fragment {
                     jenis_kelamin.setText(response.body().getUser().getJnsKelamin());
                     sts_kawin.setText(response.body().getUser().getStsNikah());
 
+
 //                    if (response.body().getUser().getJnsKelamin() == 1) {
 //                        jenis_kelamin.setText("Laki-laki");
 //                    } else if (response.body().getUser().getJnsKelamin() == 2) {

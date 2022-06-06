@@ -1,10 +1,12 @@
 package com.example.ekpkdisnaker.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -35,6 +37,7 @@ import retrofit2.Response;
 
 public class KartuAK1Activity extends AppCompatActivity {
 
+    SwipeRefreshLayout swipe_refresh_layout;
     ImageView btn_back;
     LinearLayout btn_ak1;
     ListView list_data;
@@ -65,6 +68,7 @@ public class KartuAK1Activity extends AppCompatActivity {
         btn_back = findViewById(R.id.btn_back);
         btn_ak1 = findViewById(R.id.btn_ak1);
         list_data = findViewById(R.id.list_data);
+        swipe_refresh_layout = findViewById(R.id.swipe_refresh_layout);
 
         session = new Session(KartuAK1Activity.this);
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
@@ -74,6 +78,18 @@ public class KartuAK1Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipe_refresh_layout.setRefreshing(false);
+                    }
+                }, 1000);
             }
         });
 
@@ -163,11 +179,12 @@ public class KartuAK1Activity extends AppCompatActivity {
                         nik.add(response.body().getData().get(i).getNikUser());
                         nama_peserta.add(response.body().getData().get(i).getPeserta().getNamaLengkap());
                         tgl_lahir.add(response.body().getData().get(i).getPeserta().getTglLahir());
-                        if (response.body().getData().get(i).getPeserta().getJnsKelamin() == 1) {
-                            jenis_kelamin.add("Laki-laki");
-                        } else if (response.body().getData().get(i).getPeserta().getJnsKelamin() == 2) {
-                            jenis_kelamin.add("Perempuan");
-                        }
+                        jenis_kelamin.add(response.body().getData().get(i).getPeserta().getJnsKelamin());
+//                        if (response.body().getData().get(i).getPeserta().getJnsKelamin() == 1) {
+//                            jenis_kelamin.add("Laki-laki");
+//                        } else if (response.body().getData().get(i).getPeserta().getJnsKelamin() == 2) {
+//                            jenis_kelamin.add("Perempuan");
+//                        }
 
                         if (response.body().getData().get(i).getPeserta().getKdPendidikan().equals("1A")) {
                             pendidikan.add("SD / SEDERAJAT");
