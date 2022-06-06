@@ -144,7 +144,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 register = api.register(username.getText().toString(), nama_lengkap.getText().toString(),
                         tmp_lahir.getText().toString(), (jenis_kelamin.getSelectedItemPosition()+1)+"", tgl_lahir.getText().toString(),
-                        kawin.getSelectedItemPosition()+"", tmp_kd_pendidikan+"", nama_pendidikan.getText().toString(),
+                        kawin.getSelectedItem()+"", tmp_kd_pendidikan+"", nama_pendidikan.getText().toString(),
                         jurusan.getText().toString(), alamat.getText().toString(), list_id_kecamatan.get(kecamatan.getSelectedItemPosition()),
                         list_id_desa.get(desa.getSelectedItemPosition()), no_telp.getText().toString(),
                         email.getText().toString(), password.getText().toString(), agama.getSelectedItem().toString());

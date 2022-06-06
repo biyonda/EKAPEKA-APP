@@ -111,14 +111,14 @@ public class UbahProfileActivity extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter<CharSequence> bulan_spinner = ArrayAdapter.createFromResource(this, R.array.jk_array, android.R.layout.simple_spinner_item);
-        ArrayAdapter<CharSequence> kawin_spinner = ArrayAdapter.createFromResource(this, R.array.kawin_array, android.R.layout.simple_spinner_item);
-        ArrayAdapter<CharSequence> pendidikan_spinner = ArrayAdapter.createFromResource(this, R.array.pendidikan_array, android.R.layout.simple_spinner_item);
-        ArrayAdapter<CharSequence> agama_spinner = ArrayAdapter.createFromResource(this, R.array.agama_array, android.R.layout.simple_spinner_item);
-        bulan_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        kawin_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        pendidikan_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        agama_spinner.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<CharSequence> bulan_spinner = ArrayAdapter.createFromResource(this, R.array.jk_array, R.layout.spinner_kecamatan);
+        ArrayAdapter<CharSequence> kawin_spinner = ArrayAdapter.createFromResource(this, R.array.kawin_array, R.layout.spinner_kecamatan);
+        ArrayAdapter<CharSequence> pendidikan_spinner = ArrayAdapter.createFromResource(this, R.array.pendidikan_array, R.layout.spinner_kecamatan);
+        ArrayAdapter<CharSequence> agama_spinner = ArrayAdapter.createFromResource(this, R.array.agama_array, R.layout.spinner_kecamatan);
+        bulan_spinner.setDropDownViewResource(R.layout.spinner_kecamatan);
+        kawin_spinner.setDropDownViewResource(R.layout.spinner_kecamatan);
+        pendidikan_spinner.setDropDownViewResource(R.layout.spinner_kecamatan);
+        agama_spinner.setDropDownViewResource(R.layout.spinner_kecamatan);
         jenis_kelamin.setAdapter(bulan_spinner);
         sts_kawin.setAdapter(kawin_spinner);
         kd_pendidikan.setAdapter(pendidikan_spinner);
@@ -160,7 +160,7 @@ public class UbahProfileActivity extends AppCompatActivity {
 
                                 ubahProfile = api.ubahProfile(nama_lengkap.getText().toString(),
                                         tmp_lahir.getText().toString(), (jenis_kelamin.getSelectedItemPosition()+1)+"", tgl_lahir.getText().toString(),
-                                        sts_kawin.getSelectedItemPosition()+"", tmp_kd_pendidikan+"", nama_pendidikan.getText().toString(),
+                                        sts_kawin.getSelectedItem()+"", tmp_kd_pendidikan+"", nama_pendidikan.getText().toString(),
                                         jurusan.getText().toString(), alamat.getText().toString(), list_id_kecamatan.get(kecamatan.getSelectedItemPosition()),
                                         list_id_desa.get(desa.getSelectedItemPosition()), no_telp.getText().toString(),
                                         email.getText().toString(), password.getText().toString(), agama.getSelectedItem().toString());
@@ -240,10 +240,12 @@ public class UbahProfileActivity extends AppCompatActivity {
                         jenis_kelamin.setSelection(1);
                     }
 
-                    if (response.body().getUser().getStsNikah().equals("0")) {
+                    if (response.body().getUser().getStsNikah().equals("BELUM KAWIN")) {
                         sts_kawin.setSelection(0);
-                    } else if (response.body().getUser().getStsNikah().equals("1")) {
+                    } else if (response.body().getUser().getStsNikah().equals("KAWIN")) {
                         sts_kawin.setSelection(1);
+                    } else if (response.body().getUser().getStsNikah().equals("CERAI")) {
+                        sts_kawin.setSelection(2);
                     }
 
                     if (response.body().getUser().getAgama().equals("ISLAM")) {
