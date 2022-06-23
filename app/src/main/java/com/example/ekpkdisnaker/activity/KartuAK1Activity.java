@@ -163,11 +163,7 @@ public class KartuAK1Activity extends AppCompatActivity {
                         nik.add(response.body().getData().get(i).getNikUser());
                         nama_peserta.add(response.body().getData().get(i).getPeserta().getNamaLengkap());
                         tgl_lahir.add(response.body().getData().get(i).getPeserta().getTglLahir());
-                        if (response.body().getData().get(i).getPeserta().getJnsKelamin() == 1) {
-                            jenis_kelamin.add("Laki-laki");
-                        } else if (response.body().getData().get(i).getPeserta().getJnsKelamin() == 2) {
-                            jenis_kelamin.add("Perempuan");
-                        }
+                        jenis_kelamin.add(response.body().getData().get(i).getPeserta().getJnsKelamin());
 
                         if (response.body().getData().get(i).getPeserta().getKdPendidikan().equals("1A")) {
                             pendidikan.add("SD / SEDERAJAT");

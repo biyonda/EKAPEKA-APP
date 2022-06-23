@@ -22,7 +22,7 @@ public class User {
     private String tglLahir;
     @SerializedName("jns_kelamin")
     @Expose
-    private Integer jnsKelamin;
+    private String jnsKelamin;
     @SerializedName("agama")
     @Expose
     private String agama;
@@ -109,11 +109,11 @@ public class User {
         this.tglLahir = tglLahir;
     }
 
-    public Integer getJnsKelamin() {
+    public String getJnsKelamin() {
         return jnsKelamin;
     }
 
-    public void setJnsKelamin(Integer jnsKelamin) {
+    public void setJnsKelamin(String jnsKelamin) {
         this.jnsKelamin = jnsKelamin;
     }
 

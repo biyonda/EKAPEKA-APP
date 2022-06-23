@@ -234,9 +234,9 @@ public class UbahProfileActivity extends AppCompatActivity {
                     tmp_lahir.setText(response.body().getUser().getTmpLahir() + ", ");
                     tgl_lahir.setText(response.body().getUser().getTglLahir());
 
-                    if (response.body().getUser().getJnsKelamin() == 1) {
+                    if (response.body().getUser().getJnsKelamin() == "LAKI-LAKI") {
                         jenis_kelamin.setSelection(0);
-                    } else if (response.body().getUser().getJnsKelamin() == 2) {
+                    } else if (response.body().getUser().getJnsKelamin() == "PEREMPUAN") {
                         jenis_kelamin.setSelection(1);
                     }
 
