@@ -19,11 +19,16 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
         <activity
-            android:name=".activity.UbahProfileActivity"
+            android:name=".activity.PenempatanActivity"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".activity.UbahDataActivity"-->
-<!--            android:exported="false" />-->
+        <activity
+            android:name=".activity.DetailPengumumanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.UbahProfileActivity"
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".activity.UbahDataActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".activity.DetailAK1Activity"
             android:exported="false" />
