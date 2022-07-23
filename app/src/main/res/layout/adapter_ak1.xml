@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="190dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/bt_white_round">
 
@@ -138,9 +138,10 @@
         <LinearLayout
             android:id="@+id/btn_detail"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_alignParentBottom="true"
+            android:layout_height="36dp"
+            android:layout_below="@id/ly_txt4"
             android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
             android:background="@drawable/bt_yellow_round"
             android:gravity="center">
@@ -150,6 +151,44 @@
                 android:layout_height="wrap_content"
                 android:text="Lihat Detail"
                 android:textColor="@color/tetriary"
+                android:textSize="12sp"
+                android:textStyle="bold"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_penempatan"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_below="@id/btn_detail"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bt_green_round"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lapor Penempatan"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_lapor"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_below="@id/btn_penempatan"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bt_red_round"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lapor 6 Bulanan AK1"
+                android:textColor="@color/white"
                 android:textSize="12sp"
                 android:textStyle="bold"></TextView>
         </LinearLayout>
