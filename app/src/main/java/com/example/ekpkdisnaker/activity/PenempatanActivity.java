@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,6 +42,7 @@ public class PenempatanActivity extends AppCompatActivity {
     LinearLayout select_tgl_penempatan, btn_browse_pdf;
     TextView tgl_penempatan, nama_file;
     Button btn_simpan;
+    ImageView btn_back;
 
     final Calendar calendar = Calendar.getInstance();
     int yy = calendar.get(Calendar.YEAR);
@@ -68,9 +70,17 @@ public class PenempatanActivity extends AppCompatActivity {
         btn_browse_pdf = findViewById(R.id.btn_browse_pdf);
         btn_simpan = findViewById(R.id.btn_simpan);
         nama_file = findViewById(R.id.nama_file);
+        btn_back = findViewById(R.id.btn_back);
 
         session = new Session(this);
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         select_tgl_penempatan.setOnClickListener(new View.OnClickListener() {
             @Override
