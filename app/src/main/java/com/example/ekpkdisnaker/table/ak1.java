@@ -17,51 +17,66 @@ public class ak1 {
     @SerializedName("masa_berlaku")
     @Expose
     private String masaBerlaku;
+    @SerializedName("periode_berlaku")
+    @Expose
+    private String periodeBerlaku;
     @SerializedName("sts_ak1")
     @Expose
     private Integer stsAk1;
+    @SerializedName("sts_berlaku")
+    @Expose
+    private Integer stsBerlaku;
     @SerializedName("tgl_laporan_1")
     @Expose
     private String tglLaporan1;
-    @SerializedName("id_petugas_lapor_1")
+    @SerializedName("nip_petugas_lapor_1")
     @Expose
-    private String idPetugasLapor1;
+    private String nipPetugasLapor1;
     @SerializedName("tgl_laporan_2")
     @Expose
     private String tglLaporan2;
-    @SerializedName("id_petugas_lapor_2")
+    @SerializedName("nip_petugas_lapor_2")
     @Expose
-    private String idPetugasLapor2;
+    private String nipPetugasLapor2;
     @SerializedName("tgl_laporan_3")
     @Expose
     private String tglLaporan3;
-    @SerializedName("id_petugas_lapor_3")
+    @SerializedName("nip_petugas_lapor_3")
     @Expose
-    private String idPetugasLapor3;
+    private String nipPetugasLapor3;
+    @SerializedName("laporan_ke")
+    @Expose
+    private Integer laporanKe;
     @SerializedName("tmp_penempatan")
     @Expose
     private String tmpPenempatan;
     @SerializedName("tgl_penempatan")
     @Expose
     private String tglPenempatan;
+    @SerializedName("file_penempatan")
+    @Expose
+    private String filePenempatan;
     @SerializedName("informasi_peserta")
     @Expose
-    private String informasiPeserta;
+    private InformasiPeserta informasiPeserta;
     @SerializedName("file_ak1")
     @Expose
     private String fileAk1;
+    @SerializedName("file_temporary")
+    @Expose
+    private String fileTemporary;
     @SerializedName("verified_by")
     @Expose
     private String verifiedBy;
+    @SerializedName("keterangan")
+    @Expose
+    private String keterangan;
     @SerializedName("created_at")
     @Expose
     private String createdAt;
     @SerializedName("updated_at")
     @Expose
     private String updatedAt;
-    @SerializedName("peserta")
-    @Expose
-    private Peserta peserta;
 
     public Integer getId() {
         return id;
@@ -95,12 +110,28 @@ public class ak1 {
         this.masaBerlaku = masaBerlaku;
     }
 
+    public String getPeriodeBerlaku() {
+        return periodeBerlaku;
+    }
+
+    public void setPeriodeBerlaku(String periodeBerlaku) {
+        this.periodeBerlaku = periodeBerlaku;
+    }
+
     public Integer getStsAk1() {
         return stsAk1;
     }
 
     public void setStsAk1(Integer stsAk1) {
         this.stsAk1 = stsAk1;
+    }
+
+    public Integer getStsBerlaku() {
+        return stsBerlaku;
+    }
+
+    public void setStsBerlaku(Integer stsBerlaku) {
+        this.stsBerlaku = stsBerlaku;
     }
 
     public String getTglLaporan1() {
@@ -111,12 +142,12 @@ public class ak1 {
         this.tglLaporan1 = tglLaporan1;
     }
 
-    public String getIdPetugasLapor1() {
-        return idPetugasLapor1;
+    public String getNipPetugasLapor1() {
+        return nipPetugasLapor1;
     }
 
-    public void setIdPetugasLapor1(String idPetugasLapor1) {
-        this.idPetugasLapor1 = idPetugasLapor1;
+    public void setNipPetugasLapor1(String nipPetugasLapor1) {
+        this.nipPetugasLapor1 = nipPetugasLapor1;
     }
 
     public String getTglLaporan2() {
@@ -127,12 +158,12 @@ public class ak1 {
         this.tglLaporan2 = tglLaporan2;
     }
 
-    public String getIdPetugasLapor2() {
-        return idPetugasLapor2;
+    public String getNipPetugasLapor2() {
+        return nipPetugasLapor2;
     }
 
-    public void setIdPetugasLapor2(String idPetugasLapor2) {
-        this.idPetugasLapor2 = idPetugasLapor2;
+    public void setNipPetugasLapor2(String nipPetugasLapor2) {
+        this.nipPetugasLapor2 = nipPetugasLapor2;
     }
 
     public String getTglLaporan3() {
@@ -143,12 +174,20 @@ public class ak1 {
         this.tglLaporan3 = tglLaporan3;
     }
 
-    public String getIdPetugasLapor3() {
-        return idPetugasLapor3;
+    public String getNipPetugasLapor3() {
+        return nipPetugasLapor3;
     }
 
-    public void setIdPetugasLapor3(String idPetugasLapor3) {
-        this.idPetugasLapor3 = idPetugasLapor3;
+    public void setNipPetugasLapor3(String nipPetugasLapor3) {
+        this.nipPetugasLapor3 = nipPetugasLapor3;
+    }
+
+    public Integer getLaporanKe() {
+        return laporanKe;
+    }
+
+    public void setLaporanKe(Integer laporanKe) {
+        this.laporanKe = laporanKe;
     }
 
     public String getTmpPenempatan() {
@@ -167,11 +206,19 @@ public class ak1 {
         this.tglPenempatan = tglPenempatan;
     }
 
-    public String getInformasiPeserta() {
+    public String getFilePenempatan() {
+        return filePenempatan;
+    }
+
+    public void setFilePenempatan(String filePenempatan) {
+        this.filePenempatan = filePenempatan;
+    }
+
+    public InformasiPeserta getInformasiPeserta() {
         return informasiPeserta;
     }
 
-    public void setInformasiPeserta(String informasiPeserta) {
+    public void setInformasiPeserta(InformasiPeserta informasiPeserta) {
         this.informasiPeserta = informasiPeserta;
     }
 
@@ -183,12 +230,28 @@ public class ak1 {
         this.fileAk1 = fileAk1;
     }
 
+    public String getFileTemporary() {
+        return fileTemporary;
+    }
+
+    public void setFileTemporary(String fileTemporary) {
+        this.fileTemporary = fileTemporary;
+    }
+
     public String getVerifiedBy() {
         return verifiedBy;
     }
 
     public void setVerifiedBy(String verifiedBy) {
         this.verifiedBy = verifiedBy;
+    }
+
+    public String getKeterangan() {
+        return keterangan;
+    }
+
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
     }
 
     public String getCreatedAt() {
@@ -205,14 +268,6 @@ public class ak1 {
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
-    }
-
-    public Peserta getPeserta() {
-        return peserta;
-    }
-
-    public void setPeserta(Peserta peserta) {
-        this.peserta = peserta;
     }
 
 }

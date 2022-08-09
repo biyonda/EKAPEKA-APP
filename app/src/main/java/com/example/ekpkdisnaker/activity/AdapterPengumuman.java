@@ -56,12 +56,12 @@ public class AdapterPengumuman extends ArrayAdapter<String> {
         }
 
         viewHolder.judul.setText(judul.get(position));
-        viewHolder.pengumuman.setText(pengumuman.get(position));
-        if (link.get(position) == null) {
-            viewHolder.link.setText("-");
-        } else {
-            viewHolder.link.setText(link.get(position));
-        }
+//        viewHolder.pengumuman.setText(pengumuman.get(position));
+//        if (link.get(position) == null) {
+//            viewHolder.link.setText("-");
+//        } else {
+//            viewHolder.link.setText(link.get(position));
+//        }
 
         if (jenis.get(position).equals("1")) {
             viewHolder.jenis.setText("Pengumuman");
@@ -87,8 +87,8 @@ public class AdapterPengumuman extends ArrayAdapter<String> {
             gambar = view.findViewById(R.id.gambar);
             judul = view.findViewById(R.id.judul);
             jenis = view.findViewById(R.id.jenis);
-            pengumuman = view.findViewById(R.id.pengumuman);
-            link = view.findViewById(R.id.link);
+//            pengumuman = view.findViewById(R.id.pengumuman);
+//            link = view.findViewById(R.id.link);
         }
     }
 

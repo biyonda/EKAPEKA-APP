@@ -73,6 +73,15 @@ public interface Api {
             @Field("ijazah") String ijazah
     );
 
+    @FormUrlEncoded
+    @POST("updatePenempatan")
+    Call<BaseResponse> updatePenempatan(
+            @Field("no_register") String no_register,
+            @Field("tmp_penempatan") String tmp_penempatan,
+            @Field("tgl_penempatan") String tgl_penempatan,
+            @Field("file_penempatan") String file_penempatan
+    );
+
     @GET("getKartuAK1")
     Call<BaseResponse> getKartuAK1();
 

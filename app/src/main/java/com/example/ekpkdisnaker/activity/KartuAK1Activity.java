@@ -97,7 +97,13 @@ public class KartuAK1Activity extends AppCompatActivity {
                                                     .setTitleText("Sukses")
                                                     .setContentText(response.body().getMessage())
                                                     .setConfirmText("OK")
-                                                    .setConfirmClickListener(null)
+                                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                        @Override
+                                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                            getDataAK1();
+                                                            sweetAlertDialog.dismiss();
+                                                        }
+                                                    })
                                                     .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
                                         } else {
                                             ApiError apiError = ErrorUtils.parseError(response);
@@ -161,29 +167,11 @@ public class KartuAK1Activity extends AppCompatActivity {
                         number.add((i + 1) + "");
                         no_register.add(response.body().getData().get(i).getNoRegister());
                         nik.add(response.body().getData().get(i).getNikUser());
-                        nama_peserta.add(response.body().getData().get(i).getPeserta().getNamaLengkap());
-                        tgl_lahir.add(response.body().getData().get(i).getPeserta().getTglLahir());
-                        if (response.body().getData().get(i).getPeserta().getJnsKelamin() == 1) {
-                            jenis_kelamin.add("Laki-laki");
-                        } else if (response.body().getData().get(i).getPeserta().getJnsKelamin() == 2) {
-                            jenis_kelamin.add("Perempuan");
-                        }
+                        nama_peserta.add(response.body().getData().get(i).getInformasiPeserta().getNamaLengkap());
+                        tgl_lahir.add(response.body().getData().get(i).getInformasiPeserta().getTglLahir());
+                        jenis_kelamin.add(response.body().getData().get(i).getInformasiPeserta().getJnsKelamin());
 
-                        if (response.body().getData().get(i).getPeserta().getKdPendidikan().equals("1A")) {
-                            pendidikan.add("SD / SEDERAJAT");
-                        } else if (response.body().getData().get(i).getPeserta().getKdPendidikan().equals("2B")) {
-                            pendidikan.add("SLTP / SEDERAJAT");
-                        } else if (response.body().getData().get(i).getPeserta().getKdPendidikan().equals("3C")) {
-                            pendidikan.add("SMA / SLTA");
-                        } else if (response.body().getData().get(i).getPeserta().getKdPendidikan().equals("4D")) {
-                            pendidikan.add("MAN");
-                        } else if (response.body().getData().get(i).getPeserta().getKdPendidikan().equals("5E")) {
-                            pendidikan.add("SMK");
-                        } else if (response.body().getData().get(i).getPeserta().getKdPendidikan().equals("6F")) {
-                            pendidikan.add("DI / DII / DIII / DIV");
-                        } else if (response.body().getData().get(i).getPeserta().getKdPendidikan().equals("7G")) {
-                            pendidikan.add("S1 / S2 / S3");
-                        }
+                        pendidikan.add(response.body().getData().get(i).getInformasiPeserta().getKdPendidikan());
 
                         if (response.body().getData().get(i).getFileAk1() == null) {
                             file_ak1.add("kosong");
@@ -209,6 +197,13 @@ public class KartuAK1Activity extends AppCompatActivity {
                             intent.putExtra("status", status.get(position));
                             intent.putExtra("masa_berlaku", masa_berlaku.get(position));
                             intent.putExtra("file_ak1", file_ak1.get(position));
+                            startActivity(intent);
+                        }
+                    }, new AdapterAK1.OnEditLocationListener() {
+                        @Override
+                        public void onClickAdapter(int position) {
+                            Intent intent = new Intent(KartuAK1Activity.this, PenempatanActivity.class);
+                            intent.putExtra("no_register", no_register.get(position));
                             startActivity(intent);
                         }
                     });

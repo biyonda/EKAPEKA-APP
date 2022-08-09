@@ -30,10 +30,12 @@ public class AdapterAK1 extends ArrayAdapter<String> {
     private ArrayList<String> masa_berlaku = new ArrayList<>();
     private ArrayList<String> status = new ArrayList<>();
     private OnEditLocationListener detail;
+    private OnEditLocationListener penempatan;
 
     public AdapterAK1(Activity context, ArrayList<String> number,
                       ArrayList<String> no_register, ArrayList<String> nama_peserta,
-                      ArrayList<String> masa_berlaku, ArrayList<String> status, OnEditLocationListener detail) {
+                      ArrayList<String> masa_berlaku, ArrayList<String> status, OnEditLocationListener detail,
+                      OnEditLocationListener penempatan) {
         super(context, R.layout.adapter_ak1, no_register);
 
         this.context = context;
@@ -44,6 +46,7 @@ public class AdapterAK1 extends ArrayAdapter<String> {
         this.masa_berlaku = masa_berlaku;
         this.status = status;
         this.detail = detail;
+        this.penempatan = penempatan;
     }
 
     @SuppressLint("ResourceAsColor")
@@ -88,14 +91,24 @@ public class AdapterAK1 extends ArrayAdapter<String> {
             }
         });
 
+        viewHolder.btn_penempatan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (detail != null) {
+                    detail.onClickAdapter(position);
+                }
+            }
+        });
+
         return v;
     }
 
     class ViewHolder{
-        LinearLayout btn_detail;
+        LinearLayout btn_detail, btn_penempatan;
         TextView number, no_register, nama_peserta, masa_berlaku, sts_kartu;
         ViewHolder(View view){
             btn_detail = view.findViewById(R.id.btn_detail);
+            btn_penempatan = view.findViewById(R.id.btn_penempatan);
             number = view.findViewById(R.id.number);
             no_register = view.findViewById(R.id.no_register);
             nama_peserta = view.findViewById(R.id.nama_peserta);

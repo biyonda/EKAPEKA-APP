@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Kecamatan {
 
-    @SerializedName("id_kec")
+    @SerializedName("id")
     @Expose
-    private String idKec;
+    private String id;
     @SerializedName("id_kab")
     @Expose
     private String idKab;
@@ -16,11 +16,11 @@ public class Kecamatan {
     private String nama;
 
     public String getIdKec() {
-        return idKec;
+        return id;
     }
 
-    public void setIdKec(String idKec) {
-        this.idKec = idKec;
+    public void setIdKec(String id) {
+        this.id = id;
     }
 
     public String getIdKab() {

@@ -3,6 +3,7 @@ package com.example.ekpkdisnaker.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DownloadManager;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -93,7 +94,10 @@ public class DetailAK1Activity extends AppCompatActivity {
         lapor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(DetailAK1Activity.this, "Sedang Maintenance", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(DetailAK1Activity.this, "Sedang Maintenance", Toast.LENGTH_SHORT).show();
+                Intent it = new Intent(DetailAK1Activity.this, PenempatanActivity.class);
+                it.putExtra("no_register", no_register.getText().toString());
+                startActivity(it);
             }
         });
 
