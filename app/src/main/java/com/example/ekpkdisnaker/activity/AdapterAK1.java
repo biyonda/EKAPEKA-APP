@@ -94,8 +94,8 @@ public class AdapterAK1 extends ArrayAdapter<String> {
         viewHolder.btn_penempatan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (detail != null) {
-                    detail.onClickAdapter(position);
+                if (penempatan != null) {
+                    penempatan.onClickAdapter(position);
                 }
             }
         });
