@@ -5,32 +5,29 @@ import com.google.gson.annotations.SerializedName;
 
 public class Desa {
 
-    @SerializedName("id_kel")
+    @SerializedName("id")
     @Expose
-    private String idKel;
+    private Integer id;
     @SerializedName("id_kec")
     @Expose
-    private String idKec;
+    private Integer idKec;
     @SerializedName("nama")
     @Expose
     private String nama;
-    @SerializedName("id_jenis")
-    @Expose
-    private Integer idJenis;
 
-    public String getIdKel() {
-        return idKel;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdKel(String idKel) {
-        this.idKel = idKel;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getIdKec() {
+    public Integer getIdKec() {
         return idKec;
     }
 
-    public void setIdKec(String idKec) {
+    public void setIdKec(Integer idKec) {
         this.idKec = idKec;
     }
 
@@ -40,14 +37,6 @@ public class Desa {
 
     public void setNama(String nama) {
         this.nama = nama;
-    }
-
-    public Integer getIdJenis() {
-        return idJenis;
-    }
-
-    public void setIdJenis(Integer idJenis) {
-        this.idJenis = idJenis;
     }
 
 }

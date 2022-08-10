@@ -355,7 +355,7 @@ public class UbahProfileActivity extends AppCompatActivity {
                     for (int i = 0; i < response.body().getData().size(); i++) {
 //                        list_kota.add(response.body().getData().get(i).getType()+" "+response.body().getData().get(i).getCityName());
                         list_desa.add(response.body().getData().get(i).getNama());
-                        list_id_desa.add(response.body().getData().get(i).getIdKel());
+                        list_id_desa.add(response.body().getData().get(i).getId().toString());
                     }
 
                     //Ini buat ngisi Spinner
