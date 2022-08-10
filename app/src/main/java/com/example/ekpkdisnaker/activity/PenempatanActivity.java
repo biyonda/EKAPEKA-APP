@@ -111,7 +111,11 @@ public class PenempatanActivity extends AppCompatActivity {
         btn_simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                updatePenempatan(no_register, tmp_penempatan.getText().toString(), tgl_penempatan.getText().toString(), Fpath);
+                if (nama_file.getText().equals("")) {
+                    Toast.makeText(PenempatanActivity.this, "Pilih file terlebih dahulu", Toast.LENGTH_SHORT).show();
+                } else {
+                    updatePenempatan(no_register, tmp_penempatan.getText().toString(), tgl_penempatan.getText().toString(), Fpath);
+                }
             }
         });
     }

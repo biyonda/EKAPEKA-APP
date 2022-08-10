@@ -20,6 +20,9 @@ public class Pengumuman {
     @SerializedName("link_pengumuman")
     @Expose
     private String linkPengumuman;
+    @SerializedName("file_pengumuman")
+    @Expose
+    private String filePengumuman;
     @SerializedName("created_at")
     @Expose
     private String createdAt;
@@ -67,6 +70,14 @@ public class Pengumuman {
         this.linkPengumuman = linkPengumuman;
     }
 
+    public String getFilePengumuman() {
+        return filePengumuman;
+    }
+
+    public void setFilePengumuman(String filePengumuman) {
+        this.filePengumuman = filePengumuman;
+    }
+
     public String getCreatedAt() {
         return createdAt;
     }
@@ -82,5 +93,6 @@ public class Pengumuman {
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
+
 
 }

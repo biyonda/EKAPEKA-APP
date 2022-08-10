@@ -33,7 +33,6 @@
         android:background="#FFF"
         app:itemIconSize="26dp"
         app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_menu">
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:menu="@menu/bottom_menu"></com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </RelativeLayout>

@@ -48,7 +48,7 @@ public class UbahProfileActivity extends AppCompatActivity {
     AppCompatButton btn_simpan;
     ProgressBar progress_register;
     TextView tgl_lahir;
-    EditText nama_lengkap, tmp_lahir, email, alamat, no_telp, nama_pendidikan, password, jurusan;
+    EditText nama_lengkap, tmp_lahir, email, alamat, no_telp, nama_pendidikan, password, jurusan, tahun_lulus;
 
     final Calendar calendar = Calendar.getInstance();
     int yy = calendar.get(Calendar.YEAR);
@@ -79,6 +79,7 @@ public class UbahProfileActivity extends AppCompatActivity {
         sts_kawin = findViewById(R.id.kawin);
         kd_pendidikan = findViewById(R.id.kd_pendidikan);
         jurusan = findViewById(R.id.jurusan);
+        tahun_lulus = findViewById(R.id.tahun_lulus);
         kecamatan = findViewById(R.id.kecamatan);
         desa = findViewById(R.id.desa);
         agama = findViewById(R.id.agama);
@@ -142,28 +143,15 @@ public class UbahProfileActivity extends AppCompatActivity {
                         .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                             @Override
                             public void onClick(SweetAlertDialog sDialog) {
-                                if (kd_pendidikan.getSelectedItemPosition() == 0){
-                                    tmp_kd_pendidikan = "1A";
-                                } else if (kd_pendidikan.getSelectedItemPosition() == 1){
-                                    tmp_kd_pendidikan = "2B";
-                                } else if (kd_pendidikan.getSelectedItemPosition() == 2){
-                                    tmp_kd_pendidikan = "3C";
-                                } else if (kd_pendidikan.getSelectedItemPosition() == 3){
-                                    tmp_kd_pendidikan = "4D";
-                                } else if (kd_pendidikan.getSelectedItemPosition() == 4){
-                                    tmp_kd_pendidikan = "5E";
-                                } else if (kd_pendidikan.getSelectedItemPosition() == 5){
-                                    tmp_kd_pendidikan = "6F";
-                                } else if (kd_pendidikan.getSelectedItemPosition() == 6){
-                                    tmp_kd_pendidikan = "7G";
-                                }
+                                tmp_kd_pendidikan = kd_pendidikan.getSelectedItem().toString();
 
                                 ubahProfile = api.ubahProfile(nama_lengkap.getText().toString(),
-                                        tmp_lahir.getText().toString(), (jenis_kelamin.getSelectedItemPosition()+1)+"", tgl_lahir.getText().toString(),
+                                        tmp_lahir.getText().toString(), jenis_kelamin.getSelectedItem().toString(), tgl_lahir.getText().toString(),
                                         sts_kawin.getSelectedItem()+"", tmp_kd_pendidikan+"", nama_pendidikan.getText().toString(),
                                         jurusan.getText().toString(), alamat.getText().toString(), list_id_kecamatan.get(kecamatan.getSelectedItemPosition()),
                                         list_id_desa.get(desa.getSelectedItemPosition()), no_telp.getText().toString(),
-                                        email.getText().toString(), password.getText().toString(), agama.getSelectedItem().toString());
+                                        email.getText().toString(), password.getText().toString(), agama.getSelectedItem().toString(),
+                                        tahun_lulus.getText().toString());
 
                                 ubahProfile.enqueue(new Callback<BaseResponse>() {
                                     @Override
@@ -231,16 +219,22 @@ public class UbahProfileActivity extends AppCompatActivity {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
                     nama_lengkap.setText(response.body().getUser().getNamaLengkap());
-                    tmp_lahir.setText(response.body().getUser().getTmpLahir() + ", ");
-                    tgl_lahir.setText(response.body().getUser().getTglLahir());
+                    String tempat_lahir = response.body().getUser().getTmpLahir() == null ? "" : response.body().getUser().getTmpLahir()+", ";
+                    String tanggal_lahir = response.body().getUser().getTglLahir() == null ? "" : response.body().getUser().getTglLahir();
+                    tmp_lahir.setText(tempat_lahir);
+                    tgl_lahir.setText(tanggal_lahir);
 
-                    if (response.body().getUser().getJnsKelamin() == "LAKI-LAKI") {
+                    if (response.body().getUser().getJnsKelamin() == null) {
+                        jenis_kelamin.setSelection(0);
+                    } else if (response.body().getUser().getJnsKelamin() == "LAKI-LAKI") {
                         jenis_kelamin.setSelection(0);
                     } else if (response.body().getUser().getJnsKelamin() == "PEREMPUAN") {
                         jenis_kelamin.setSelection(1);
                     }
 
-                    if (response.body().getUser().getStsNikah().equals("BELUM KAWIN")) {
+                    if(response.body().getUser().getStsNikah() == null) {
+                        sts_kawin.setSelection(0);
+                    } else if (response.body().getUser().getStsNikah().equals("BELUM KAWIN")) {
                         sts_kawin.setSelection(0);
                     } else if (response.body().getUser().getStsNikah().equals("KAWIN")) {
                         sts_kawin.setSelection(1);
@@ -248,7 +242,9 @@ public class UbahProfileActivity extends AppCompatActivity {
                         sts_kawin.setSelection(2);
                     }
 
-                    if (response.body().getUser().getAgama().equals("ISLAM")) {
+                    if (response.body().getUser().getAgama() == null) {
+                        agama.setSelection(0);
+                    } else if (response.body().getUser().getAgama().equals("ISLAM")) {
                         agama.setSelection(0);
                     } else if (response.body().getUser().getAgama().equals("KRISTEN")) {
                         agama.setSelection(1);
@@ -262,9 +258,11 @@ public class UbahProfileActivity extends AppCompatActivity {
                         agama.setSelection(5);
                     }
 
-                    if (response.body().getUser().getKdPendidikan().equals("1A")) {
+                    if (response.body().getUser().getKdPendidikan() == null) {
                         kd_pendidikan.setSelection(0);
-                    } else if (response.body().getUser().getKdPendidikan().equals("2B")) {
+                    } else if (response.body().getUser().getKdPendidikan().equals("SD")) {
+                        kd_pendidikan.setSelection(0);
+                    } else if (response.body().getUser().getKdPendidikan().equals("SLTP")) {
                         kd_pendidikan.setSelection(1);
                     } else if (response.body().getUser().getKdPendidikan().equals("3C")) {
                         kd_pendidikan.setSelection(2);

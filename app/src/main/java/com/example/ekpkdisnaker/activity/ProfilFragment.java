@@ -1,5 +1,6 @@
 package com.example.ekpkdisnaker.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,6 +26,7 @@ import com.example.ekpkdisnaker.api.Api;
 import com.example.ekpkdisnaker.api.RetrofitClient;
 import com.example.ekpkdisnaker.helpers.ApiError;
 import com.example.ekpkdisnaker.helpers.ErrorUtils;
+import com.example.ekpkdisnaker.response.BaseResponse;
 import com.example.ekpkdisnaker.response.UserResponse;
 import com.example.ekpkdisnaker.session.Session;
 
@@ -45,6 +48,7 @@ public class ProfilFragment extends Fragment {
     Session session;
     Api api;
     Call<UserResponse> getUser;
+    Call<BaseResponse> getStatusAK1;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -100,6 +104,7 @@ public class ProfilFragment extends Fragment {
         });
 
         getUser();
+        getStatusAK1(session.getUsername());
 
         return view;
     }
@@ -112,8 +117,10 @@ public class ProfilFragment extends Fragment {
                 if (response.isSuccessful()) {
                     nama_lengkap.setText(response.body().getUser().getNamaLengkap());
                     username.setText(response.body().getUser().getUsername());
-                    tmp_lahir.setText(response.body().getUser().getTmpLahir()+", ");
-                    tgl_lahir.setText(response.body().getUser().getTglLahir());
+                    String tempat_lahir = response.body().getUser().getTmpLahir() == null ? "" : response.body().getUser().getTmpLahir()+", ";
+                    String tanggal_lahir = response.body().getUser().getTglLahir() == null ? "" : response.body().getUser().getTglLahir();
+                    tmp_lahir.setText(tempat_lahir);
+                    tgl_lahir.setText(tanggal_lahir);
                     jenis_kelamin.setText(response.body().getUser().getJnsKelamin());
                     sts_kawin.setText(response.body().getUser().getStsNikah());
 
@@ -132,20 +139,10 @@ public class ProfilFragment extends Fragment {
 
                     agama.setText(response.body().getUser().getAgama());
 
-                    if (response.body().getUser().getKdPendidikan().equals("1A")) {
-                        kd_pendidikan.setText("SD/SEDERAJAT");
-                    } else if (response.body().getUser().getKdPendidikan().equals("2B")) {
-                        kd_pendidikan.setText("SLTP/SEDERAJAT");
-                    } else if (response.body().getUser().getKdPendidikan().equals("3C")) {
-                        kd_pendidikan.setText("SMA/SLTA");
-                    } else if (response.body().getUser().getKdPendidikan().equals("4D")) {
-                        kd_pendidikan.setText("MAN");
-                    } else if (response.body().getUser().getKdPendidikan().equals("5E")) {
-                        kd_pendidikan.setText("SMK");
-                    } else if (response.body().getUser().getKdPendidikan().equals("6F")) {
-                        kd_pendidikan.setText("DI/DII/DIII/DIV");
-                    } else if (response.body().getUser().getKdPendidikan().equals("7G")) {
-                        kd_pendidikan.setText("S1/S2/S3");
+                    if (response.body().getUser().getKdPendidikan() == null) {
+                        kd_pendidikan.setText("");
+                    } else {
+                        kd_pendidikan.setText(response.body().getUser().getKdPendidikan());
                     }
 
                     nama_pendidikan.setText(response.body().getUser().getNamaPendidikan());
@@ -173,5 +170,45 @@ public class ProfilFragment extends Fragment {
                 Toast.makeText(getContext(), "Error, "+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void getStatusAK1(String nik) {
+        getStatusAK1 = api.getStatusAK1(nik);
+        getStatusAK1.enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getMessage().equals("1")) {
+                        popUpUpdate();
+                    }
+                } else {
+                    ApiError apiError = ErrorUtils.parseError(response);
+                    Toast.makeText(getContext(), apiError.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                Toast.makeText(getContext(), "Error, "+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void popUpUpdate() {
+        final Dialog dialog = new Dialog(getContext());
+        dialog.setTitle("Gambar Barang");
+        View v = getLayoutInflater().inflate(R.layout.popup_update, null);
+        dialog.setContentView(v);
+        Button update = v.findViewById(R.id.update);
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.asa.asri_larisso"));
+//                startActivity(intent);
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
     }
 }

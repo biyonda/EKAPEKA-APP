@@ -9,13 +9,18 @@
     </string-array>
 
     <string-array name="pendidikan_array">
-        <item>SD/SEDERAJAT</item>
-        <item>SLTP/SEDERAJAT</item>
-        <item>SMA/SLTA</item>
+        <item>SD</item>
+        <item>SLTP</item>
+        <item>SLTA</item>
         <item>MAN</item>
         <item>SMK</item>
-        <item>DI/DII/DIII/DIV</item>
-        <item>S1/S2/S3</item>
+        <item>DI</item>
+        <item>DII</item>
+        <item>DIII</item>
+        <item>DIV</item>
+        <item>S1</item>
+        <item>S2</item>
+        <item>S3</item>
     </string-array>
 
     <string-array name="kawin_array">

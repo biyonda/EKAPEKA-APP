@@ -124,7 +124,8 @@ public interface Api {
             @Field("telepon") String telepon,
             @Field("email") String email,
             @Field("password") String password,
-            @Field("agama") String agama
+            @Field("agama") String agama,
+            @Field("tahun_lulus") String tahun_lulus
     );
 
     @FormUrlEncoded
@@ -135,4 +136,16 @@ public interface Api {
 
     @GET("getKecamatan")
     Call<BaseResponse<Kecamatan>> getKecamatan();
+
+    @FormUrlEncoded
+    @POST("getStatusAK1")
+    Call<BaseResponse> getStatusAK1(
+            @Field("nik") String nik
+    );
+
+    @FormUrlEncoded
+    @POST("updateLapor")
+    Call<BaseResponse> updateLapor(
+            @Field("no_register") String no_register
+    );
 }

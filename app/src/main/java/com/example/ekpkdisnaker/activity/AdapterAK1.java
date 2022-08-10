@@ -29,13 +29,15 @@ public class AdapterAK1 extends ArrayAdapter<String> {
     private ArrayList<String> nama_peserta = new ArrayList<>();
     private ArrayList<String> masa_berlaku = new ArrayList<>();
     private ArrayList<String> status = new ArrayList<>();
+    private ArrayList<String> sts_berlaku = new ArrayList<>();
     private OnEditLocationListener detail;
     private OnEditLocationListener penempatan;
+    private OnEditLocationListener lapor;
 
     public AdapterAK1(Activity context, ArrayList<String> number,
                       ArrayList<String> no_register, ArrayList<String> nama_peserta,
-                      ArrayList<String> masa_berlaku, ArrayList<String> status, OnEditLocationListener detail,
-                      OnEditLocationListener penempatan) {
+                      ArrayList<String> masa_berlaku, ArrayList<String> status, ArrayList<String> sts_berlaku, OnEditLocationListener detail,
+                      OnEditLocationListener penempatan, OnEditLocationListener lapor) {
         super(context, R.layout.adapter_ak1, no_register);
 
         this.context = context;
@@ -45,8 +47,10 @@ public class AdapterAK1 extends ArrayAdapter<String> {
         this.nama_peserta = nama_peserta;
         this.masa_berlaku = masa_berlaku;
         this.status = status;
+        this.sts_berlaku = sts_berlaku;
         this.detail = detail;
         this.penempatan = penempatan;
+        this.lapor = lapor;
     }
 
     @SuppressLint("ResourceAsColor")
@@ -69,15 +73,19 @@ public class AdapterAK1 extends ArrayAdapter<String> {
         viewHolder.masa_berlaku.setText(masa_berlaku.get(position));
 
         if (status.get(position).equals("0")) {
+            viewHolder.btn_penempatan.setVisibility(View.GONE);
             viewHolder.sts_kartu.setText("PENGAJUAN");
             viewHolder.sts_kartu.setTextColor(Color.parseColor("#f4bd0e"));
         } else if (status.get(position).equals("1")) {
+            viewHolder.btn_penempatan.setVisibility(View.GONE);
             viewHolder.sts_kartu.setText("DIVERIFIKASI");
             viewHolder.sts_kartu.setTextColor(Color.parseColor("#00B04E"));
         } else if (status.get(position).equals("2")) {
-            viewHolder.sts_kartu.setText("DITANGANI");
+            viewHolder.btn_penempatan.setVisibility(View.VISIBLE);
+            viewHolder.sts_kartu.setText("DITANDATANGANI");
             viewHolder.sts_kartu.setTextColor(Color.parseColor("#81ecec"));
         } else if (status.get(position).equals("3")) {
+            viewHolder.btn_penempatan.setVisibility(View.GONE);
             viewHolder.sts_kartu.setText("PENEMPATAN");
             viewHolder.sts_kartu.setTextColor(Color.parseColor("#00cec9"));
         }
@@ -100,15 +108,31 @@ public class AdapterAK1 extends ArrayAdapter<String> {
             }
         });
 
+        if (status.get(position).equals("2") && sts_berlaku.get(position).equals("0")) {
+            viewHolder.btn_lapor.setVisibility(View.VISIBLE);
+        } else {
+            viewHolder.btn_lapor.setVisibility(View.GONE);
+        }
+
+        viewHolder.btn_lapor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (lapor != null) {
+                    lapor.onClickAdapter(position);
+                }
+            }
+        });
+
         return v;
     }
 
     class ViewHolder{
-        LinearLayout btn_detail, btn_penempatan;
+        LinearLayout btn_detail, btn_penempatan, btn_lapor;
         TextView number, no_register, nama_peserta, masa_berlaku, sts_kartu;
         ViewHolder(View view){
             btn_detail = view.findViewById(R.id.btn_detail);
             btn_penempatan = view.findViewById(R.id.btn_penempatan);
+            btn_lapor = view.findViewById(R.id.btn_lapor);
             number = view.findViewById(R.id.number);
             no_register = view.findViewById(R.id.no_register);
             nama_peserta = view.findViewById(R.id.nama_peserta);

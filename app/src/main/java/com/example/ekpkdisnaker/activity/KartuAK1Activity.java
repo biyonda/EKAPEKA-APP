@@ -53,6 +53,7 @@ public class KartuAK1Activity extends AppCompatActivity {
     private ArrayList<String> pendidikan = new ArrayList<>();
     private ArrayList<String> masa_berlaku = new ArrayList<>();
     private ArrayList<String> status = new ArrayList<>();
+    private ArrayList<String> sts_berlaku = new ArrayList<>();
     private ArrayList<String> file_ak1 = new ArrayList<>();
 
     AdapterAK1 adapterAK1;
@@ -181,10 +182,11 @@ public class KartuAK1Activity extends AppCompatActivity {
 
                         masa_berlaku.add(response.body().getData().get(i).getMasaBerlaku());
                         status.add(response.body().getData().get(i).getStsAk1().toString());
+                        sts_berlaku.add(response.body().getData().get(i).getStsBerlaku().toString());
                     }
 
                     adapterAK1 = new AdapterAK1(KartuAK1Activity.this, number, no_register, nama_peserta,
-                            masa_berlaku, status, new AdapterAK1.OnEditLocationListener() {
+                            masa_berlaku, status, sts_berlaku, new AdapterAK1.OnEditLocationListener() {
                         @Override
                         public void onClickAdapter(int position) {
                             Intent intent = new Intent(KartuAK1Activity.this, DetailAK1Activity.class);
@@ -202,7 +204,18 @@ public class KartuAK1Activity extends AppCompatActivity {
                     }, new AdapterAK1.OnEditLocationListener() {
                         @Override
                         public void onClickAdapter(int position) {
-                            Intent intent = new Intent(KartuAK1Activity.this, PenempatanActivity.class);
+                            if (status.get(position).equals("0")) {
+                                Toast.makeText(KartuAK1Activity.this, "AK1 dengan dalam proses verifikasi", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Intent intent = new Intent(KartuAK1Activity.this, PenempatanActivity.class);
+                                intent.putExtra("no_register", no_register.get(position));
+                                startActivity(intent);
+                            }
+                        }
+                    }, new AdapterAK1.OnEditLocationListener() {
+                        @Override
+                        public void onClickAdapter(int position) {
+                            Intent intent = new Intent(KartuAK1Activity.this, LaporActivity.class);
                             intent.putExtra("no_register", no_register.get(position));
                             startActivity(intent);
                         }
