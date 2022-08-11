@@ -402,6 +402,28 @@
                 android:inputType="textCapWords"
                 android:imeOptions="actionNext">
             </EditText>
+            <!--Tahun Lulus-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:text="Tahun Lulus"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:textStyle="bold">
+            </TextView>
+            <EditText
+                android:id="@+id/tahun_lulus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:hint="Tulis tahun lulus Anda"
+                android:textSize="16sp"
+                android:maxLength="30"
+                android:inputType="number"
+                android:imeOptions="actionNext">
+            </EditText>
             <!--Kata Sandi-->
             <TextView
                 android:layout_width="wrap_content"

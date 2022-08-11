@@ -49,8 +49,9 @@ public interface Api {
             @Field("telepon") String telepon,
             @Field("email") String email,
             @Field("password") String password,
-            @Field("agama") String agama
-    );
+            @Field("agama") String agama,
+            @Field("tahun_lulus") String tahun_lulus
+            );
 
     @GET("getUser")
     Call<UserResponse> getUser();

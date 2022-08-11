@@ -1,10 +1,12 @@
 package com.example.ekpkdisnaker.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -39,6 +41,8 @@ public class KartuAK1Activity extends AppCompatActivity {
     LinearLayout btn_ak1;
     ListView list_data;
 
+    SwipeRefreshLayout swipe_refresh_layout;
+
     Session session;
     Api api;
     Call<BaseResponse> getKartuAK1;
@@ -66,6 +70,7 @@ public class KartuAK1Activity extends AppCompatActivity {
         btn_back = findViewById(R.id.btn_back);
         btn_ak1 = findViewById(R.id.btn_ak1);
         list_data = findViewById(R.id.list_data);
+        swipe_refresh_layout = findViewById(R.id.swipe_refresh_layout);
 
         session = new Session(KartuAK1Activity.this);
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
@@ -75,6 +80,18 @@ public class KartuAK1Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipe_refresh_layout.setRefreshing(false);
+                    }
+                }, 1000);
             }
         });
 

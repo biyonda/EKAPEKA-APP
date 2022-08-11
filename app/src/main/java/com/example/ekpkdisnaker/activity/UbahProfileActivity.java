@@ -264,16 +264,26 @@ public class UbahProfileActivity extends AppCompatActivity {
                         kd_pendidikan.setSelection(0);
                     } else if (response.body().getUser().getKdPendidikan().equals("SLTP")) {
                         kd_pendidikan.setSelection(1);
-                    } else if (response.body().getUser().getKdPendidikan().equals("3C")) {
+                    } else if (response.body().getUser().getKdPendidikan().equals("SLTA")) {
                         kd_pendidikan.setSelection(2);
-                    } else if (response.body().getUser().getKdPendidikan().equals("4D")) {
+                    } else if (response.body().getUser().getKdPendidikan().equals("MAN")) {
                         kd_pendidikan.setSelection(3);
-                    } else if (response.body().getUser().getKdPendidikan().equals("5E")) {
+                    } else if (response.body().getUser().getKdPendidikan().equals("SMK")) {
                         kd_pendidikan.setSelection(4);
-                    } else if (response.body().getUser().getKdPendidikan().equals("6F")) {
+                    } else if (response.body().getUser().getKdPendidikan().equals("DI")) {
                         kd_pendidikan.setSelection(5);
-                    } else if (response.body().getUser().getKdPendidikan().equals("7G")) {
+                    } else if (response.body().getUser().getKdPendidikan().equals("DII")) {
                         kd_pendidikan.setSelection(6);
+                    } else if (response.body().getUser().getKdPendidikan().equals("DIII")) {
+                        kd_pendidikan.setSelection(7);
+                    } else if (response.body().getUser().getKdPendidikan().equals("DIV")) {
+                        kd_pendidikan.setSelection(8);
+                    } else if (response.body().getUser().getKdPendidikan().equals("S1")) {
+                        kd_pendidikan.setSelection(9);
+                    } else if (response.body().getUser().getKdPendidikan().equals("S2")) {
+                        kd_pendidikan.setSelection(10);
+                    } else if (response.body().getUser().getKdPendidikan().equals("S3")) {
+                        kd_pendidikan.setSelection(11);
                     }
 
                     nama_pendidikan.setText(response.body().getUser().getNamaPendidikan());

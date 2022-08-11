@@ -39,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     Spinner jenis_kelamin, kawin, kd_pendidikan, agama, kecamatan, desa;
     LinearLayout select_tgl_lahir;
-    EditText username, nama_lengkap, tmp_lahir, email, alamat, no_telp, nama_pendidikan, password, jurusan;
+    EditText username, nama_lengkap, tmp_lahir, email, alamat, no_telp, nama_pendidikan, password, jurusan, tahun_lulus;
     TextView tgl_lahir;
     AppCompatButton btn_register;
     ProgressBar progress_register;
@@ -85,6 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
         no_telp = findViewById(R.id.no_telp);
         nama_pendidikan = findViewById(R.id.nama_pendidikan);
         jurusan = findViewById(R.id.jurusan);
+        tahun_lulus = findViewById(R.id.tahun_lulus);
         password = findViewById(R.id.password);
 
         ArrayAdapter<CharSequence> bulan_spinner = ArrayAdapter.createFromResource(this, R.array.jk_array, R.layout.spinner_kecamatan);
@@ -123,19 +124,29 @@ public class RegisterActivity extends AppCompatActivity {
                 System.out.println(kd_pendidikan.getSelectedItemPosition());
 
                 if (kd_pendidikan.getSelectedItemPosition() == 0){
-                    tmp_kd_pendidikan = "1A";
+                    tmp_kd_pendidikan = "SD";
                 } else if (kd_pendidikan.getSelectedItemPosition() == 1){
-                    tmp_kd_pendidikan = "2B";
+                    tmp_kd_pendidikan = "SLTP";
                 } else if (kd_pendidikan.getSelectedItemPosition() == 2){
-                    tmp_kd_pendidikan = "3C";
+                    tmp_kd_pendidikan = "SLTA";
                 } else if (kd_pendidikan.getSelectedItemPosition() == 3){
-                    tmp_kd_pendidikan = "4D";
+                    tmp_kd_pendidikan = "MAN";
                 } else if (kd_pendidikan.getSelectedItemPosition() == 4){
-                    tmp_kd_pendidikan = "5E";
+                    tmp_kd_pendidikan = "SMK";
                 } else if (kd_pendidikan.getSelectedItemPosition() == 5){
-                    tmp_kd_pendidikan = "6F";
+                    tmp_kd_pendidikan = "DI";
                 } else if (kd_pendidikan.getSelectedItemPosition() == 6){
-                    tmp_kd_pendidikan = "7G";
+                    tmp_kd_pendidikan = "DII";
+                } else if (kd_pendidikan.getSelectedItemPosition() == 7){
+                    tmp_kd_pendidikan = "DII";
+                } else if (kd_pendidikan.getSelectedItemPosition() == 8){
+                    tmp_kd_pendidikan = "DIV";
+                } else if (kd_pendidikan.getSelectedItemPosition() == 9){
+                    tmp_kd_pendidikan = "S1";
+                } else if (kd_pendidikan.getSelectedItemPosition() == 10){
+                    tmp_kd_pendidikan = "S2";
+                } else if (kd_pendidikan.getSelectedItemPosition() == 11){
+                    tmp_kd_pendidikan = "S3";
                 }
 
 //                System.out.println(tmp_kd_pendidikan);
@@ -147,7 +158,7 @@ public class RegisterActivity extends AppCompatActivity {
                         kawin.getSelectedItem()+"", tmp_kd_pendidikan+"", nama_pendidikan.getText().toString(),
                         jurusan.getText().toString(), alamat.getText().toString(), list_id_kecamatan.get(kecamatan.getSelectedItemPosition()),
                         list_id_desa.get(desa.getSelectedItemPosition()), no_telp.getText().toString(),
-                        email.getText().toString(), password.getText().toString(), agama.getSelectedItem().toString());
+                        email.getText().toString(), password.getText().toString(), agama.getSelectedItem().toString(), tahun_lulus.getText().toString());
 
                 register.enqueue(new Callback<RegisterResponse>() {
                     @Override

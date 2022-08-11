@@ -47,6 +47,9 @@ public class User {
     @SerializedName("jurusan_pendidikan")
     @Expose
     private String jurusanPendidikan;
+    @SerializedName("tahun_lulus")
+    @Expose
+    private String tahunLulus;
     @SerializedName("pas_foto")
     @Expose
     private String pasFoto;
@@ -182,6 +185,13 @@ public class User {
 
     public void setJurusanPendidikan(String jurusanPendidikan) {
         this.jurusanPendidikan = jurusanPendidikan;
+    }
+    public String getTahunLulus() {
+        return tahunLulus;
+    }
+
+    public void setTahunLulus(String tahunLulus) {
+        this.tahunLulus = tahunLulus;
     }
 
     public String getPasFoto() {

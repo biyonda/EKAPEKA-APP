@@ -38,7 +38,7 @@
         android:id="@+id/img_pas_foto"
         android:layout_width="200dp"
         android:layout_height="150dp"
-        android:background="#00BABABA"
+        android:background="@drawable/default_img_tmp"
         android:layout_marginTop="16dp"
         android:layout_gravity="center">
     </ImageView>
@@ -98,15 +98,16 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:layout_gravity="center">
-
         <ProgressBar
             android:id="@+id/SHOW_PROGRESS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginTop="16dp"
-            android:visibility="invisible"></ProgressBar>
+            android:visibility="invisible">
+        </ProgressBar>
     </RelativeLayout>
 
 </LinearLayout>
