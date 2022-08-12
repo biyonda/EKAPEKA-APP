@@ -2,8 +2,13 @@ package com.example.ekpkdisnaker.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,7 +43,7 @@ public class DetailPengumumanActivity extends AppCompatActivity {
         judul = getIntent().getStringExtra("judul");
         pengumuman = getIntent().getStringExtra("pengumuman");
         file = getIntent().getStringExtra("file");
-        tanggal = getIntent().getStringExtra("tanggal");
+        tanggal = "Tanggal : " + getIntent().getStringExtra("tanggal").substring(0, 10);
         link = getIntent().getStringExtra("link");
 
         gambar = findViewById(R.id.gambar);
@@ -52,6 +57,24 @@ public class DetailPengumumanActivity extends AppCompatActivity {
         txt_tanggal.setText(tanggal);
         txt_link.setText(link);
 
+        gambar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                zoomImage();
+            }
+        });
+
+        txt_link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String url = getIntent().getStringExtra("link");
+
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
+
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.centerCrop().signature(
                 new ObjectKey(String.valueOf(System.currentTimeMillis())));
@@ -60,5 +83,27 @@ public class DetailPengumumanActivity extends AppCompatActivity {
                 .load(session.getBaseUrl()
                         +"storage/"+file)
                 .into(gambar);
+    }
+
+    public void zoomImage() {
+        final Dialog dialog = new Dialog(DetailPengumumanActivity.this);
+        dialog.setTitle("Gambar Barang");
+        View v = getLayoutInflater().inflate(R.layout.popup_img, null);
+        dialog.setContentView(v);
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+        dialog.getWindow().setAttributes(lp);
+
+        ImageView close = v.findViewById(R.id.close);
+        ImageView image = v.findViewById(R.id.image);
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
 }
