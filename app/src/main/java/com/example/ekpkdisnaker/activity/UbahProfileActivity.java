@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -45,6 +48,8 @@ public class UbahProfileActivity extends AppCompatActivity {
     Spinner jenis_kelamin, sts_kawin, kd_pendidikan, agama, kecamatan, desa;
     LinearLayout select_tgl_lahir;
     ImageView btn_back;
+    ImageView show_password;
+    Boolean showPasswordClicked = false;
     AppCompatButton btn_simpan;
     ProgressBar progress_register;
     TextView tgl_lahir;
@@ -94,9 +99,13 @@ public class UbahProfileActivity extends AppCompatActivity {
         no_telp = findViewById(R.id.no_telp);
         nama_pendidikan = findViewById(R.id.nama_pendidikan);
         password = findViewById(R.id.password);
+        show_password = findViewById(R.id.show_password);
 
         session = new Session(this);
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
+
+        show_password.setBackgroundResource(R.drawable.ic_eye_open);
+        show_password.setOnClickListener(mToggleShowPasswordButton);
 
         select_tgl_lahir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,6 +140,8 @@ public class UbahProfileActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        getUser();
 
         btn_simpan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,6 +180,23 @@ public class UbahProfileActivity extends AppCompatActivity {
                                                         }
                                                     })
                                                     .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+
+//                                            final Intent intent = new Intent(UbahProfileActivity.this, SettingActivity.class);
+//
+//                                            Thread thread = new Thread(){
+//                                                @Override
+//                                                public void run() {
+//                                                    try {
+//                                                        Thread.sleep(1250); // As I am using LENGTH_LONG in Toast
+//                                                        startActivity(intent);
+//                                                    } catch (Exception e) {
+//                                                        e.printStackTrace();
+//                                                    }
+//                                                }
+//                                            };
+//
+//                                            thread.start();
+
                                         } else {
                                             ApiError apiError = ErrorUtils.parseError(response);
                                             sDialog
@@ -209,7 +237,6 @@ public class UbahProfileActivity extends AppCompatActivity {
             }
         });
 
-        getUser();
     }
 
     public void getUser() {
@@ -219,7 +246,7 @@ public class UbahProfileActivity extends AppCompatActivity {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
                     nama_lengkap.setText(response.body().getUser().getNamaLengkap());
-                    String tempat_lahir = response.body().getUser().getTmpLahir() == null ? "" : response.body().getUser().getTmpLahir()+", ";
+                    String tempat_lahir = response.body().getUser().getTmpLahir() == null ? "" : response.body().getUser().getTmpLahir();
                     String tanggal_lahir = response.body().getUser().getTglLahir() == null ? "" : response.body().getUser().getTglLahir();
                     tmp_lahir.setText(tempat_lahir);
                     tgl_lahir.setText(tanggal_lahir);
@@ -292,6 +319,7 @@ public class UbahProfileActivity extends AppCompatActivity {
                     email.setText(response.body().getUser().getEmail());
                     nama_pendidikan.setText(response.body().getUser().getNamaPendidikan());
                     jurusan.setText(response.body().getUser().getJurusanPendidikan());
+                    tahun_lulus.setText(response.body().getUser().getTahunLulus());
                 } else {
                     ApiError apiError = ErrorUtils.parseError(response);
                     Toast.makeText(UbahProfileActivity.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
@@ -382,4 +410,23 @@ public class UbahProfileActivity extends AppCompatActivity {
             }
         });
     }
+
+    View.OnClickListener mToggleShowPasswordButton = new View.OnClickListener(){
+
+        @Override
+        public void onClick(View v){
+            // change your button background
+
+            if(showPasswordClicked){
+                v.setBackgroundResource(R.drawable.ic_eye_closed);
+                password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            }else{
+                v.setBackgroundResource(R.drawable.ic_eye_open);
+                password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            }
+
+            showPasswordClicked = !showPasswordClicked; // reverse
+        }
+
+    };
 }

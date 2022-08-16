@@ -82,7 +82,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:hint="Isikan Tahun"
                 android:imeOptions="actionDone"
-                android:inputType="textCapWords"
+                android:inputType="number"
                 android:maxLength="50"
                 android:textSize="16sp"></EditText>
         </LinearLayout>

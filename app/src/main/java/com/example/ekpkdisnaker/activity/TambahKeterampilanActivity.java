@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public class TambahKeterampilanActivity extends AppCompatActivity {
     EditText keterampilan, tahun;
     Button btn_simpan;
     ProgressBar progressBar;
+    ImageView btn_back;
 
     Session session;
     Api api;
@@ -38,11 +40,19 @@ public class TambahKeterampilanActivity extends AppCompatActivity {
 
         keterampilan = findViewById(R.id.keterampilan);
         tahun = findViewById(R.id.tahun);
+        btn_back = findViewById(R.id.btn_back);
         btn_simpan = findViewById(R.id.btn_simpan);
         progressBar = findViewById(R.id.progress_register);
 
         session = new Session(this);
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         btn_simpan.setOnClickListener(new View.OnClickListener() {
             @Override

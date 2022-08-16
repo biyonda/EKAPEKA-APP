@@ -98,6 +98,15 @@ public class DetailPengumumanActivity extends AppCompatActivity {
         ImageView close = v.findViewById(R.id.close);
         ImageView image = v.findViewById(R.id.image);
 
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.centerCrop().signature(
+                new ObjectKey(String.valueOf(System.currentTimeMillis())));
+        Glide.with(DetailPengumumanActivity.this)
+                .setDefaultRequestOptions(requestOptions)
+                .load(session.getBaseUrl()
+                        +"storage/"+file)
+                .into(image);
+
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
