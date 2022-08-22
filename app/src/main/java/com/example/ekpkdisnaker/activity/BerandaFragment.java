@@ -67,6 +67,8 @@ public class BerandaFragment extends Fragment {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        getUser();
+                        getStatusAK1(session.getUsername());
                         swipe_refresh_layout.setRefreshing(false);
                     }
                 }, 1000);

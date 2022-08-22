@@ -7,6 +7,7 @@ import com.example.ekpkdisnaker.table.Desa;
 import com.example.ekpkdisnaker.table.Kecamatan;
 import com.example.ekpkdisnaker.table.Keterampilan;
 import com.example.ekpkdisnaker.table.Pengumuman;
+import com.example.ekpkdisnaker.table.PopupProfil;
 import com.example.ekpkdisnaker.table.ak1;
 
 import retrofit2.Call;
@@ -149,4 +150,11 @@ public interface Api {
     Call<BaseResponse> updateLapor(
             @Field("no_register") String no_register
     );
+
+    @FormUrlEncoded
+    @POST("getKartuPeserta")
+    Call<BaseResponse<PopupProfil>> getKartuPeserta(
+            @Field("nik") String nik
+    );
+
 }

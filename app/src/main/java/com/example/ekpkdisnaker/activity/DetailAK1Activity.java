@@ -46,7 +46,7 @@ public class DetailAK1Activity extends AppCompatActivity {
         sts_kartu = findViewById(R.id.sts_kartu);
         masa_berlaku = findViewById(R.id.masa_berlaku);
         download = findViewById(R.id.download);
-        lapor = findViewById(R.id.lapor);
+//        lapor = findViewById(R.id.lapor);
 
         session = new Session(this);
 

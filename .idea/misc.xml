@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/activity_detail_ak1.xml" value="0.1408514492753623" />
         <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/activity_detail_pengumuman.xml" value="0.25" />
+        <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/activity_detail_profile.xml" value="0.2078804347826087" />
         <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/activity_ijazah.xml" value="0.12158054711246201" />
         <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/activity_kartu_ak1.xml" value="0.12158054711246201" />
         <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/activity_keterampilan.xml" value="0.1408514492753623" />
@@ -19,8 +20,10 @@
         <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/adapter_pengumuman.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/fragment_beranda.xml" value="0.12158054711246201" />
         <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/fragment_pengumuman.xml" value="0.25" />
-        <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/fragment_profil.xml" value="0.25" />
+        <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/fragment_profil.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/popup_img.xml" value="0.23731884057971014" />
+        <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/popup_profil.xml" value="0.19701086956521738" />
+        <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/popup_update.xml" value="0.2477355072463768" />
         <entry key="..\:/AndroidStudioProjects/EKPKDISNAKER/app/src/main/res/drawable/bt_primary_round.xml" value="0.21203703703703702" />
         <entry key="..\:/AndroidStudioProjects/EKPKDISNAKER/app/src/main/res/drawable/bt_red_round.xml" value="0.26614583333333336" />
         <entry key="..\:/AndroidStudioProjects/EKPKDISNAKER/app/src/main/res/drawable/bt_white_round.xml" value="0.26614583333333336" />
