@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     AppCompatButton btn_login;
     ImageView show_password;
     Boolean showPasswordClicked = false;
-    TextView username, password;
+    TextView username, password, lupa_password;
     LinearLayout register;
     ProgressBar SHOW_PROGRESS;
 
@@ -48,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         api = RetrofitClient.createService(Api.class);
 
         btn_login = findViewById(R.id.btn_login);
+        lupa_password = findViewById(R.id.lupa_password);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         show_password = findViewById(R.id.show_password);
@@ -94,6 +95,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            }
+        });
+
+        lupa_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, LupaPasswordActivity.class));
             }
         });
     }

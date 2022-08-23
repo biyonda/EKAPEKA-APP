@@ -257,7 +257,8 @@ public class ProfilFragment extends Fragment {
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
 
         try {
-            BitMatrix bitMatrix = multiFormatWriter.encode(kartu_popup, BarcodeFormat.CODE_128, 500, 60, null);
+//          BitMatrix bitMatrix = multiFormatWriter.encode(kartu_popup, BarcodeFormat.CODE_128, 500, 60, null);
+            BitMatrix bitMatrix = multiFormatWriter.encode(kartu_popup, BarcodeFormat.QR_CODE, 1000, 1000, null);
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
             barcode.setImageBitmap(bitmap);
