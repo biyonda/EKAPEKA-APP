@@ -53,7 +53,7 @@ public class ProfilFragment extends Fragment {
     TextView sts_kawin, agama, kd_pendidikan, nama_pendidikan;
     TextView no_telp, alamat;
 
-    String nama_popup, nik_popup, foto_popup, kartu_popup, berlaku_popup;
+    String nama_popup, nik_popup, foto_popup, kartu_popup, berlaku_popup, dibuat_popup, link_popup;
 
     Session session;
     Api api;
@@ -108,6 +108,8 @@ public class ProfilFragment extends Fragment {
                         foto_popup = response.body().getData().get(i).getFoto();
                         kartu_popup = response.body().getData().get(i).getNoRegister();
                         berlaku_popup = response.body().getData().get(i).getBerlaku();
+                        dibuat_popup = response.body().getData().get(i).getDibuat();
+                        link_popup = response.body().getData().get(i).getLink();
                     }
                     if (nik_popup != null) {
                         btn_barcode.setVisibility(View.VISIBLE);
@@ -146,7 +148,7 @@ public class ProfilFragment extends Fragment {
         btn_barcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                popUpBarcode(nama_popup, nik_popup, foto_popup, kartu_popup, berlaku_popup);
+                popUpBarcode(nama_popup, nik_popup, foto_popup, kartu_popup, berlaku_popup, dibuat_popup, link_popup);
             }
         });
 
@@ -227,7 +229,7 @@ public class ProfilFragment extends Fragment {
         });
     }
 
-    public void popUpBarcode(String nama_popup, String nik_popup, String foto_popup, String kartu_popup, String berlaku_popup) {
+    public void popUpBarcode(String nama_popup, String nik_popup, String foto_popup, String kartu_popup, String berlaku_popup, String dibuat_popup, String link_popup) {
         final Dialog dialog = new Dialog(getContext());
         dialog.setTitle("Barcode");
         View v = getLayoutInflater().inflate(R.layout.popup_profil, null);
@@ -244,11 +246,13 @@ public class ProfilFragment extends Fragment {
         TextView nik_peserta = v.findViewById(R.id.nik_peserta);
         TextView no_kartu = v.findViewById(R.id.no_kartu);
         TextView masa_berlaku = v.findViewById(R.id.masa_berlaku);
+        TextView tgl_dibuat = v.findViewById(R.id.tgl_dibuat);
 
         nama_peserta.setText(nama_popup);
         nik_peserta.setText(nik_popup);
         no_kartu.setText("ID Kartu : " + kartu_popup);
         masa_berlaku.setText(berlaku_popup);
+        tgl_dibuat.setText(dibuat_popup);
 
         RequestOptions requestOptions = new RequestOptions();
         requestOptions.centerCrop().signature(new ObjectKey(String.valueOf(System.currentTimeMillis())));
@@ -258,7 +262,7 @@ public class ProfilFragment extends Fragment {
 
         try {
 //          BitMatrix bitMatrix = multiFormatWriter.encode(kartu_popup, BarcodeFormat.CODE_128, 500, 60, null);
-            BitMatrix bitMatrix = multiFormatWriter.encode(kartu_popup, BarcodeFormat.QR_CODE, 1000, 1000, null);
+            BitMatrix bitMatrix = multiFormatWriter.encode(link_popup, BarcodeFormat.QR_CODE, 1000, 1000, null);
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
             barcode.setImageBitmap(bitmap);

@@ -20,6 +20,12 @@ public class PopupProfil {
     @SerializedName("Berlaku")
     @Expose
     private String berlaku;
+    @SerializedName("Dibuat")
+    @Expose
+    private String dibuat;
+    @SerializedName("Link")
+    @Expose
+    private String link;
 
     public String getNama() {
         return nama;
@@ -59,6 +65,22 @@ public class PopupProfil {
 
     public void setBerlaku(String berlaku) {
         this.berlaku = berlaku;
+    }
+
+    public String getDibuat() {
+        return dibuat;
+    }
+
+    public void setDibuat(String dibuat) {
+        this.dibuat = dibuat;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
 }

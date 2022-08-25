@@ -8,6 +8,7 @@ import com.example.ekpkdisnaker.table.Kecamatan;
 import com.example.ekpkdisnaker.table.Keterampilan;
 import com.example.ekpkdisnaker.table.Pengumuman;
 import com.example.ekpkdisnaker.table.PopupProfil;
+import com.example.ekpkdisnaker.table.SettingUpdate;
 import com.example.ekpkdisnaker.table.ak1;
 
 import retrofit2.Call;
@@ -156,5 +157,8 @@ public interface Api {
     Call<BaseResponse<PopupProfil>> getKartuPeserta(
             @Field("nik") String nik
     );
+
+    @GET("getSettingUpdate")
+    Call<BaseResponse<SettingUpdate>> getSettingUpdate();
 
 }

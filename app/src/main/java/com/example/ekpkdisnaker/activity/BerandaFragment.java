@@ -26,6 +26,7 @@ import com.example.ekpkdisnaker.helpers.ErrorUtils;
 import com.example.ekpkdisnaker.response.BaseResponse;
 import com.example.ekpkdisnaker.response.UserResponse;
 import com.example.ekpkdisnaker.session.Session;
+import com.example.ekpkdisnaker.table.SettingUpdate;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,6 +44,7 @@ public class BerandaFragment extends Fragment {
     Api api;
     Call<UserResponse> getUser;
     Call<BaseResponse> getStatusAK1;
+    Call<BaseResponse<SettingUpdate>> getSettingUpdate;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,6 +70,7 @@ public class BerandaFragment extends Fragment {
                     @Override
                     public void run() {
                         getUser();
+                        popUpSettingUpdate();
                         getStatusAK1(session.getUsername());
                         swipe_refresh_layout.setRefreshing(false);
                     }
@@ -92,6 +95,7 @@ public class BerandaFragment extends Fragment {
         });
 
         getUser();
+        popUpSettingUpdate();
         getStatusAK1(session.getUsername());
 
         return view;
@@ -178,4 +182,41 @@ public class BerandaFragment extends Fragment {
 
         dialog.show();
     }
+
+    public void popUpSettingUpdate() {
+        getSettingUpdate = api.getSettingUpdate();
+        getSettingUpdate.enqueue(new Callback<BaseResponse<SettingUpdate>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<SettingUpdate>> call, Response<BaseResponse<SettingUpdate>> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getData().get(0).getValue().equals(1)) {
+                        final Dialog dialog = new Dialog(getContext());
+                        dialog.setTitle("Update");
+                        View v = getLayoutInflater().inflate(R.layout.popup_update, null);
+                        dialog.setContentView(v);
+                        Button update = v.findViewById(R.id.update);
+                        TextView keterangan_update = v.findViewById(R.id.keterangan_update);
+                        keterangan_update.setText(response.body().getData().get(0).getKeterangan());
+                        update.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                dialog.dismiss();
+                            }
+                        });
+                        dialog.show();
+                    }
+                } else {
+                    ApiError apiError = ErrorUtils.parseError(response);
+                    Toast.makeText(getContext(), apiError.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<SettingUpdate>> call, Throwable t) {
+                Toast.makeText(getContext(), "Error, "+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
 }
