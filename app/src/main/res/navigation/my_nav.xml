@@ -6,17 +6,17 @@
     app:startDestination="@id/frm_beranda">
     <fragment
         android:id="@+id/frm_beranda"
-        android:name="com.example.ekpkdisnaker.activity.BerandaFragment"
+        android:name="com.diskominfo.ekpkdisnaker.activity.BerandaFragment"
         android:label="fragment_beranda"
         tools:layout="@layout/fragment_beranda" />
     <fragment
         android:id="@+id/frm_pengumuman"
-        android:name="com.example.ekpkdisnaker.activity.PengumumanFragment"
+        android:name="com.diskominfo.ekpkdisnaker.activity.PengumumanFragment"
         android:label="fragment_absensi"
         tools:layout="@layout/fragment_pengumuman" />
     <fragment
         android:id="@+id/frm_profil"
-        android:name="com.example.ekpkdisnaker.activity.ProfilFragment"
+        android:name="com.diskominfo.ekpkdisnaker.activity.ProfilFragment"
         android:label="fragment_profil"
         tools:layout="@layout/fragment_profil" />
 </navigation>

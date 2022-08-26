@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.ekpkdisnaker">
+    package="com.diskominfo.ekpkdisnaker">
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -19,48 +19,48 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
         <activity
-            android:name=".activity.LupaPasswordActivity"
+            android:name="com.diskominfo.ekpkdisnaker.activity.LupaPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.DetailProfileActivity"
+            android:name="com.diskominfo.ekpkdisnaker.activity.DetailProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.LaporActivity"
+            android:name="com.diskominfo.ekpkdisnaker.activity.LaporActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.PenempatanActivity"
+            android:name="com.diskominfo.ekpkdisnaker.activity.PenempatanActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.DetailPengumumanActivity"
+            android:name="com.diskominfo.ekpkdisnaker.activity.DetailPengumumanActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.UbahProfileActivity"
+            android:name="com.diskominfo.ekpkdisnaker.activity.UbahProfileActivity"
             android:exported="false" /> <!-- <activity -->
         <!-- android:name=".activity.UbahDataActivity" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name=".activity.DetailAK1Activity"
+            android:name="com.diskominfo.ekpkdisnaker.activity.DetailAK1Activity"
             android:exported="false" />
         <activity
-            android:name=".activity.KeterampilanActivity"
+            android:name="com.diskominfo.ekpkdisnaker.activity.KeterampilanActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.TambahKeterampilanActivity"
+            android:name="com.diskominfo.ekpkdisnaker.activity.TambahKeterampilanActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.IjazahActivity"
+            android:name="com.diskominfo.ekpkdisnaker.activity.IjazahActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.KTPActivity"
+            android:name="com.diskominfo.ekpkdisnaker.activity.KTPActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.PasFotoActivity"
+            android:name="com.diskominfo.ekpkdisnaker.activity.PasFotoActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.KartuAK1Activity"
+            android:name="com.diskominfo.ekpkdisnaker.activity.KartuAK1Activity"
             android:exported="false" />
         <activity
-            android:name=".activity.SplashActivity"
+            android:name="com.diskominfo.ekpkdisnaker.activity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -69,17 +69,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.SettingActivity"
+            android:name="com.diskominfo.ekpkdisnaker.activity.SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.LoginActivity"
+            android:name="com.diskominfo.ekpkdisnaker.activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.RegisterActivity"
+            android:name="com.diskominfo.ekpkdisnaker.activity.RegisterActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.diskominfo.ekpkdisnaker.activity.MainActivity"
             android:exported="false" />
     </application>
 
