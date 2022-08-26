@@ -161,4 +161,12 @@ public interface Api {
     @GET("getSettingUpdate")
     Call<BaseResponse<SettingUpdate>> getSettingUpdate();
 
+    @FormUrlEncoded
+    @POST("resetPasswordPencaker")
+    Call<BaseResponse> resetPasswordPencaker(
+            @Field("nik_user") String nik_user,
+            @Field("tgl_lahir") String tgl_lahir,
+            @Field("telepon") String telepon
+    );
+
 }

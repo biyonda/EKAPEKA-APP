@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
@@ -16,9 +17,17 @@ import android.widget.Toast;
 import com.example.ekpkdisnaker.R;
 import com.example.ekpkdisnaker.api.Api;
 import com.example.ekpkdisnaker.api.RetrofitClient;
+import com.example.ekpkdisnaker.helpers.ApiError;
+import com.example.ekpkdisnaker.helpers.ErrorUtils;
+import com.example.ekpkdisnaker.response.BaseResponse;
 import com.example.ekpkdisnaker.session.Session;
+import com.example.ekpkdisnaker.table.Desa;
 
 import java.util.Calendar;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LupaPasswordActivity extends AppCompatActivity {
 
@@ -35,6 +44,7 @@ public class LupaPasswordActivity extends AppCompatActivity {
 
     Session session;
     Api api;
+    Call<BaseResponse> resetPasswordPencaker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +85,35 @@ public class LupaPasswordActivity extends AppCompatActivity {
         btn_ajukan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(LupaPasswordActivity.this, "Segera Hadir!", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(LupaPasswordActivity.this, "Segera Hadir!", Toast.LENGTH_SHORT).show();
+                resetPasswordPencaker = api.resetPasswordPencaker(
+                  username.getText().toString(), tgl_lahir.getText().toString(), no_telp.getText().toString()
+                );
+
+                resetPasswordPencaker.enqueue(new Callback<BaseResponse>() {
+                    @Override
+                    public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                        if (response.isSuccessful()) {
+                            if (response.code() == 200) {
+                                startActivity(new Intent(LupaPasswordActivity.this, LoginActivity.class));
+                                finish();
+                                Toast.makeText(LupaPasswordActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(LupaPasswordActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            ApiError apiError = ErrorUtils.parseError(response);
+                            Toast.makeText(LupaPasswordActivity.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<BaseResponse> call, Throwable t) {
+                        Toast.makeText(LupaPasswordActivity.this, "Error, "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
             }
         });
 
