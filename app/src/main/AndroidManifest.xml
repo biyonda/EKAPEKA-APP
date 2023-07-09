@@ -19,48 +19,51 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
         <activity
-            android:name="com.diskominfo.ekpkdisnaker.activity.LupaPasswordActivity"
+            android:name=".activity.TambahAK1Activity"
             android:exported="false" />
         <activity
-            android:name="com.diskominfo.ekpkdisnaker.activity.DetailProfileActivity"
+            android:name=".activity.LupaPasswordActivity"
             android:exported="false" />
         <activity
-            android:name="com.diskominfo.ekpkdisnaker.activity.LaporActivity"
+            android:name=".activity.DetailProfileActivity"
             android:exported="false" />
         <activity
-            android:name="com.diskominfo.ekpkdisnaker.activity.PenempatanActivity"
+            android:name=".activity.LaporActivity"
             android:exported="false" />
         <activity
-            android:name="com.diskominfo.ekpkdisnaker.activity.DetailPengumumanActivity"
+            android:name=".activity.PenempatanActivity"
             android:exported="false" />
         <activity
-            android:name="com.diskominfo.ekpkdisnaker.activity.UbahProfileActivity"
+            android:name=".activity.DetailPengumumanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.UbahProfileActivity"
             android:exported="false" /> <!-- <activity -->
         <!-- android:name=".activity.UbahDataActivity" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name="com.diskominfo.ekpkdisnaker.activity.DetailAK1Activity"
+            android:name=".activity.DetailAK1Activity"
             android:exported="false" />
         <activity
-            android:name="com.diskominfo.ekpkdisnaker.activity.KeterampilanActivity"
+            android:name=".activity.KeterampilanActivity"
             android:exported="false" />
         <activity
-            android:name="com.diskominfo.ekpkdisnaker.activity.TambahKeterampilanActivity"
+            android:name=".activity.TambahKeterampilanActivity"
             android:exported="false" />
         <activity
-            android:name="com.diskominfo.ekpkdisnaker.activity.IjazahActivity"
+            android:name=".activity.IjazahActivity"
             android:exported="false" />
         <activity
-            android:name="com.diskominfo.ekpkdisnaker.activity.KTPActivity"
+            android:name=".activity.KTPActivity"
             android:exported="false" />
         <activity
-            android:name="com.diskominfo.ekpkdisnaker.activity.PasFotoActivity"
+            android:name=".activity.PasFotoActivity"
             android:exported="false" />
         <activity
-            android:name="com.diskominfo.ekpkdisnaker.activity.KartuAK1Activity"
+            android:name=".activity.KartuAK1Activity"
             android:exported="false" />
         <activity
-            android:name="com.diskominfo.ekpkdisnaker.activity.SplashActivity"
+            android:name=".activity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -69,17 +72,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.diskominfo.ekpkdisnaker.activity.SettingActivity"
+            android:name=".activity.SettingActivity"
             android:exported="false" />
         <activity
-            android:name="com.diskominfo.ekpkdisnaker.activity.LoginActivity"
+            android:name=".activity.LoginActivity"
             android:exported="false" />
         <activity
-            android:name="com.diskominfo.ekpkdisnaker.activity.RegisterActivity"
+            android:name=".activity.RegisterActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name="com.diskominfo.ekpkdisnaker.activity.MainActivity"
+            android:name=".activity.MainActivity"
             android:exported="false" />
     </application>
 
