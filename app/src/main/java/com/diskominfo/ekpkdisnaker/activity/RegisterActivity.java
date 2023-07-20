@@ -39,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     Spinner jenis_kelamin, kawin, kd_pendidikan, agama, kecamatan, desa;
     LinearLayout select_tgl_lahir;
-    EditText username, nama_lengkap, tmp_lahir, email, alamat, no_telp, nama_pendidikan, password, jurusan, tahun_lulus;
+    EditText username, nama_lengkap, tmp_lahir, email, alamat, no_telp, nama_pendidikan, password, jurusan, tahun_lulus, nilai_pendidikan;
     TextView tgl_lahir;
     AppCompatButton btn_register;
     ProgressBar progress_register;
@@ -87,6 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
         jurusan = findViewById(R.id.jurusan);
         tahun_lulus = findViewById(R.id.tahun_lulus);
         password = findViewById(R.id.password);
+        nilai_pendidikan = findViewById(R.id.nilai_pendidikan);
 
         ArrayAdapter<CharSequence> bulan_spinner = ArrayAdapter.createFromResource(this, R.array.jk_array, R.layout.spinner_kecamatan);
         ArrayAdapter<CharSequence> kawin_spinner = ArrayAdapter.createFromResource(this, R.array.kawin_array, R.layout.spinner_kecamatan);
