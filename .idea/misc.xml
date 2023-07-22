@@ -15,6 +15,7 @@
         <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/activity_lupa_password.xml" value="0.264" />
         <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/activity_main.xml" value="0.20471014492753623" />
         <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/activity_pas_foto.xml" value="0.12158054711246201" />
+        <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/activity_peminatan.xml" value="0.1933876811594203" />
         <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/activity_penempatan.xml" value="0.25" />
         <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/activity_register.xml" value="0.12158054711246201" />
         <entry key="..\:/AndroidStudioProjects/EKAPEKA-APP/app/src/main/res/layout/activity_tambah_ak1.xml" value="0.1933876811594203" />
@@ -78,7 +79,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="corretto-11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

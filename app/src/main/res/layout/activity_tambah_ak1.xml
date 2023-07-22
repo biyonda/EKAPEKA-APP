@@ -565,17 +565,17 @@
                                     android:layout_marginTop="8dp"
                                     android:layout_marginStart="8dp">
                                 </ImageView>
+
                                 <TextView
                                     android:id="@+id/title_section_8"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_toRightOf="@+id/ic_add_peminatan"
-                                    android:layout_marginTop="8dp"
                                     android:layout_marginLeft="6dp"
-                                    android:text="Data Penempatan"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_toRightOf="@+id/ic_add_peminatan"
+                                    android:text="Data Peminatan"
                                     android:textSize="14sp"
-                                    android:textStyle="bold">
-                                </TextView>
+                                    android:textStyle="bold"></TextView>
                                 <TextView
                                     android:id="@+id/count_section_8"
                                     android:layout_width="wrap_content"

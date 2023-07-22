@@ -19,6 +19,9 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
         <activity
+            android:name=".activity.PeminatanActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.TambahAK1Activity"
             android:exported="false" />
         <activity
