@@ -42,7 +42,8 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginHorizontal="16dp"
                     app:cardElevation="4dp"
-                    app:cardCornerRadius="10dp">
+                    app:cardCornerRadius="10dp"
+                    android:visibility="gone">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -374,7 +375,8 @@
                         android:layout_height="40dp"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="16dp"
-                        android:background="@drawable/profile_ic_edit"></ImageView>
+                        android:background="@drawable/profile_ic_edit">
+                    </ImageView>
 
                     <TextView
                         android:id="@+id/txt_qr"
@@ -383,10 +385,11 @@
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="16dp"
                         android:layout_toRightOf="@+id/ic_qr"
-                        android:text="Pengaturan"
+                        android:text="Profil Peserta"
                         android:textColor="#CE3032"
                         android:textSize="16sp"
-                        android:textStyle="bold"></TextView>
+                        android:textStyle="bold">
+                    </TextView>
 
                     <ImageView
                         android:id="@id/ic_arrow1"

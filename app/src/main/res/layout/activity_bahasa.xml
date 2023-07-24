@@ -21,7 +21,8 @@
             android:layout_height="24dp"
             android:layout_gravity="center"
             android:layout_marginStart="16dp"
-            android:background="@drawable/bt_back"></ImageView>
+            android:background="@drawable/bt_back">
+        </ImageView>
 
         <TextView
             android:layout_width="wrap_content"
@@ -31,7 +32,9 @@
             android:text="Bahasa yang Dikuasai"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
-            android:textStyle="bold"></TextView>
+            android:textStyle="bold">
+        </TextView>
+
     </LinearLayout>
     <!-- HEADER END -->
 

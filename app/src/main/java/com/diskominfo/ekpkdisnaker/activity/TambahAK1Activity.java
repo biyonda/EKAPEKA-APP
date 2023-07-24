@@ -95,6 +95,14 @@ public class TambahAK1Activity extends AppCompatActivity {
             }
         });
 
+        layout_add_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TambahAK1Activity.this, UbahProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
         layout_add_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,6 +123,38 @@ public class TambahAK1Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(TambahAK1Activity.this, IjazahActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        layout_add_5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TambahAK1Activity.this, KeterampilanActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        layout_add_6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TambahAK1Activity.this, BahasaActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        layout_add_7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TambahAK1Activity.this, PengalamanKerjaActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        layout_add_8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TambahAK1Activity.this, PeminatanActivity.class);
                 startActivity(intent);
             }
         });

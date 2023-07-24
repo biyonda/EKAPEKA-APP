@@ -13,7 +13,7 @@ import com.diskominfo.ekpkdisnaker.R;
 public class SettingActivity extends AppCompatActivity {
 
     ImageView btn_back;
-    RelativeLayout btn_ubah, btn_pas,btn_ktp, btn_ijazah, btn_skill;
+    RelativeLayout btn_ubah, btn_pas,btn_ktp, btn_ijazah, btn_skill, btn_bahasa, btn_pengalaman, btn_peminatan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +26,9 @@ public class SettingActivity extends AppCompatActivity {
         btn_ktp = findViewById(R.id.btn_ktp);
         btn_ijazah = findViewById(R.id.btn_ijazah);
         btn_skill = findViewById(R.id.btn_skill);
+        btn_bahasa = findViewById(R.id.btn_bahasa);
+        btn_pengalaman = findViewById(R.id.btn_pengalaman);
+        btn_peminatan = findViewById(R.id.btn_peminatan);
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +73,30 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(SettingActivity.this, KeterampilanActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_bahasa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingActivity.this, BahasaActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_pengalaman.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingActivity.this, PengalamanKerjaActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_peminatan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SettingActivity.this, PeminatanActivity.class);
                 startActivity(intent);
             }
         });

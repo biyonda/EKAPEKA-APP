@@ -93,70 +93,78 @@ public class KartuAK1Activity extends AppCompatActivity {
         btn_ak1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new SweetAlertDialog(KartuAK1Activity.this, SweetAlertDialog.WARNING_TYPE)
-                        .setTitleText("Perhatian")
-                        .setContentText("Sebelum melanjutkan, mohon lengkapi data diri termasuk foto ktp, pas foto, ijazah, keterampilan (bila ada) di Profil Peserta")
-                        .setConfirmText("Lanjutkan").setCancelButtonBackgroundColor(R.color.tetriary)
-                        .setCancelButtonTextColor(R.color.main_blue_color).setCancelText("Batal")
-                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sDialog) {
-                                getKartuAK1 = api.getKartuAK1();
-                                getKartuAK1.enqueue(new Callback<BaseResponse>() {
-                                    @Override
-                                    public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
-                                        if (response.isSuccessful()) {
-                                            sDialog
-                                                    .setTitleText("Sukses")
-                                                    .setContentText(response.body().getMessage())
-                                                    .setConfirmText("OK")
-                                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                                        @Override
-                                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                                            getDataAK1();
-                                                            sweetAlertDialog.dismiss();
-                                                        }
-                                                    })
-                                                    .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
-                                        } else {
-                                            ApiError apiError = ErrorUtils.parseError(response);
-                                            sDialog
-                                                    .setTitleText("Gagal !!!")
-                                                    .setContentText(apiError.getMessage() + "")
-                                                    .setConfirmText("OK")
-                                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                                        @Override
-                                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                                            getDataAK1();
-                                                            sweetAlertDialog.dismiss();
-                                                        }
-                                                    })
-                                                    .changeAlertType(SweetAlertDialog.ERROR_TYPE);
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onFailure(Call<BaseResponse> call, Throwable t) {
-                                        sDialog
-                                                .setTitleText("Gagal !!")
-                                                .setContentText(t.getMessage())
-                                                .setConfirmText("OK")
-                                                .setConfirmClickListener(null)
-                                                .changeAlertType(SweetAlertDialog.ERROR_TYPE);
-                                    }
-                                });
-
-                            }
-                        })
-                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                            @Override
-                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                sweetAlertDialog.dismissWithAnimation();
-                            }
-                        })
-                        .show();
+                Intent intent = new Intent(KartuAK1Activity.this, TambahAK1Activity.class);
+                startActivity(intent);
             }
         });
+
+//        btn_ak1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                new SweetAlertDialog(KartuAK1Activity.this, SweetAlertDialog.WARNING_TYPE)
+//                        .setTitleText("Perhatian")
+//                        .setContentText("Sebelum melanjutkan, mohon lengkapi data diri termasuk foto ktp, pas foto, ijazah, keterampilan (bila ada) di Profil Peserta")
+//                        .setConfirmText("Lanjutkan").setCancelButtonBackgroundColor(R.color.tetriary)
+//                        .setCancelButtonTextColor(R.color.main_blue_color).setCancelText("Batal")
+//                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+//                            @Override
+//                            public void onClick(SweetAlertDialog sDialog) {
+//                                getKartuAK1 = api.getKartuAK1();
+//                                getKartuAK1.enqueue(new Callback<BaseResponse>() {
+//                                    @Override
+//                                    public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+//                                        if (response.isSuccessful()) {
+//                                            sDialog
+//                                                    .setTitleText("Sukses")
+//                                                    .setContentText(response.body().getMessage())
+//                                                    .setConfirmText("OK")
+//                                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+//                                                        @Override
+//                                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+//                                                            getDataAK1();
+//                                                            sweetAlertDialog.dismiss();
+//                                                        }
+//                                                    })
+//                                                    .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+//                                        } else {
+//                                            ApiError apiError = ErrorUtils.parseError(response);
+//                                            sDialog
+//                                                    .setTitleText("Gagal !!!")
+//                                                    .setContentText(apiError.getMessage() + "")
+//                                                    .setConfirmText("OK")
+//                                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+//                                                        @Override
+//                                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+//                                                            getDataAK1();
+//                                                            sweetAlertDialog.dismiss();
+//                                                        }
+//                                                    })
+//                                                    .changeAlertType(SweetAlertDialog.ERROR_TYPE);
+//                                        }
+//                                    }
+//
+//                                    @Override
+//                                    public void onFailure(Call<BaseResponse> call, Throwable t) {
+//                                        sDialog
+//                                                .setTitleText("Gagal !!")
+//                                                .setContentText(t.getMessage())
+//                                                .setConfirmText("OK")
+//                                                .setConfirmClickListener(null)
+//                                                .changeAlertType(SweetAlertDialog.ERROR_TYPE);
+//                                    }
+//                                });
+//
+//                            }
+//                        })
+//                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+//                            @Override
+//                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+//                                sweetAlertDialog.dismissWithAnimation();
+//                            }
+//                        })
+//                        .show();
+//            }
+//        });
     }
 
     public void getDataAK1() {
