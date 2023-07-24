@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.PengalamanKerjaActivity">
+
+    <!-- HEADER START -->
+    <LinearLayout
+        android:id="@+id/ly_header"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/main_header">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/bt_back"></ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="16dp"
+            android:text="Pengalaman Kerja"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"></TextView>
+    </LinearLayout>
+    <!-- HEADER END -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:textSize="11sp"
+        android:gravity="center"
+        android:text="Tambahkan pengalaman kerja anda dengan klik tombol dibawah ini :">
+    </TextView>
+    <Button
+        android:id="@+id/btn_tambah"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="16dp"
+        android:text="Tambah Pengalaman Kerja"
+        android:textAllCaps="false">
+    </Button>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp">
+        <ListView
+            android:id="@+id/list_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:dividerHeight="5dp"
+            android:divider="#00ffffff"
+            tools:listitem="@layout/adapter_pengalaman">
+        </ListView>
+    </LinearLayout>
+
+</LinearLayout>
