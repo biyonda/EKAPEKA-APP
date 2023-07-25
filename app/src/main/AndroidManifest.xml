@@ -19,14 +19,14 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
         <activity
-            android:name=".BahasaActivity"
+            android:name=".activity.BahasaActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".PengalamanKerjaActivity"
+            android:name=".activity.PengalamanKerjaActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

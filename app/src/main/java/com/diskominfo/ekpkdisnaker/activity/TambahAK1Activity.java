@@ -3,6 +3,7 @@ package com.diskominfo.ekpkdisnaker.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,8 +11,25 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.signature.ObjectKey;
 import com.diskominfo.ekpkdisnaker.R;
+import com.diskominfo.ekpkdisnaker.api.Api;
+import com.diskominfo.ekpkdisnaker.api.RetrofitClient;
+import com.diskominfo.ekpkdisnaker.helpers.ApiError;
+import com.diskominfo.ekpkdisnaker.helpers.ErrorUtils;
+import com.diskominfo.ekpkdisnaker.response.BaseResponse;
+import com.diskominfo.ekpkdisnaker.response.UserResponse;
+import com.diskominfo.ekpkdisnaker.session.Session;
+import com.diskominfo.ekpkdisnaker.table.KelengkapanData;
+import com.diskominfo.ekpkdisnaker.table.SettingUpdate;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TambahAK1Activity extends AppCompatActivity {
 
@@ -27,6 +45,12 @@ public class TambahAK1Activity extends AppCompatActivity {
             title_section_7, subtitle_section_7, count_section_7, prosentase_section_7,
             title_section_8, subtitle_section_8, count_section_8, prosentase_section_8;
     ProgressBar progress_section_1, progress_section_2, progress_section_3, progress_section_4, progress_section_5, progress_section_6, progress_section_7, progress_section_8;
+
+    Session session;
+    Api api;
+    Call<BaseResponse<KelengkapanData>> kelengkapanData;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +111,27 @@ public class TambahAK1Activity extends AppCompatActivity {
         count_section_8 = findViewById(R.id.count_section_8);
         prosentase_section_8 = findViewById(R.id.prosentase_section_8);
         progress_section_8 = findViewById(R.id.progress_section_8);
+
+        session = new Session(this);
+        api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
+
+        kelengkapanData = api.kelengkapanData();
+        kelengkapanData.enqueue(new Callback<BaseResponse<KelengkapanData>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<KelengkapanData>> call, Response<BaseResponse<KelengkapanData>> response) {
+                if (response.isSuccessful()) {
+                    count_section_1.setText(response.body().getData().get(0).getSection1());
+                } else {
+                    ApiError apiError = ErrorUtils.parseError(response);
+                    Toast.makeText(TambahAK1Activity.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<KelengkapanData>> call, Throwable t) {
+                Toast.makeText(TambahAK1Activity.this, "Error, "+t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override

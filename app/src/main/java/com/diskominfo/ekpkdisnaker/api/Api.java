@@ -5,6 +5,7 @@ import com.diskominfo.ekpkdisnaker.response.RegisterResponse;
 import com.diskominfo.ekpkdisnaker.response.UserResponse;
 import com.diskominfo.ekpkdisnaker.table.Desa;
 import com.diskominfo.ekpkdisnaker.table.Kecamatan;
+import com.diskominfo.ekpkdisnaker.table.KelengkapanData;
 import com.diskominfo.ekpkdisnaker.table.Keterampilan;
 import com.diskominfo.ekpkdisnaker.table.Pengumuman;
 import com.diskominfo.ekpkdisnaker.table.PopupProfil;
@@ -167,5 +168,8 @@ public interface Api {
             @Field("tgl_lahir") String tgl_lahir,
             @Field("telepon") String telepon
     );
+
+    @GET("kelengkapanData")
+    Call<BaseResponse<KelengkapanData>> kelengkapanData();
 
 }

@@ -51,7 +51,6 @@ public class BerandaFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_beranda, container, false);
 
         btn_ak1 = view.findViewById(R.id.btn_ak1);
-        btn_setting = view.findViewById(R.id.btn_setting);
         nama_pengguna = view.findViewById(R.id.nama_pengguna);
         foto_ktp = view.findViewById(R.id.foto_ktp);
         pas_foto = view.findViewById(R.id.pas_foto);
@@ -81,14 +80,6 @@ public class BerandaFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent it = new Intent(getContext(), KartuAK1Activity.class);
-                startActivity(it);
-            }
-        });
-
-        btn_setting.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent it = new Intent(getContext(), SettingActivity.class);
                 startActivity(it);
             }
         });
