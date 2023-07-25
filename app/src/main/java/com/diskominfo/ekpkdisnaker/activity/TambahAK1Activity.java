@@ -120,7 +120,21 @@ public class TambahAK1Activity extends AppCompatActivity {
             @Override
             public void onResponse(Call<BaseResponse<KelengkapanData>> call, Response<BaseResponse<KelengkapanData>> response) {
                 if (response.isSuccessful()) {
-                    count_section_1.setText(response.body().getData().get(0).getSection1());
+                    count_section_1.setText(response.body().getData().get(0).getSection1().toString());
+                    prosentase_section_1.setText(response.body().getData().get(0).getProsentaseSection1().toString() + "%");
+                    progress_section_1.setProgress(response.body().getData().get(0).getProsentaseSection1());
+                    count_section_2.setText(response.body().getData().get(0).getSection2().toString());
+                    prosentase_section_2.setText(response.body().getData().get(0).getProsentaseSection2().toString() + "%");
+                    progress_section_2.setProgress(response.body().getData().get(0).getProsentaseSection2());
+                    count_section_3.setText(response.body().getData().get(0).getSection3().toString());
+                    prosentase_section_3.setText(response.body().getData().get(0).getProsentaseSection3().toString() + "%");
+                    progress_section_3.setProgress(response.body().getData().get(0).getProsentaseSection3());
+                    count_section_4.setText(response.body().getData().get(0).getSection4().toString());
+                    prosentase_section_4.setText(response.body().getData().get(0).getProsentaseSection4().toString() + "%");
+                    progress_section_4.setProgress(response.body().getData().get(0).getProsentaseSection4());
+                    count_section_8.setText(response.body().getData().get(0).getSection8().toString());
+                    prosentase_section_8.setText(response.body().getData().get(0).getProsentaseSection8().toString() + "%");
+                    progress_section_8.setProgress(response.body().getData().get(0).getProsentaseSection8());
                 } else {
                     ApiError apiError = ErrorUtils.parseError(response);
                     Toast.makeText(TambahAK1Activity.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
