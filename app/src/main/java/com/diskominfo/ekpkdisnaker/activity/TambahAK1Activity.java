@@ -34,8 +34,8 @@ import retrofit2.Response;
 public class TambahAK1Activity extends AppCompatActivity {
 
     RelativeLayout layout_add_1, layout_add_2, layout_add_3,layout_add_4, layout_add_5, layout_add_6, layout_add_7, layout_add_8;
-    LinearLayout btn_ak1;
     ImageView btn_back;
+    LinearLayout btn_kartu_ak1;
     TextView title_section_1, subtitle_section_1, count_section_1, prosentase_section_1,
             title_section_2, subtitle_section_2, count_section_2, prosentase_section_2,
             title_section_3, subtitle_section_3, count_section_3, prosentase_section_3,
@@ -45,19 +45,20 @@ public class TambahAK1Activity extends AppCompatActivity {
             title_section_7, subtitle_section_7, count_section_7, prosentase_section_7,
             title_section_8, subtitle_section_8, count_section_8, prosentase_section_8;
     ProgressBar progress_section_1, progress_section_2, progress_section_3, progress_section_4, progress_section_5, progress_section_6, progress_section_7, progress_section_8;
+    Integer prosentase_kelengkapan_data = 0;
 
     Session session;
     Api api;
     Call<BaseResponse<KelengkapanData>> kelengkapanData;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tambah_ak1);
 
+
         btn_back = findViewById(R.id.btn_back);
+        btn_kartu_ak1 = findViewById(R.id.btn_kartu_ak1);
 
         layout_add_1 = findViewById(R.id.layout_add_1);
         title_section_1 = findViewById(R.id.title_section_1);
@@ -218,5 +219,34 @@ public class TambahAK1Activity extends AppCompatActivity {
             }
         });
 
+        btn_kartu_ak1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                kelengkapanData = api.kelengkapanData();
+                kelengkapanData.enqueue(new Callback<BaseResponse<KelengkapanData>>() {
+                    @Override
+                    public void onResponse(Call<BaseResponse<KelengkapanData>> call, Response<BaseResponse<KelengkapanData>> response) {
+                        if (response.isSuccessful()) {
+                            if (response.body().getData().get(0).getProsentaseTotal() < 100) {
+                                Toast.makeText(TambahAK1Activity.this, "Data Anda Tidak Lengkap", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(TambahAK1Activity.this, "Lengkap", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            ApiError apiError = ErrorUtils.parseError(response);
+                            Toast.makeText(TambahAK1Activity.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<BaseResponse<KelengkapanData>> call, Throwable t) {
+                        Toast.makeText(TambahAK1Activity.this, "Error, "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+
     }
+
+
 }

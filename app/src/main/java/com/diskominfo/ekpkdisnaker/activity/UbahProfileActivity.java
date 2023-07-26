@@ -48,7 +48,7 @@ public class UbahProfileActivity extends AppCompatActivity {
     AppCompatButton btn_simpan;
     ProgressBar progress_register;
     TextView tgl_lahir;
-    EditText nama_lengkap, tmp_lahir, email, alamat, no_telp, nama_pendidikan, password, jurusan, tahun_lulus;
+    EditText nama_lengkap, tmp_lahir, email, alamat, no_telp, nama_pendidikan, password, jurusan, tahun_lulus, nilai_pendidikan;
 
     final Calendar calendar = Calendar.getInstance();
     int yy = calendar.get(Calendar.YEAR);
@@ -80,6 +80,7 @@ public class UbahProfileActivity extends AppCompatActivity {
         kd_pendidikan = findViewById(R.id.kd_pendidikan);
         jurusan = findViewById(R.id.jurusan);
         tahun_lulus = findViewById(R.id.tahun_lulus);
+        nilai_pendidikan = findViewById(R.id.nilai_pendidikan);
         kecamatan = findViewById(R.id.kecamatan);
         desa = findViewById(R.id.desa);
         agama = findViewById(R.id.agama);
@@ -315,6 +316,7 @@ public class UbahProfileActivity extends AppCompatActivity {
                     nama_pendidikan.setText(response.body().getUser().getNamaPendidikan());
                     jurusan.setText(response.body().getUser().getJurusanPendidikan());
                     tahun_lulus.setText(response.body().getUser().getTahunLulus());
+                    nilai_pendidikan.setText(response.body().getUser().getNilaiPendidikan());
                 } else {
                     ApiError apiError = ErrorUtils.parseError(response);
                     Toast.makeText(UbahProfileActivity.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();

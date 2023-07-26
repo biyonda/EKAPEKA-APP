@@ -552,14 +552,14 @@
                                 android:layout_height="72dp"
                                 android:layout_marginBottom="8dp"
                                 android:background="@drawable/bt_white_round">
+
                                 <ImageView
                                     android:id="@+id/ic_add_peminatan"
                                     android:layout_width="36dp"
                                     android:layout_height="36dp"
-                                    android:background="@drawable/profile_ic_penempatan"
+                                    android:layout_marginStart="8dp"
                                     android:layout_marginTop="8dp"
-                                    android:layout_marginStart="8dp">
-                                </ImageView>
+                                    android:background="@drawable/profile_ic_penempatan"></ImageView>
 
                                 <TextView
                                     android:id="@+id/title_section_8"
@@ -571,27 +571,28 @@
                                     android:text="Data Peminatan"
                                     android:textSize="14sp"
                                     android:textStyle="bold"></TextView>
+
                                 <TextView
                                     android:id="@+id/count_section_8"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_below="@+id/title_section_8"
-                                    android:layout_toRightOf="@id/ic_add_peminatan"
                                     android:layout_marginLeft="6dp"
                                     android:layout_marginTop="2dp"
+                                    android:layout_toRightOf="@id/ic_add_peminatan"
                                     android:text="0"
-                                    android:textSize="10sp">
-                                </TextView>
+                                    android:textSize="10sp"></TextView>
+
                                 <TextView
                                     android:id="@+id/subtitle_section_8"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_below="@+id/title_section_8"
-                                    android:layout_toRightOf="@id/count_section_8"
                                     android:layout_marginTop="2dp"
+                                    android:layout_toRightOf="@id/count_section_8"
                                     android:text=" / 4 data yang terlengkapi"
-                                    android:textSize="10sp">
-                                </TextView>
+                                    android:textSize="10sp"></TextView>
+
                                 <TextView
                                     android:id="@+id/prosentase_section_8"
                                     android:layout_width="wrap_content"
@@ -602,19 +603,18 @@
                                     android:layout_marginRight="16dp"
                                     android:text="0%"
                                     android:textSize="12sp"
-                                    android:textStyle="bold">
-                                </TextView>
+                                    android:textStyle="bold"></TextView>
+
                                 <ProgressBar
                                     android:id="@+id/progress_section_8"
                                     style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                                     android:layout_width="match_parent"
                                     android:layout_height="14dp"
-                                    android:layout_marginTop="4dp"
-                                    android:layout_marginHorizontal="8dp"
                                     android:layout_below="@id/ic_add_peminatan"
-                                    android:progress="50"
-                                    android:max="100">
-                                </ProgressBar>
+                                    android:layout_marginHorizontal="8dp"
+                                    android:layout_marginTop="4dp"
+                                    android:max="100"
+                                    android:progress="50"></ProgressBar>
                             </RelativeLayout>
 
 
@@ -633,9 +633,8 @@
             android:layout_alignParentBottom="true"
             android:layout_marginVertical="15dp"
             android:gravity="center">
-
             <LinearLayout
-                android:id="@+id/btn_ak1"
+                android:id="@+id/btn_kartu_ak1"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:layout_marginHorizontal="16dp"

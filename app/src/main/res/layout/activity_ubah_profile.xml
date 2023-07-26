@@ -369,6 +369,27 @@
                 android:inputType="number"
                 android:imeOptions="actionNext">
             </EditText>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:text="NEM / IPK Terakhir"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:textStyle="bold">
+            </TextView>
+            <EditText
+                android:id="@+id/nilai_pendidikan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:hint="Nilai terakhir sesuai jenjang pendidikan"
+                android:textSize="16sp"
+                android:maxLength="30"
+                android:digits="0123456789.,"
+                android:imeOptions="actionNext">
+            </EditText>
             <!--Kata Sandi-->
             <TextView
                 android:layout_width="wrap_content"
