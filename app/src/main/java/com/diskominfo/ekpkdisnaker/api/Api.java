@@ -7,6 +7,7 @@ import com.diskominfo.ekpkdisnaker.table.Desa;
 import com.diskominfo.ekpkdisnaker.table.Kecamatan;
 import com.diskominfo.ekpkdisnaker.table.KelengkapanData;
 import com.diskominfo.ekpkdisnaker.table.Keterampilan;
+import com.diskominfo.ekpkdisnaker.table.Pengalaman;
 import com.diskominfo.ekpkdisnaker.table.Pengumuman;
 import com.diskominfo.ekpkdisnaker.table.PopupProfil;
 import com.diskominfo.ekpkdisnaker.table.SettingUpdate;
@@ -107,6 +108,24 @@ public interface Api {
     @FormUrlEncoded
     @POST("hapusKeterampilan")
     Call<BaseResponse> hapusKeterampilan(
+            @Field("id") String id
+    );
+
+    @GET("getPengalaman")
+    Call<BaseResponse<Pengalaman>> getPengalaman();
+
+    @FormUrlEncoded
+    @POST("tambahPengalaman")
+    Call<BaseResponse> tambahPengalaman(
+            @Field("jabatan") String jabatan,
+            @Field("lama_kerja") String lama_kerja,
+            @Field("pemberi_kerja") String pemberi_kerja,
+            @Field("uraian_tugas") String uraian_tugas
+            );
+
+    @FormUrlEncoded
+    @POST("hapusPengalaman")
+    Call<BaseResponse> hapusPengalaman(
             @Field("id") String id
     );
 

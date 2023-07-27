@@ -21,27 +21,27 @@ public class AdapterPengalaman extends ArrayAdapter<String> {
 
     private Activity context;
     private Context mContext;
-    private ArrayList<String> tempat_kerja = new ArrayList<>();
-    private ArrayList<String> posisi = new ArrayList<>();
-    private ArrayList<String> durasi = new ArrayList<>();
-    private ArrayList<String> uraian = new ArrayList<>();
+    private ArrayList<String> jabatan = new ArrayList<>();
+    private ArrayList<String> lama_kerja = new ArrayList<>();
+    private ArrayList<String> pemberi_kerja = new ArrayList<>();
+    private ArrayList<String> uraian_tugas = new ArrayList<>();
     private AdapterAK1.OnEditLocationListener hapus;
 
     public AdapterPengalaman(Activity context,
-                             ArrayList<String> tempat_kerja,
-                             ArrayList<String> posisi,
-                             ArrayList<String> durasi,
-                             ArrayList<String> uraian,
+                             ArrayList<String> jabatan,
+                             ArrayList<String> lama_kerja,
+                             ArrayList<String> pemberi_kerja,
+                             ArrayList<String> uraian_tugas,
                              AdapterAK1.OnEditLocationListener hapus) {
 
-        super(context, R.layout.adapter_pengalaman, uraian);
+        super(context, R.layout.adapter_pengalaman, jabatan);
 
         this.context = context;
         this.mContext = context;
-        this.tempat_kerja = tempat_kerja;
-        this.posisi = posisi;
-        this.durasi = durasi;
-        this.uraian = uraian;
+        this.jabatan = jabatan;
+        this.lama_kerja = lama_kerja;
+        this.pemberi_kerja = pemberi_kerja;
+        this.uraian_tugas = uraian_tugas;
         this.hapus = hapus;
     }
 
@@ -59,10 +59,10 @@ public class AdapterPengalaman extends ArrayAdapter<String> {
             viewHolder = (ViewHolder) v.getTag();
         }
 
-        viewHolder.tempat_kerja.setText(tempat_kerja.get(position));
-        viewHolder.posisi.setText(posisi.get(position));
-        viewHolder.durasi.setText(durasi.get(position));
-        viewHolder.uraian.setText(uraian.get(position));
+        viewHolder.jabatan.setText(jabatan.get(position));
+        viewHolder.lama_kerja.setText(lama_kerja.get(position));
+        viewHolder.pemberi_kerja.setText(pemberi_kerja.get(position));
+        viewHolder.uraian_tugas.setText(uraian_tugas.get(position));
 
         viewHolder.btn_hapus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,12 +77,12 @@ public class AdapterPengalaman extends ArrayAdapter<String> {
     }
 
     class ViewHolder{
-        TextView tempat_kerja, posisi, durasi, uraian, btn_hapus;
+        TextView jabatan, lama_kerja, pemberi_kerja, uraian_tugas, btn_hapus;
         ViewHolder(View view){
-            tempat_kerja = view.findViewById(R.id.tempat_kerja);
-            posisi = view.findViewById(R.id.posisi);
-            durasi = view.findViewById(R.id.durasi);
-            uraian = view.findViewById(R.id.uraian);
+            jabatan = view.findViewById(R.id.jabatan);
+            lama_kerja = view.findViewById(R.id.lama_kerja);
+            pemberi_kerja = view.findViewById(R.id.pemberi_kerja);
+            uraian_tugas = view.findViewById(R.id.uraian_tugas);
             btn_hapus = view.findViewById(R.id.btn_hapus);
         }
     }

@@ -24,7 +24,7 @@
                 android:textSize="11sp">
             </TextView>
             <TextView
-                android:id="@+id/tempat_kerja"
+                android:id="@+id/pemberi_kerja"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="PT. ABC"
@@ -39,7 +39,7 @@
                 android:textSize="11sp">
             </TextView>
             <TextView
-                android:id="@+id/posisi"
+                android:id="@+id/jabatan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Programmer"
@@ -54,7 +54,7 @@
                 android:textSize="11sp">
             </TextView>
             <TextView
-                android:id="@+id/durasi"
+                android:id="@+id/lama_kerja"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="9 Bulan"
@@ -69,7 +69,7 @@
                 android:textSize="11sp">
             </TextView>
             <TextView
-                android:id="@+id/uraian"
+                android:id="@+id/uraian_tugas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Ini itu"

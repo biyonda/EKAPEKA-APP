@@ -3,41 +3,67 @@ package com.diskominfo.ekpkdisnaker.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.diskominfo.ekpkdisnaker.R;
+import com.diskominfo.ekpkdisnaker.api.Api;
+import com.diskominfo.ekpkdisnaker.api.RetrofitClient;
+import com.diskominfo.ekpkdisnaker.helpers.ApiError;
+import com.diskominfo.ekpkdisnaker.helpers.ErrorUtils;
+import com.diskominfo.ekpkdisnaker.response.UserResponse;
+import com.diskominfo.ekpkdisnaker.session.Session;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BahasaActivity extends AppCompatActivity {
 
     ImageView btn_back;
     LinearLayout btn_simpan;
-    Switch bhs_inggris,bhs_mandarin,bhs_jepang,bhs_korea,bhs_jerman,bhs_rusia,bhs_italia,bhs_hindi,bhs_lainnya;
-    String list_bahasa_pencaker;
-    Integer sts_inggris = 0, sts_mandarin = 0, sts_jepang = 0, sts_korea = 0, sts_jerman = 0, sts_rusia = 0, sts_italia = 0, sts_hindi = 0, sts_lainnya = 0;
-    String txt_inggris = "", txt_mandarin = "", txt_jepang = "", txt_korea = "", txt_jerman = "", txt_rusia = "", txt_italia = "", txt_hindi = "", txt_lainnya = "";
+    CheckBox cb_inggris,cb_mandarin,cb_jepang,cb_korea,cb_jerman,cb_rusia,cb_italia,cb_hindi,cb_lainnya;
+    StringBuilder selectedBahasa;
+    TextView list_bahasa;
 
+    Session session;
+    Api api;
+    Call<UserResponse> getUser;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bahasa);
 
+        session = new Session(this);
+        api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
+
+        selectedBahasa = new StringBuilder();
+
         btn_back = findViewById(R.id.btn_back);
-        bhs_inggris = findViewById(R.id.bhs_inggris);
-        bhs_mandarin = findViewById(R.id.bhs_mandarin);
-        bhs_jepang = findViewById(R.id.bhs_jepang);
-        bhs_korea = findViewById(R.id.bhs_korea);
-        bhs_jerman = findViewById(R.id.bhs_jerman);
-        bhs_rusia = findViewById(R.id.bhs_rusia);
-        bhs_italia = findViewById(R.id.bhs_italia);
-        bhs_hindi = findViewById(R.id.bhs_hindi);
-        bhs_lainnya = findViewById(R.id.bhs_lainnya);
+        cb_inggris = findViewById(R.id.cb_inggris);
+        cb_mandarin = findViewById(R.id.cb_mandarin);
+        cb_jepang = findViewById(R.id.cb_jepang);
+        cb_korea = findViewById(R.id.cb_korea);
+        cb_jerman = findViewById(R.id.cb_jerman);
+        cb_rusia = findViewById(R.id.cb_rusia);
+        cb_italia = findViewById(R.id.cb_italia);
+        cb_hindi = findViewById(R.id.cb_hindi);
+        cb_lainnya = findViewById(R.id.cb_lainnya);
+        list_bahasa = findViewById(R.id.list_bahasa);
         btn_simpan = findViewById(R.id.btn_simpan);
+
+        getUser();
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,158 +72,67 @@ public class BahasaActivity extends AppCompatActivity {
             }
         });
 
-        bhs_inggris.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    sts_inggris = 1;
-                } else {
-                    sts_inggris = 0;
-                }
-            }
-        });
-
-        bhs_mandarin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    sts_mandarin = 1;
-                } else {
-                    sts_mandarin = 0;
-                }
-            }
-        });
-
-        bhs_jepang.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    sts_jepang = 1;
-                } else {
-                    sts_jepang = 0;
-                }
-            }
-        });
-
-        bhs_korea.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    sts_korea = 1;
-                } else {
-                    sts_korea = 0;
-                }
-            }
-        });
-
-        bhs_jerman.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    sts_jerman = 1;
-                } else {
-                    sts_jerman = 0;
-                }
-            }
-        });
-
-        bhs_rusia.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    sts_rusia = 1;
-                } else {
-                    sts_rusia = 0;
-                }
-            }
-        });
-
-        bhs_italia.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    sts_italia = 1;
-                } else {
-                    sts_italia = 0;
-                }
-            }
-        });
-
-        bhs_hindi.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    sts_hindi = 1;
-                } else {
-                    sts_hindi = 0;
-                }
-            }
-        });
-
-        bhs_lainnya.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    sts_lainnya = 1;
-                } else {
-                    sts_lainnya = 0;
-                }
-            }
-        });
-
-        if (sts_inggris == 0) {
-            txt_inggris = "Bahasa Inggris, ";
-        } else {
-            txt_inggris = "";
-        }
-
-        if (sts_mandarin == 0) {
-            txt_mandarin = "Bahasa Mandarin, ";
-        } else {
-            txt_mandarin = "";
-        }
-
-        if (sts_jepang == 0) {
-            txt_jepang = "Bahasa Jepang, ";
-        } else {
-            txt_jepang = "";
-        }
-
-        if (sts_korea == 0) {
-            txt_korea = "Bahasa Korea, ";
-        } else {
-            txt_korea = "";
-        }
-
-        if (sts_jerman == 0) {
-            txt_jerman = "Bahasa Jerman, ";
-        } else {
-            txt_jerman = "";
-        }
-
-        if (sts_rusia == 0) {
-            txt_rusia = "Bahasa Rusia, ";
-        } else {
-            txt_rusia = "";
-        }
-
-        if (sts_italia == 0) {
-            txt_italia = "Bahasa Italia, ";
-        } else {
-            txt_italia = "";
-        }
-
-        if (sts_hindi == 0) {
-            txt_hindi = "Bahasa Hindi, ";
-        } else {
-            txt_hindi = "";
-        }
-
-        if (sts_lainnya == 0) {
-            txt_lainnya = "Lainnya, ";
-        } else {
-            txt_lainnya = "";
-        }
-
-        list_bahasa_pencaker = "Bahasa Indonesia, " + txt_inggris + txt_mandarin + txt_jepang + txt_korea + txt_jerman + txt_rusia + txt_italia + txt_hindi + txt_lainnya;
-
         btn_simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println(list_bahasa_pencaker);
+                selectedBahasa.setLength(0);
+                if (cb_inggris.isChecked()) {
+                    selectedBahasa.append("Bahasa Inggris, ");
+                }
+                if (cb_mandarin.isChecked()) {
+                    selectedBahasa.append("Bahasa Mandarin, ");
+                }
+                if (cb_jepang.isChecked()) {
+                    selectedBahasa.append("Bahasa Jepang, ");
+                }
+                if (cb_korea.isChecked()) {
+                    selectedBahasa.append("Bahasa Korea, ");
+                }
+                if (cb_jerman.isChecked()) {
+                    selectedBahasa.append("Bahasa Jerman, ");
+                }
+                if (cb_rusia.isChecked()) {
+                    selectedBahasa.append("Bahasa Rusia, ");
+                }
+                if (cb_italia.isChecked()) {
+                    selectedBahasa.append("Bahasa Italia, ");
+                }
+                if (cb_hindi.isChecked()) {
+                    selectedBahasa.append("Bahasa Hindi, ");
+                }
+                if (cb_lainnya.isChecked()) {
+                    selectedBahasa.append("Lainnya, ");
+                }
+                String selectedBahasaString = selectedBahasa.toString().trim();
+                if (!selectedBahasaString.isEmpty()) {
+                    selectedBahasaString = selectedBahasa.substring(0, selectedBahasa.length() - 1);
+                    String resultString = "Bahasa Indonesia, " + selectedBahasa;
+                    Toast.makeText(BahasaActivity.this, resultString, Toast.LENGTH_SHORT).show();
+                } else  {
+                    String resultString = "Bahasa Indonesia";
+                    Toast.makeText(BahasaActivity.this, resultString, Toast.LENGTH_SHORT).show();
+                }
             }
         });
+    }
 
+    public void getUser() {
+        getUser = api.getUser();
+        getUser.enqueue(new Callback<UserResponse>() {
+            @Override
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+                if (response.isSuccessful()) {
+                    list_bahasa.setText(response.body().getUser().getBahasaDikuasai());
+                } else {
+                    ApiError apiError = ErrorUtils.parseError(response);
+                    Toast.makeText(BahasaActivity.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                Toast.makeText(BahasaActivity.this, "Error, " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

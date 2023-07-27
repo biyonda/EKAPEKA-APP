@@ -57,7 +57,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Tambahkan bahasa yang dikuasai selain bahasa Indonesia bila ada :"
-                android:textSize="11sp">
+                android:textSize="14sp"
+                android:paddingHorizontal="16dp">
             </TextView>
 
             <ScrollView
@@ -69,69 +70,114 @@
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:layout_marginHorizontal="16dp">
-                    <Switch
-                        android:id="@+id/bhs_inggris"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="Bahasa Inggris">
-                    </Switch>
-                    <Switch
-                        android:id="@+id/bhs_mandarin"
+                        android:weightSum="3">
+                        <CheckBox
+                            android:id="@+id/cb_inggris"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Bahasa Inggris">
+                        </CheckBox>
+                        <CheckBox
+                            android:id="@+id/cb_mandarin"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Bahasa Mandarin">
+                        </CheckBox>
+                        <CheckBox
+                            android:id="@+id/cb_jepang"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Bahasa Jepang">
+                        </CheckBox>
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="Bahasa Mandarin">
-                    </Switch>
-                    <Switch
-                        android:id="@+id/bhs_jepang"
+                        android:weightSum="3">
+                        <CheckBox
+                            android:id="@+id/cb_korea"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Bahasa Korea">
+                        </CheckBox>
+                        <CheckBox
+                            android:id="@+id/cb_jerman"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Bahasa Jerman">
+                        </CheckBox>
+                        <CheckBox
+                            android:id="@+id/cb_rusia"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Bahasa Rusia">
+                        </CheckBox>
+                    </LinearLayout>
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="Bahasa Jepang">
-                    </Switch>
-                    <Switch
-                        android:id="@+id/bhs_korea"
+                        android:weightSum="3">
+                        <CheckBox
+                            android:id="@+id/cb_italia"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Bahasa Italia">
+                        </CheckBox>
+                        <CheckBox
+                            android:id="@+id/cb_hindi"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Bahasa Hindi">
+                        </CheckBox>
+                        <CheckBox
+                            android:id="@+id/cb_lainnya"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Lainnya">
+                        </CheckBox>
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="Bahasa Korea">
-                    </Switch>
-                    <Switch
-                        android:id="@+id/bhs_jerman"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="Bahasa Jerman">
-                    </Switch>
-                    <Switch
-                        android:id="@+id/bhs_rusia"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="Bahasa Rusia">
-                    </Switch>
-                    <Switch
-                        android:id="@+id/bhs_italia"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="Bahasa Italia">
-                    </Switch>
-                    <Switch
-                        android:id="@+id/bhs_hindi"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="Bahasa Hindi">
-                    </Switch>
-                    <Switch
-                        android:id="@+id/bhs_lainnya"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
-                        android:text="Lainnya">
-                    </Switch>
+                        android:orientation="vertical"
+                        android:layout_marginTop="16dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="11sp"
+                            android:text="Bahasa yang telah dikuasai oleh Pencaker : ">
+                        </TextView>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/bt_white_round">
+                            <TextView
+                                android:id="@+id/list_bahasa"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Bahasa Indonesia, "
+                                android:layout_margin="8dp"
+                                android:textStyle="italic"
+                                android:textSize="14sp"
+                                android:textColor="#000">
+                            </TextView>
+                        </LinearLayout>
+                    </LinearLayout>
+
                 </LinearLayout>
             </ScrollView>
 
