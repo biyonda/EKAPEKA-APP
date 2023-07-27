@@ -16,13 +16,22 @@ public class Pengalaman {
     private String jabatan;
     @SerializedName("lama_kerja")
     @Expose
-    private String lama_kerja;
+    private String lamaKerja;
     @SerializedName("pemberi_kerja")
     @Expose
-    private String pemberi_kerja;
+    private String pemberiKerja;
     @SerializedName("uraian_tugas")
     @Expose
-    private String uraian_tugas;
+    private String uraianTugas;
+    @SerializedName("catatan")
+    @Expose
+    private Object catatan;
+    @SerializedName("created_at")
+    @Expose
+    private String createdAt;
+    @SerializedName("updated_at")
+    @Expose
+    private String updatedAt;
 
     public Integer getId() {
         return id;
@@ -49,27 +58,51 @@ public class Pengalaman {
     }
 
     public String getLamaKerja() {
-        return lama_kerja;
+        return lamaKerja;
     }
 
-    public void setLamaKerja(String lama_kerja) {
-        this.lama_kerja = lama_kerja;
+    public void setLamaKerja(String lamaKerja) {
+        this.lamaKerja = lamaKerja;
     }
 
     public String getPemberiKerja() {
-        return pemberi_kerja;
+        return pemberiKerja;
     }
 
-    public void setPemberiKerja(String pemberi_kerja) {
-        this.pemberi_kerja = pemberi_kerja;
+    public void setPemberiKerja(String pemberiKerja) {
+        this.pemberiKerja = pemberiKerja;
     }
 
     public String getUraianTugas() {
-        return uraian_tugas;
+        return uraianTugas;
     }
 
-    public void setUraianTugas(String uraian_tugas) {
-        this.uraian_tugas = uraian_tugas;
+    public void setUraianTugas(String uraianTugas) {
+        this.uraianTugas = uraianTugas;
+    }
+
+    public Object getCatatan() {
+        return catatan;
+    }
+
+    public void setCatatan(Object catatan) {
+        this.catatan = catatan;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
 }
