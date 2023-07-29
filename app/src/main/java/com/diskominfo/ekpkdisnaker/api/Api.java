@@ -130,6 +130,23 @@ public interface Api {
     );
 
     @FormUrlEncoded
+    @POST("ubahBahasa")
+    Call<BaseResponse> ubahBahasa(
+            @Field("bahasa_dikuasai") String bahasa_dikuasai
+    );
+
+    @FormUrlEncoded
+    @POST("ubahPeminatan")
+    Call<BaseResponse> ubahPeminatan(
+            @Field("id") String id,
+            @Field("jabatan_diinginkan") String jabatan_diinginkan,
+            @Field("lokasi_penempatan") String lokasi_penempatan,
+            @Field("lokasi_diinginkan") String lokasi_diinginkan,
+            @Field("upah_diinginkan") String upah_diinginkan,
+            @Field("pelatihan_diinginkan") String pelatihan_diinginkan
+    );
+
+    @FormUrlEncoded
     @POST("ubahProfile")
     Call<BaseResponse> ubahProfile(
             @Field("nama_lengkap") String nama_lengkap,

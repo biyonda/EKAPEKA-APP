@@ -19,6 +19,9 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
         <activity
+            android:name=".activity.TambahPengalamanActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.BahasaActivity"
             android:exported="false">
             <meta-data

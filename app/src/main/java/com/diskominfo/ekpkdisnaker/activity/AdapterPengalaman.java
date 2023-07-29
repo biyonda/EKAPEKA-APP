@@ -25,14 +25,14 @@ public class AdapterPengalaman extends ArrayAdapter<String> {
     private ArrayList<String> lama_kerja = new ArrayList<>();
     private ArrayList<String> pemberi_kerja = new ArrayList<>();
     private ArrayList<String> uraian_tugas = new ArrayList<>();
-    private AdapterAK1.OnEditLocationListener hapus;
+    private AdapterPengalaman.OnEditLocationListener hapus;
 
     public AdapterPengalaman(Activity context,
                              ArrayList<String> jabatan,
                              ArrayList<String> lama_kerja,
                              ArrayList<String> pemberi_kerja,
                              ArrayList<String> uraian_tugas,
-                             AdapterAK1.OnEditLocationListener hapus) {
+                             AdapterPengalaman.OnEditLocationListener hapus) {
 
         super(context, R.layout.adapter_pengalaman, jabatan);
 

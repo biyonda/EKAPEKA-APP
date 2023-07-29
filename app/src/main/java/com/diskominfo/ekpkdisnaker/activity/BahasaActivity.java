@@ -20,6 +20,7 @@ import com.diskominfo.ekpkdisnaker.api.Api;
 import com.diskominfo.ekpkdisnaker.api.RetrofitClient;
 import com.diskominfo.ekpkdisnaker.helpers.ApiError;
 import com.diskominfo.ekpkdisnaker.helpers.ErrorUtils;
+import com.diskominfo.ekpkdisnaker.response.BaseResponse;
 import com.diskominfo.ekpkdisnaker.response.UserResponse;
 import com.diskominfo.ekpkdisnaker.session.Session;
 
@@ -38,7 +39,7 @@ public class BahasaActivity extends AppCompatActivity {
     Session session;
     Api api;
     Call<UserResponse> getUser;
-
+    Call<BaseResponse> ubahBahasa;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,43 +76,65 @@ public class BahasaActivity extends AppCompatActivity {
         btn_simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 selectedBahasa.setLength(0);
+
                 if (cb_inggris.isChecked()) {
-                    selectedBahasa.append("Bahasa Inggris, ");
+                    selectedBahasa.append("Bahasa Inggris,");
                 }
                 if (cb_mandarin.isChecked()) {
-                    selectedBahasa.append("Bahasa Mandarin, ");
+                    selectedBahasa.append("Bahasa Mandarin,");
                 }
                 if (cb_jepang.isChecked()) {
-                    selectedBahasa.append("Bahasa Jepang, ");
+                    selectedBahasa.append("Bahasa Jepang,");
                 }
                 if (cb_korea.isChecked()) {
-                    selectedBahasa.append("Bahasa Korea, ");
+                    selectedBahasa.append("Bahasa Korea,");
                 }
                 if (cb_jerman.isChecked()) {
-                    selectedBahasa.append("Bahasa Jerman, ");
+                    selectedBahasa.append("Bahasa Jerman,");
                 }
                 if (cb_rusia.isChecked()) {
-                    selectedBahasa.append("Bahasa Rusia, ");
+                    selectedBahasa.append("Bahasa Rusia,");
                 }
                 if (cb_italia.isChecked()) {
-                    selectedBahasa.append("Bahasa Italia, ");
+                    selectedBahasa.append("Bahasa Italia,");
                 }
                 if (cb_hindi.isChecked()) {
-                    selectedBahasa.append("Bahasa Hindi, ");
+                    selectedBahasa.append("Bahasa Hindi,");
                 }
                 if (cb_lainnya.isChecked()) {
-                    selectedBahasa.append("Lainnya, ");
+                    selectedBahasa.append("Lainnya,");
                 }
+
                 String selectedBahasaString = selectedBahasa.toString().trim();
+                String resultString = "";
                 if (!selectedBahasaString.isEmpty()) {
                     selectedBahasaString = selectedBahasa.substring(0, selectedBahasa.length() - 1);
-                    String resultString = "Bahasa Indonesia, " + selectedBahasa;
-                    Toast.makeText(BahasaActivity.this, resultString, Toast.LENGTH_SHORT).show();
+                    resultString = selectedBahasaString;
                 } else  {
-                    String resultString = "Bahasa Indonesia";
-                    Toast.makeText(BahasaActivity.this, resultString, Toast.LENGTH_SHORT).show();
+                    resultString = "";
                 }
+
+                ubahBahasa = api.ubahBahasa(resultString);
+                ubahBahasa.enqueue(new Callback<BaseResponse>() {
+                    @Override
+                    public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                        if (response.isSuccessful()) {
+                            Toast.makeText(BahasaActivity.this, "Data bahasa berhasil diperbaharui", Toast.LENGTH_SHORT).show();
+                            finish();
+                        } else {
+                            ApiError apiError = ErrorUtils.parseError(response);
+                            Toast.makeText(BahasaActivity.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<BaseResponse> call, Throwable t) {
+                        Toast.makeText(BahasaActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
             }
         });
     }
@@ -123,6 +146,34 @@ public class BahasaActivity extends AppCompatActivity {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
                     list_bahasa.setText(response.body().getUser().getBahasaDikuasai());
+                    if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Inggris")) {
+                        cb_inggris.setChecked(true);
+                    }
+                    if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Mandarin")) {
+                        cb_mandarin.setChecked(true);
+                    }
+                    if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Jepang")) {
+                        cb_jepang.setChecked(true);
+                    }
+                    if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Korea")) {
+                        cb_korea.setChecked(true);
+                    }
+                    if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Jerman")) {
+                        cb_jerman.setChecked(true);
+                    }
+                    if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Italia")) {
+                        cb_italia.setChecked(true);
+                    }
+                    if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Rusia")) {
+                        cb_rusia.setChecked(true);
+                    }
+                    if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Hindi")) {
+                        cb_hindi.setChecked(true);
+                    }
+                    if (response.body().getUser().getBahasaDikuasai().contains("Lainnya")) {
+                        cb_lainnya.setChecked(true);
+                    }
+
                 } else {
                     ApiError apiError = ErrorUtils.parseError(response);
                     Toast.makeText(BahasaActivity.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();

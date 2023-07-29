@@ -65,6 +65,16 @@ public class PengalamanKerjaActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        btn_tambah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PengalamanKerjaActivity.this, TambahPengalamanActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        getData();
     }
 
     public void getData(){
@@ -83,11 +93,11 @@ public class PengalamanKerjaActivity extends AppCompatActivity {
                         id.add(response.body().getData().get(i).getId().toString());
                         jabatan.add(response.body().getData().get(i).getJabatan());
                         lama_kerja.add(response.body().getData().get(i).getLamaKerja());
-                        pemberi_kerja.add(response.body().getData().get(i).getLamaKerja());
-                        uraian_tugas.add(response.body().getData().get(i).getLamaKerja());
+                        pemberi_kerja.add(response.body().getData().get(i).getPemberiKerja());
+                        uraian_tugas.add(response.body().getData().get(i).getUraianTugas());
                     }
 
-                    adapterPengalaman = new AdapterPengalaman(PengalamanKerjaActivity.this, jabatan, lama_kerja, pemberi_kerja, uraian_tugas, new AdapterAK1.OnEditLocationListener() {
+                    adapterPengalaman = new AdapterPengalaman(PengalamanKerjaActivity.this, jabatan, lama_kerja, pemberi_kerja, uraian_tugas, new AdapterPengalaman.OnEditLocationListener() {
                         @Override
                         public void onClickAdapter(int position) {
                             hapusPengalaman = api.hapusPengalaman(id.get(position));
@@ -110,11 +120,12 @@ public class PengalamanKerjaActivity extends AppCompatActivity {
 
                                 @Override
                                 public void onFailure(Call<BaseResponse> call, Throwable t) {
-                                    Toast.makeText(PengalamanKerjaActivity.this, "Error, " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(PengalamanKerjaActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             });
                         }
                     });
+
                     adapterPengalaman.notifyDataSetChanged();
                     list_data.setAdapter(adapterPengalaman);
                 } else {
