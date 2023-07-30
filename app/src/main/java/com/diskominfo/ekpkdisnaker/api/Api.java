@@ -138,7 +138,6 @@ public interface Api {
     @FormUrlEncoded
     @POST("ubahPeminatan")
     Call<BaseResponse> ubahPeminatan(
-            @Field("id") String id,
             @Field("jabatan_diinginkan") String jabatan_diinginkan,
             @Field("lokasi_penempatan") String lokasi_penempatan,
             @Field("lokasi_diinginkan") String lokasi_diinginkan,

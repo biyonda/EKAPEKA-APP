@@ -18,6 +18,7 @@ import com.diskominfo.ekpkdisnaker.api.Api;
 import com.diskominfo.ekpkdisnaker.api.RetrofitClient;
 import com.diskominfo.ekpkdisnaker.helpers.ApiError;
 import com.diskominfo.ekpkdisnaker.helpers.ErrorUtils;
+import com.diskominfo.ekpkdisnaker.response.BaseResponse;
 import com.diskominfo.ekpkdisnaker.response.UserResponse;
 import com.diskominfo.ekpkdisnaker.session.Session;
 
@@ -36,6 +37,7 @@ public class PeminatanActivity extends AppCompatActivity {
     Session session;
     Api api;
     Call<UserResponse> getUser;
+    Call<BaseResponse> ubahPeminatan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,35 @@ public class PeminatanActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        btn_simpan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ubahPeminatan = api.ubahPeminatan(
+                        jabatan.getText().toString(),
+                        lokasi_penempatan.getSelectedItem().toString(),
+                        lokasi_kerja.getText().toString(),
+                        gaji.getSelectedItem().toString(),
+                        pelatihan.getText().toString());
+                ubahPeminatan.enqueue(new Callback<BaseResponse>() {
+                    @Override
+                    public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                        if (response.isSuccessful()) {
+                            Toast.makeText(PeminatanActivity.this, "Data Peminatan Berhasil Diubah", Toast.LENGTH_SHORT).show();
+                            finish();
+                        } else {
+                            ApiError apiError = ErrorUtils.parseError(response);
+                            Toast.makeText(PeminatanActivity.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<BaseResponse> call, Throwable t) {
+                        Toast.makeText(PeminatanActivity.this, "Error, " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
 

@@ -39,7 +39,7 @@
     </string-array>
 
     <string-array name="gaji_array">
-        <item>Kurang/sama dengan Rp. 1.000.000 </item>
+        <item>Kurang/sama dengan Rp. 1.000.000</item>
         <item>Antara Rp. 1.000.000 hingga Rp. 2.500.000</item>
         <item>Antara Rp. 2.500.000 hingga Rp. 5.000.000</item>
         <item>Diatas Rp. 5.000.000</item>

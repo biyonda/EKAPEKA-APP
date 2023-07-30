@@ -157,7 +157,7 @@ public class BerandaFragment extends Fragment {
 
     public void popUpUpdate() {
         final Dialog dialog = new Dialog(getContext());
-        dialog.setTitle("Gambar Barang");
+        dialog.setTitle("Gambar Update");
         View v = getLayoutInflater().inflate(R.layout.popup_update, null);
         dialog.setContentView(v);
         Button update = v.findViewById(R.id.update);
