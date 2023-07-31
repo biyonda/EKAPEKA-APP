@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.diskominfo.ekpkdisnaker.BuildConfig;
 import com.diskominfo.ekpkdisnaker.R;
 import com.diskominfo.ekpkdisnaker.api.Api;
 import com.diskominfo.ekpkdisnaker.api.RetrofitClient;
@@ -44,6 +45,8 @@ public class BerandaFragment extends Fragment {
     Call<UserResponse> getUser;
     Call<BaseResponse> getStatusAK1;
     Call<BaseResponse<SettingUpdate>> getSettingUpdate;
+
+    int versionCode = BuildConfig.VERSION_CODE;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -179,7 +182,7 @@ public class BerandaFragment extends Fragment {
             @Override
             public void onResponse(Call<BaseResponse<SettingUpdate>> call, Response<BaseResponse<SettingUpdate>> response) {
                 if (response.isSuccessful()) {
-                    if (response.body().getData().get(0).getValue().equals(1)) {
+                    if (response.body().getData().get(0).getValue().equals(versionCode) == false) {
                         final Dialog dialog = new Dialog(getContext());
                         dialog.setTitle("Update");
                         View v = getLayoutInflater().inflate(R.layout.popup_update, null);
