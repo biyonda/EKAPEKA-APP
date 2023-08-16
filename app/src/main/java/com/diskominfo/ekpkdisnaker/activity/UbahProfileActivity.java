@@ -158,7 +158,7 @@ public class UbahProfileActivity extends AppCompatActivity {
                                         jurusan.getText().toString(), alamat.getText().toString(), list_id_kecamatan.get(kecamatan.getSelectedItemPosition()),
                                         list_id_desa.get(desa.getSelectedItemPosition()), no_telp.getText().toString(),
                                         email.getText().toString(), password.getText().toString(), agama.getSelectedItem().toString(),
-                                        tahun_lulus.getText().toString());
+                                        tahun_lulus.getText().toString(), nilai_pendidikan.getText().toString());
 
                                 ubahProfile.enqueue(new Callback<BaseResponse>() {
                                     @Override

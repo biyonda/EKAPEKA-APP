@@ -53,7 +53,8 @@ public interface Api {
             @Field("email") String email,
             @Field("password") String password,
             @Field("agama") String agama,
-            @Field("tahun_lulus") String tahun_lulus
+            @Field("tahun_lulus") String tahun_lulus,
+            @Field("nilai_pendidikan") String nilai_pendidikan
             );
 
     @GET("getUser")
@@ -163,7 +164,8 @@ public interface Api {
             @Field("email") String email,
             @Field("password") String password,
             @Field("agama") String agama,
-            @Field("tahun_lulus") String tahun_lulus
+            @Field("tahun_lulus") String tahun_lulus,
+            @Field("nilai_pendidikan") String nilai_pendidikan
     );
 
     @FormUrlEncoded

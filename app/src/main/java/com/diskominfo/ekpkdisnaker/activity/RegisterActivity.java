@@ -159,7 +159,7 @@ public class RegisterActivity extends AppCompatActivity {
                         kawin.getSelectedItem()+"", tmp_kd_pendidikan+"", nama_pendidikan.getText().toString(),
                         jurusan.getText().toString(), alamat.getText().toString(), list_id_kecamatan.get(kecamatan.getSelectedItemPosition()),
                         list_id_desa.get(desa.getSelectedItemPosition()), no_telp.getText().toString(),
-                        email.getText().toString(), password.getText().toString(), agama.getSelectedItem().toString(), tahun_lulus.getText().toString());
+                        email.getText().toString(), password.getText().toString(), agama.getSelectedItem().toString(), tahun_lulus.getText().toString(), nilai_pendidikan.getText().toString());
 
                 register.enqueue(new Callback<RegisterResponse>() {
                     @Override
