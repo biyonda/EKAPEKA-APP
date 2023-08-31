@@ -146,32 +146,45 @@ public class BahasaActivity extends AppCompatActivity {
             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if (response.isSuccessful()) {
                     list_bahasa.setText(response.body().getUser().getBahasaDikuasai());
-                    if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Inggris")) {
-                        cb_inggris.setChecked(true);
-                    }
-                    if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Mandarin")) {
-                        cb_mandarin.setChecked(true);
-                    }
-                    if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Jepang")) {
-                        cb_jepang.setChecked(true);
-                    }
-                    if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Korea")) {
-                        cb_korea.setChecked(true);
-                    }
-                    if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Jerman")) {
-                        cb_jerman.setChecked(true);
-                    }
-                    if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Italia")) {
-                        cb_italia.setChecked(true);
-                    }
-                    if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Rusia")) {
-                        cb_rusia.setChecked(true);
-                    }
-                    if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Hindi")) {
-                        cb_hindi.setChecked(true);
-                    }
-                    if (response.body().getUser().getBahasaDikuasai().contains("Lainnya")) {
-                        cb_lainnya.setChecked(true);
+
+                    if (response.body().getUser().getBahasaDikuasai() == null) {
+                        cb_inggris.setChecked(false);
+                        cb_mandarin.setChecked(false);
+                        cb_jepang.setChecked(false);
+                        cb_korea.setChecked(false);
+                        cb_jerman.setChecked(false);
+                        cb_italia.setChecked(false);
+                        cb_rusia.setChecked(false);
+                        cb_hindi.setChecked(false);
+                        cb_lainnya.setChecked(false);
+                    } else {
+                        if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Inggris")) {
+                            cb_inggris.setChecked(true);
+                        }
+                        if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Mandarin")) {
+                            cb_mandarin.setChecked(true);
+                        }
+                        if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Jepang")) {
+                            cb_jepang.setChecked(true);
+                        }
+                        if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Korea")) {
+                            cb_korea.setChecked(true);
+                        }
+                        if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Jerman")) {
+                            cb_jerman.setChecked(true);
+                        }
+                        if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Italia")) {
+                            cb_italia.setChecked(true);
+                        }
+                        if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Rusia")) {
+                            cb_rusia.setChecked(true);
+                        }
+                        if (response.body().getUser().getBahasaDikuasai().contains("Bahasa Hindi")) {
+                            cb_hindi.setChecked(true);
+                        }
+                        if (response.body().getUser().getBahasaDikuasai().contains("Lainnya")) {
+                            cb_lainnya.setChecked(true);
+                        }
                     }
 
                 } else {
