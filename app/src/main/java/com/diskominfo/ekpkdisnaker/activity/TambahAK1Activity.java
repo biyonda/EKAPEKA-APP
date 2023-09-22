@@ -1,6 +1,7 @@
 package com.diskominfo.ekpkdisnaker.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -49,12 +50,15 @@ public class TambahAK1Activity extends AppCompatActivity {
             title_section_7, subtitle_section_7, count_section_7, prosentase_section_7,
             title_section_8, subtitle_section_8, count_section_8, prosentase_section_8;
     ProgressBar progress_section_1, progress_section_2, progress_section_3, progress_section_4, progress_section_5, progress_section_6, progress_section_7, progress_section_8;
+    SwipeRefreshLayout swipe_refresh_layout;
 
     Session session;
     Api api;
     Call<BaseResponse<KelengkapanData>> kelengkapanData;
     Call<BaseResponse> getKartuAK1;
     Call<BaseResponse<ak1>> getDataAK1;
+
+    double nilai_maksimum = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +68,7 @@ public class TambahAK1Activity extends AppCompatActivity {
         btn_back = findViewById(R.id.btn_back);
         btn_kartu_ak1 = findViewById(R.id.btn_kartu_ak1);
         btn_refresh = findViewById(R.id.btn_refresh);
+        swipe_refresh_layout = findViewById(R.id.swipe_refresh_layout);
 
         layout_add_1 = findViewById(R.id.layout_add_1);
         title_section_1 = findViewById(R.id.title_section_1);
@@ -120,6 +125,19 @@ public class TambahAK1Activity extends AppCompatActivity {
 
         session = new Session(this);
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
+
+        swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        getKelengkapanData();
+                        swipe_refresh_layout.setRefreshing(false);
+                    }
+                }, 1000);
+            }
+        });
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,7 +233,7 @@ public class TambahAK1Activity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<BaseResponse<KelengkapanData>> call, Response<BaseResponse<KelengkapanData>> response) {
                         if (response.isSuccessful()) {
-                            if (response.body().getData().get(0).getProsentaseTotal() < 100) {
+                            if (response.body().getData().get(0).getProsentaseTotal() < nilai_maksimum) {
                                 Toast.makeText(TambahAK1Activity.this, "Data Anda Tidak Lengkap", Toast.LENGTH_LONG).show();
                             } else {
                                 new SweetAlertDialog(TambahAK1Activity.this, SweetAlertDialog.WARNING_TYPE)
