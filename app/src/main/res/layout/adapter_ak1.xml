@@ -56,36 +56,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ly_txt1"
+            android:id="@+id/ly_txt3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/img_ak1"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nama Peserta :"
-                android:textSize="11sp">
-            </TextView>
-            <TextView
-                android:id="@+id/nama_peserta"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fiska Noermardiningrum Agustin"
-                android:textStyle="bold"
-                android:textColor="@color/black">
-            </TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ly_txt3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/ly_txt1"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
@@ -113,9 +90,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_below="@id/ly_txt1"
+            android:layout_below="@id/img_ak1"
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
@@ -136,10 +114,35 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ly_keterangan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ly_txt4"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Keterangan :"
+                android:textSize="11sp">
+            </TextView>
+            <TextView
+                android:id="@+id/keterangan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Isi keterangan"
+                android:textStyle="bold"
+                android:textColor="@color/black">
+            </TextView>
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/btn_detail"
             android:layout_width="match_parent"
             android:layout_height="36dp"
-            android:layout_below="@id/ly_txt4"
+            android:layout_below="@id/ly_keterangan"
             android:layout_marginHorizontal="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"

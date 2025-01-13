@@ -52,6 +52,7 @@ public class KartuAK1Activity extends AppCompatActivity {
     private ArrayList<String> pendidikan = new ArrayList<>();
     private ArrayList<String> masa_berlaku = new ArrayList<>();
     private ArrayList<String> status = new ArrayList<>();
+    private ArrayList<String> keterangan = new ArrayList<>();
     private ArrayList<String> sts_berlaku = new ArrayList<>();
     private ArrayList<String> file_ak1 = new ArrayList<>();
 
@@ -69,7 +70,6 @@ public class KartuAK1Activity extends AppCompatActivity {
 
         session = new Session(KartuAK1Activity.this);
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
-        getDataAK1();
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +84,7 @@ public class KartuAK1Activity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        getDataAK1();
                         swipe_refresh_layout.setRefreshing(false);
                     }
                 }, 1000);
@@ -98,73 +99,7 @@ public class KartuAK1Activity extends AppCompatActivity {
             }
         });
 
-//        btn_ak1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                new SweetAlertDialog(KartuAK1Activity.this, SweetAlertDialog.WARNING_TYPE)
-//                        .setTitleText("Perhatian")
-//                        .setContentText("Sebelum melanjutkan, mohon lengkapi data diri termasuk foto ktp, pas foto, ijazah, keterampilan (bila ada) di Profil Peserta")
-//                        .setConfirmText("Lanjutkan").setCancelButtonBackgroundColor(R.color.tetriary)
-//                        .setCancelButtonTextColor(R.color.main_blue_color).setCancelText("Batal")
-//                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-//                            @Override
-//                            public void onClick(SweetAlertDialog sDialog) {
-//                                getKartuAK1 = api.getKartuAK1();
-//                                getKartuAK1.enqueue(new Callback<BaseResponse>() {
-//                                    @Override
-//                                    public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
-//                                        if (response.isSuccessful()) {
-//                                            sDialog
-//                                                    .setTitleText("Sukses")
-//                                                    .setContentText(response.body().getMessage())
-//                                                    .setConfirmText("OK")
-//                                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-//                                                        @Override
-//                                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
-//                                                            getDataAK1();
-//                                                            sweetAlertDialog.dismiss();
-//                                                        }
-//                                                    })
-//                                                    .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
-//                                        } else {
-//                                            ApiError apiError = ErrorUtils.parseError(response);
-//                                            sDialog
-//                                                    .setTitleText("Gagal !!!")
-//                                                    .setContentText(apiError.getMessage() + "")
-//                                                    .setConfirmText("OK")
-//                                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-//                                                        @Override
-//                                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
-//                                                            getDataAK1();
-//                                                            sweetAlertDialog.dismiss();
-//                                                        }
-//                                                    })
-//                                                    .changeAlertType(SweetAlertDialog.ERROR_TYPE);
-//                                        }
-//                                    }
-//
-//                                    @Override
-//                                    public void onFailure(Call<BaseResponse> call, Throwable t) {
-//                                        sDialog
-//                                                .setTitleText("Gagal !!")
-//                                                .setContentText(t.getMessage())
-//                                                .setConfirmText("OK")
-//                                                .setConfirmClickListener(null)
-//                                                .changeAlertType(SweetAlertDialog.ERROR_TYPE);
-//                                    }
-//                                });
-//
-//                            }
-//                        })
-//                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-//                            @Override
-//                            public void onClick(SweetAlertDialog sweetAlertDialog) {
-//                                sweetAlertDialog.dismissWithAnimation();
-//                            }
-//                        })
-//                        .show();
-//            }
-//        });
+        getDataAK1();
     }
 
     public void getDataAK1() {
@@ -182,6 +117,7 @@ public class KartuAK1Activity extends AppCompatActivity {
                     pendidikan.clear();
                     masa_berlaku.clear();
                     status.clear();
+                    keterangan.clear();
                     file_ak1.clear();
 
                     for (int i = 0; i < response.body().getData().size(); i++) {
@@ -202,11 +138,12 @@ public class KartuAK1Activity extends AppCompatActivity {
 
                         masa_berlaku.add(response.body().getData().get(i).getMasaBerlaku());
                         status.add(response.body().getData().get(i).getStsAk1().toString());
+                        keterangan.add(response.body().getData().get(i).getKeterangan());
                         sts_berlaku.add(response.body().getData().get(i).getStsBerlaku().toString());
                     }
 
                     adapterAK1 = new AdapterAK1(KartuAK1Activity.this, number, no_register, nama_peserta,
-                            masa_berlaku, status, sts_berlaku, new AdapterAK1.OnEditLocationListener() {
+                            masa_berlaku, status, keterangan, sts_berlaku, new AdapterAK1.OnEditLocationListener() {
                         @Override
                         public void onClickAdapter(int position) {
                             Intent intent = new Intent(KartuAK1Activity.this, DetailAK1Activity.class);
@@ -216,7 +153,9 @@ public class KartuAK1Activity extends AppCompatActivity {
                             intent.putExtra("tgl_lahir", tgl_lahir.get(position));
                             intent.putExtra("jenis_kelamin", jenis_kelamin.get(position));
                             intent.putExtra("pendidikan", pendidikan.get(position));
+                            intent.putExtra("masa_berlaku", masa_berlaku.get(position));
                             intent.putExtra("status", status.get(position));
+                            intent.putExtra("keterangan", keterangan.get(position));
                             intent.putExtra("masa_berlaku", masa_berlaku.get(position));
                             intent.putExtra("file_ak1", file_ak1.get(position));
                             startActivity(intent);
