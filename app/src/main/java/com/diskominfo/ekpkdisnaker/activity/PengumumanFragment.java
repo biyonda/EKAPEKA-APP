@@ -75,7 +75,6 @@ public class PengumumanFragment extends Fragment {
         });
 
         getPengumuman();
-        getStatusAK1(session.getUsername());
 
         list_data.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -130,28 +129,6 @@ public class PengumumanFragment extends Fragment {
             @Override
             public void onFailure(Call<BaseResponse<Pengumuman>> call, Throwable t) {
                 Toast.makeText(getContext(), "Error, " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    public void getStatusAK1(String nik) {
-        getStatusAK1 = api.getStatusAK1(nik);
-        getStatusAK1.enqueue(new Callback<BaseResponse>() {
-            @Override
-            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
-                if (response.isSuccessful()) {
-                    if (response.body().getMessage().equals("1")) {
-                        popUpUpdate();
-                    }
-                } else {
-                    ApiError apiError = ErrorUtils.parseError(response);
-                    Toast.makeText(getContext(), apiError.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BaseResponse> call, Throwable t) {
-                Toast.makeText(getContext(), "Error, "+t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -177,22 +177,6 @@ public class UbahProfileActivity extends AppCompatActivity {
                                                     })
                                                     .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
 
-//                                            final Intent intent = new Intent(UbahProfileActivity.this, SettingActivity.class);
-//
-//                                            Thread thread = new Thread(){
-//                                                @Override
-//                                                public void run() {
-//                                                    try {
-//                                                        Thread.sleep(1250); // As I am using LENGTH_LONG in Toast
-//                                                        startActivity(intent);
-//                                                    } catch (Exception e) {
-//                                                        e.printStackTrace();
-//                                                    }
-//                                                }
-//                                            };
-//
-//                                            thread.start();
-
                                         } else {
                                             ApiError apiError = ErrorUtils.parseError(response);
                                             sDialog
@@ -247,27 +231,25 @@ public class UbahProfileActivity extends AppCompatActivity {
                     tmp_lahir.setText(tempat_lahir);
                     tgl_lahir.setText(tanggal_lahir);
 
-                    if (response.body().getUser().getJnsKelamin() == null) {
+                    if (response.body().getUser().getJnsKelamin().equals("LAKI-LAKI")) {
                         jenis_kelamin.setSelection(0);
-                    } else if (response.body().getUser().getJnsKelamin() == "LAKI-LAKI") {
-                        jenis_kelamin.setSelection(0);
-                    } else if (response.body().getUser().getJnsKelamin() == "PEREMPUAN") {
+                    } else if (response.body().getUser().getJnsKelamin().equals("PEREMPUAN")) {
                         jenis_kelamin.setSelection(1);
+                    } else {
+                        jenis_kelamin.setSelection(0);
                     }
 
-                    if(response.body().getUser().getStsNikah() == null) {
-                        sts_kawin.setSelection(0);
-                    } else if (response.body().getUser().getStsNikah().equals("BELUM KAWIN")) {
+                    if (response.body().getUser().getStsNikah().equals("BELUM KAWIN")) {
                         sts_kawin.setSelection(0);
                     } else if (response.body().getUser().getStsNikah().equals("KAWIN")) {
                         sts_kawin.setSelection(1);
                     } else if (response.body().getUser().getStsNikah().equals("CERAI")) {
                         sts_kawin.setSelection(2);
+                    } else {
+                        sts_kawin.setSelection(0);
                     }
 
-                    if (response.body().getUser().getAgama() == null) {
-                        agama.setSelection(0);
-                    } else if (response.body().getUser().getAgama().equals("ISLAM")) {
+                    if (response.body().getUser().getAgama().equals("ISLAM")) {
                         agama.setSelection(0);
                     } else if (response.body().getUser().getAgama().equals("KRISTEN")) {
                         agama.setSelection(1);
@@ -279,11 +261,11 @@ public class UbahProfileActivity extends AppCompatActivity {
                         agama.setSelection(4);
                     } else if (response.body().getUser().getAgama().equals("KONGHUCU")) {
                         agama.setSelection(5);
+                    } else {
+                        agama.setSelection(0);
                     }
 
-                    if (response.body().getUser().getKdPendidikan() == null) {
-                        kd_pendidikan.setSelection(0);
-                    } else if (response.body().getUser().getKdPendidikan().equals("SD")) {
+                    if (response.body().getUser().getKdPendidikan().equals("SD")) {
                         kd_pendidikan.setSelection(0);
                     } else if (response.body().getUser().getKdPendidikan().equals("SLTP")) {
                         kd_pendidikan.setSelection(1);
@@ -307,6 +289,8 @@ public class UbahProfileActivity extends AppCompatActivity {
                         kd_pendidikan.setSelection(10);
                     } else if (response.body().getUser().getKdPendidikan().equals("S3")) {
                         kd_pendidikan.setSelection(11);
+                    } else {
+                        kd_pendidikan.setSelection(0);
                     }
 
                     nama_pendidikan.setText(response.body().getUser().getNamaPendidikan());
