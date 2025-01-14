@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -137,8 +138,6 @@ public class UbahProfileActivity extends AppCompatActivity {
             }
         });
 
-        getUser();
-
         btn_simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -152,13 +151,24 @@ public class UbahProfileActivity extends AppCompatActivity {
                             public void onClick(SweetAlertDialog sDialog) {
                                 tmp_kd_pendidikan = kd_pendidikan.getSelectedItem().toString();
 
-                                ubahProfile = api.ubahProfile(nama_lengkap.getText().toString(),
-                                        tmp_lahir.getText().toString(), jenis_kelamin.getSelectedItem().toString(), tgl_lahir.getText().toString(),
-                                        sts_kawin.getSelectedItem()+"", tmp_kd_pendidikan+"", nama_pendidikan.getText().toString(),
-                                        jurusan.getText().toString(), alamat.getText().toString(), list_id_kecamatan.get(kecamatan.getSelectedItemPosition()),
-                                        list_id_desa.get(desa.getSelectedItemPosition()), no_telp.getText().toString(),
-                                        email.getText().toString(), password.getText().toString(), agama.getSelectedItem().toString(),
-                                        tahun_lulus.getText().toString(), nilai_pendidikan.getText().toString());
+                                ubahProfile = api.ubahProfile(
+                                        nama_lengkap.getText().toString(),
+                                        tmp_lahir.getText().toString(),
+                                        jenis_kelamin.getSelectedItem().toString(),
+                                        tgl_lahir.getText().toString(),
+                                        sts_kawin.getSelectedItem()+"",
+                                        tmp_kd_pendidikan+"",
+                                        nama_pendidikan.getText().toString(),
+                                        jurusan.getText().toString(),
+                                        alamat.getText().toString(),
+                                        list_id_kecamatan.get(kecamatan.getSelectedItemPosition()),
+                                        list_id_desa.get(desa.getSelectedItemPosition()),
+                                        no_telp.getText().toString(),
+                                        email.getText().toString(),
+                                        password.getText().toString(),
+                                        agama.getSelectedItem().toString(),
+                                        tahun_lulus.getText().toString(),
+                                        nilai_pendidikan.getText().toString());
 
                                 ubahProfile.enqueue(new Callback<BaseResponse>() {
                                     @Override
@@ -176,7 +186,8 @@ public class UbahProfileActivity extends AppCompatActivity {
                                                         }
                                                     })
                                                     .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
-
+                                            Intent intent = new Intent(UbahProfileActivity.this, MainActivity.class);
+                                            startActivity(intent);
                                         } else {
                                             ApiError apiError = ErrorUtils.parseError(response);
                                             sDialog
@@ -217,6 +228,8 @@ public class UbahProfileActivity extends AppCompatActivity {
             }
         });
 
+        getKecamatan();
+        getUser();
     }
 
     public void getUser() {
@@ -293,6 +306,18 @@ public class UbahProfileActivity extends AppCompatActivity {
                         kd_pendidikan.setSelection(0);
                     }
 
+                    String idKecamatan = response.body().getUser().getKecamatan();
+                    String idDesa = response.body().getUser().getDeskel();
+
+                    int kecamatanIndex = list_id_kecamatan.indexOf(idKecamatan);
+                    if (kecamatanIndex >= 0) {
+                        kecamatan.setSelection(kecamatanIndex);
+                        getDesa(idKecamatan, idDesa); // Panggil getDesa setelah mengatur kecamatan
+                    }
+
+                    // Pindahkan pengaturan desa ke dalam callback getDesa
+                    getDesa(idKecamatan, idDesa);
+
                     nama_pendidikan.setText(response.body().getUser().getNamaPendidikan());
                     no_telp.setText(response.body().getUser().getTelepon());
                     alamat.setText(response.body().getUser().getAlamat());
@@ -312,20 +337,6 @@ public class UbahProfileActivity extends AppCompatActivity {
                 Toast.makeText(UbahProfileActivity.this, "Error, " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-        getKecamatan();
-
-        kecamatan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                getDesa(list_id_kecamatan.get(i));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
     }
 
     public void getKecamatan(){
@@ -338,12 +349,10 @@ public class UbahProfileActivity extends AppCompatActivity {
                     list_id_kecamatan.clear();
 
                     for (int i = 0; i < response.body().getData().size(); i++) {
-//                        list_kota.add(response.body().getData().get(i).getType()+" "+response.body().getData().get(i).getCityName());
                         list_kecamatan.add(response.body().getData().get(i).getNama());
                         list_id_kecamatan.add(response.body().getData().get(i).getIdKec());
                     }
 
-                    //Ini buat ngisi Spinner
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(UbahProfileActivity.this, R.layout.spinner_kecamatan, list_kecamatan);
                     arrayAdapter.setDropDownViewResource(R.layout.spinner_kecamatan);
                     kecamatan.setAdapter(arrayAdapter);
@@ -360,7 +369,7 @@ public class UbahProfileActivity extends AppCompatActivity {
         });
     }
 
-    public void getDesa(String id_kec) {
+    public void getDesa(String id_kec, String idDesa) {
         getDesa = api.getDesa(id_kec);
         getDesa.enqueue(new Callback<BaseResponse<Desa>>() {
             @Override
@@ -370,15 +379,25 @@ public class UbahProfileActivity extends AppCompatActivity {
                     list_id_desa.clear();
 
                     for (int i = 0; i < response.body().getData().size(); i++) {
-//                        list_kota.add(response.body().getData().get(i).getType()+" "+response.body().getData().get(i).getCityName());
                         list_desa.add(response.body().getData().get(i).getNama());
                         list_id_desa.add(response.body().getData().get(i).getId().toString());
                     }
 
-                    //Ini buat ngisi Spinner
-                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(UbahProfileActivity.this, R.layout.spinner_kecamatan, list_desa);
+                    // Isi spinner desa
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(UbahProfileActivity.this, R.layout.spinner_kecamatan, list_desa);
                     arrayAdapter.setDropDownViewResource(R.layout.spinner_kecamatan);
                     desa.setAdapter(arrayAdapter);
+
+                    int kecamatanIndex = list_id_kecamatan.indexOf(id_kec);
+                    if (kecamatanIndex >= 0) {
+                        kecamatan.setSelection(kecamatanIndex);
+                    }
+
+                    // Atur posisi spinner desa setelah data diterima
+                    int desaIndex = list_id_desa.indexOf(idDesa);
+                    if (desaIndex >= 0) {
+                        desa.setSelection(desaIndex);
+                    }
                 } else {
                     ApiError apiError = ErrorUtils.parseError(response);
                     Toast.makeText(UbahProfileActivity.this, apiError.getMessage(), Toast.LENGTH_SHORT).show();
