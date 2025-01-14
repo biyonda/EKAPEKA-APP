@@ -99,38 +99,6 @@ public class DetailAK1Activity extends AppCompatActivity {
 
     public void downloadPdfContent(String urlToDownload){
 
-//        try {
-//
-//            String fileName = no_register.getText().toString();
-//            String fileExtension=".pdf";
-//
-////           download pdf file.
-//
-//            System.out.println(session.getBaseUrl()+urlToDownload);
-//            URL url = new URL(session.getBaseUrl()+urlToDownload);
-//            HttpURLConnection c = (HttpURLConnection) url.openConnection();
-//            c.setRequestMethod("GET");
-//            c.setDoOutput(true);
-//            c.connect();
-//            String PATH = Environment.getExternalStorageDirectory() + "/download/";
-//            File file = new File(PATH);
-//            file.mkdirs();
-//            File outputFile = new File(file, fileName+fileExtension);
-//            FileOutputStream fos = new FileOutputStream(outputFile);
-//            InputStream is = c.getInputStream();
-//            byte[] buffer = new byte[1024];
-//            int len1 = 0;
-//            while ((len1 = is.read(buffer)) != -1) {
-//                fos.write(buffer, 0, len1);
-//            }
-//            fos.close();
-//            is.close();
-//
-//            Toast.makeText(DetailAK1Activity.this, "--pdf downloaded--ok--"+urlToDownload, Toast.LENGTH_SHORT).show();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//
-//        }
         DownloadManager downloadmanager = (DownloadManager) getSystemService(DetailAK1Activity.DOWNLOAD_SERVICE);
         Uri uri = Uri.parse(session.getBaseUrl()+urlToDownload);
 

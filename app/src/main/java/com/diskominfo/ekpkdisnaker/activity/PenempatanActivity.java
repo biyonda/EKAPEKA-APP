@@ -158,8 +158,7 @@ public class PenempatanActivity extends AppCompatActivity {
     }
 
     public void updatePenempatan(String no_register, String tmp_penempatan, String tgl_penempatan, Uri File) {
-        updatePenempatan = api.updatePenempatan(no_register, tmp_penempatan, tgl_penempatan,
-                getStringPdf(File));
+        updatePenempatan = api.updatePenempatan(no_register, tmp_penempatan, tgl_penempatan, getStringPdf(File));
         updatePenempatan.enqueue(new Callback<BaseResponse>() {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
@@ -168,7 +167,8 @@ public class PenempatanActivity extends AppCompatActivity {
                         @Override
                         public void run() {
                             Toast.makeText(PenempatanActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                            onBackPressed();
+                            Intent intent = new Intent(PenempatanActivity.this, MainActivity.class);
+                            startActivity(intent);
                         }
                     }, 1000);
                 } else {

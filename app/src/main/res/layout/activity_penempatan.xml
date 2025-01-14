@@ -101,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_marginLeft="16dp"
-                android:text="Lampiran Penempatan (bila ada)"
+                android:text="Lampiran Penempatan (Wajib)"
                 android:textSize="18sp"
                 android:textColor="#000"
                 android:textStyle="bold">
