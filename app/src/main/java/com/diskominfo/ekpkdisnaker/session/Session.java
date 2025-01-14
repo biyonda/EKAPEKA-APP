@@ -25,8 +25,8 @@ public class Session {
     }
 
     public String getBaseUrl() {
-//        return preferences.getString("baseUrl", "https://e-kapeka.jemberkab.go.id/");
-        return preferences.getString("baseUrl", "http://10.30.18.115:8000/");
+        return preferences.getString("baseUrl", "https://e-kapeka.jemberkab.go.id/");
+//        return preferences.getString("baseUrl", "http://10.30.18.115:8000/");
     }
 
     public boolean getUserLoggedIn() {
