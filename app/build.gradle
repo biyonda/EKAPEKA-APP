@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.diskominfo.ekpkdisnaker"
-        minSdk 19
-        targetSdk 33
+        minSdk 21
+        targetSdk 34
         multiDexEnabled true
         versionCode 8
         versionName "1.8"
