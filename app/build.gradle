@@ -4,15 +4,15 @@ plugins {
 }
 
 android {
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.diskominfo.ekpkdisnaker"
         minSdk 21
-        targetSdk 34
+        targetSdk 35
         multiDexEnabled true
-        versionCode 9
-        versionName "1.9"
+        versionCode 10
+        versionName "1.10"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -28,6 +28,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     namespace 'com.diskominfo.ekpkdisnaker'
+
+    lintOptions {
+        checkReleaseBuilds false
+    }
 }
 
 dependencies {
